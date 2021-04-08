@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_CsStripePayment
+ * @author    CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright Copyright CEDCOMMERCE (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+      <ced_csmarketplace>
+            <csstripe>
+                <active>1</active>
+                <payout_type>daily</payout_type>
+                <payout_daily>7</payout_daily>
+            </csstripe>
+            <vendor>
+                <payment_methods>
+                    <stripe>Ced\CsStripePayment\Model\Vendor\Payment\Methods\Stripe</stripe>
+                </payment_methods>
+            </vendor>
+        </ced_csmarketplace>
+    </default>
+</config>

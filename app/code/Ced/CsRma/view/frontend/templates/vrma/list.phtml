@@ -1,0 +1,183 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+<?php
+ 
+$collection = $this->getVrma(); 
+$params = $this->_objectManager->get('Ced\CsMarketplace\Model\Session')->getData('rma_filter');
+$url = $block->getViewFileUrl('images/calendar.gif');
+?>
+<div class="row">
+	<div class="col-md-12" style="margin-top:10px;">
+		<div class="panel panel-default">
+			<div class="panel-heading col-md-12" style="text-transform: uppercase;font-weight:bold;padding:4px 15px;">
+				<div  style="line-height:31px;font-size:17px;display:inline;text-transform: uppercase;">
+				<?php echo __('Return Merchandise List') ?>
+				</div>
+	         </div>
+		 	<div class="panel-body">
+		 		<div class="col-md-12" style="margin-top:10px;">
+					<form action="javascript:void( 0 );" enctype="multipart/form-data" id="rma_form" method="post">
+						<div class="vendor-button-set buttons-set filter_button">
+						<?php if(count($collection)>0){ ?>
+							<div class="col-md-4 export-button" style="padding-left:0;">
+								<button onClick="window.location='<?php echo $this->getUrl('*/*/ExportRmaCsv',array('_nosid'=>true)); ?>'" class="uptransform btn btn-warning button" title="Export Orders" style="margin:2px; float:left;">
+											<span><span><?php echo __('Export') ?></span></span>
+								</button>
+							</div>
+						<div class="col-md-8 filter-buttons" style="margin-left:0;padding-right:0;text-align:right;">
+						<?php } else {  ?>
+							<div class="col-md-12" style="margin-left:0;margin-bottom:5px;padding-right:0;text-align:right;">
+						<?php }?>
+								<button  onclick="filterVrma('<?php echo $this->getUrl('*/*/filter')?>')" class="button btn btn-info uptransform" title="<?php echo __('Filter') ?>" type="submit" id="Filter"	>
+									<span><span><?php echo __('Filter') ?></span></span> 
+								</button>
+								<button  onclick="filterVrma('<?php echo $this->getUrl('*/*/filter',array('reset_rma_filter' =>1))?>')" class="button btn btn-info uptransform" title="<?php echo __('Reset Filter') ?>" type="button" id="Filter"	>
+									<span><span><?php echo __('Reset Filter') ?></span></span>
+								</button>
+							</div>
+							<div style="clear:both"></div>
+						</div>	
+						
+					<br/>
+					<?php  echo $this->getPagerHtml(); ?>
+					<div style="clear:both"></div>
+					<div class="order-items order-details table-responsive">
+							<table id="my-products-table" class="table table-bordered table-hover table-striped">
+						    <col width="1"/>
+						    <col width="1"/>
+						    <col width="1"/>
+						    <col width="1"/>
+						    <col width="1"/>
+						    <col width="1"/>
+						    <col width="1"/>
+						    <col width="1"/>
+						    <thead>
+						    	<tr style="background-color: #f5f5f5;">
+						    		<th class="head"><?php echo __('Purchased Point') ?></th>
+									<th class="head"><?php echo __('Order Id #') ?></th>
+									<th class="head"><?php echo __('Customer Name') ?></th>
+									<th class="head"><?php echo __('Customer Email') ?></th>
+									<th class="head"><?php echo __('Status') ?></th>
+									<th class="head"><?php echo __('Resolution Requested')?></th>
+									<th class="head"><?php echo __('Updated At') ?></th>
+									<th class="head"><?php echo __('Action') ?></th>
+
+
+								</tr>
+					         	<tr class="filter">
+					         		<th class="filter">
+							        	<div class="list_filter"><input type="text" class="form-control filter" name="order_id"   value="<?php echo (isset($params['store_id']) && urldecode($params['store_id'])!="")?urldecode($params['store_id']):""; ?>" /></div>
+							        </th>
+					              	<th class="filter">
+							        	<div class="list_filter"><input type="text" class="form-control filter" name="order_id"   value="<?php echo (isset($params['order_id']) && urldecode($params['order_id'])!="")?urldecode($params['order_id']):""; ?>" /></div>
+							        </th>
+							        
+							        <th class="filter">
+							        	<div class="list_filter"><input type="text" name="customer_name"  class="filter form-control" value="<?php echo (isset($params['customer_name']) && urldecode($params['customer_name'])!="")?urldecode($params['customer_name']):""; ?>" /></div>
+									</th>
+
+									<th class="filter">
+							        	<div class="list_filter"><input type="text" name="customer_email"  class="filter form-control" value="<?php echo (isset($params['customer_email']) && urldecode($params['customer_email'])!="")?urldecode($params['customer_email']):""; ?>" /></div>
+									</th>  
+									<th class="filter">
+							        	<div class="list_filter"><input type="text" name="status"  class="filter form-control" value="<?php echo (isset($params['status']) && urldecode($params['status'])!="")?urldecode($params['status']):""; ?>" /></div>
+									</th> 
+									<th class="filter">
+							        	<div class="list_filter"><input type="text" name="resolution_requested"  class="filter form-control" value="<?php echo (isset($params['resolution_requested']) && urldecode($params['resolution_requested'])!="")?urldecode($params['resolution_requested']):""; ?>" /></div>
+									</th> 
+									<th class="filter">
+							        	<div class="list_filter">
+						        			<img src="<?php echo $url ?>" class="v-middle " id="date_from_trig" />
+											<input type="text" id="updated_at_from" name="updated_at[from]" class="form-control" value="<?php echo (isset($params['updated_at']['from']) && urldecode($params['updated_at']['from'])!="")?urldecode($params['updated_at']['from']):""; ?>" />
+										</div>
+										<div class="list_filter">
+											<img src="<?php echo $url ?>" class="v-middle" id="date_to_trig" />
+											<input type="text"  id="updated_at_to" name="updated_at[to]" class="form-control" value="<?php echo (isset($params['updated_at']['to']) && urldecode($params['updated_at']['to'])!="")?urldecode($params['updated_at']['to']):""; ?>"  />
+										</div>
+							        </th>
+							            
+					           	</tr>
+						    </thead>
+						    <?php if(count($collection)>0): ?>
+						    	<tbody>
+							        <?php foreach ($collection as $_rma):
+										?>
+								        <tr>   
+								     		<td class="status"><?php echo $block->getStoreValue($_rma->getStoreId()); ?></td>
+								     		<td class="status"><?php echo $_rma->getOrderId(); ?></td>
+								     		<td class="status"><?php echo $_rma->getCustomerName(); ?></td>
+								     		<td class="status"><?php echo $_rma->getCustomerEmail(); ?></td>
+								     		<td class="status"><?php echo $_rma->getStatus(); ?></td>
+								     		<td class="status"><?php echo $_rma->getResolutionRequested(); ?></td>
+								     		<td class="status"><?php echo  $block->formatDate( $_rma->getUpdatedAt());?></td>
+								     		<td class="a-center view number">
+			                					<span class="nobr number">
+			                						<a title="<?php echo __('Edit') ?>" class="btn btn-info  btn-outline btn-circle" href="<?php echo $block->getEditUrl($_rma) ?>">
+			                							<i class="fa fa-pencil"></i>
+			                						</a>
+			                					</span>
+			            					</td>
+								        </tr>
+							        <?php endforeach; ?>
+								<?php else: ?>
+									<tr>
+										<td colspan="8">
+										<div>
+										<p><?php echo __('No Orders Available'); ?></p>
+										</div>
+										</td>
+									</tr>		
+						    	</tbody>
+						    <?php endif; ?>
+						</table>
+					</div>
+					<?php echo $this->getPagerHtml(); ?>
+					</form>
+		 		</div>
+	 		</div>
+	 	</div>
+ 	</div>
+ </div>
+
+<script>
+     require([
+          "jquery",
+          "mage/calendar"
+     ], function($){
+         $("#updated_at_from").calendar({
+              buttonText:"<?php echo __('Select Date') ?>",
+         });
+       });
+     require([
+              "jquery",
+              "mage/calendar"
+         ], function($){
+             $("#updated_at_to").calendar({
+                  buttonText:"<?php echo __('Select Date') ?>",
+             });
+           });
+</script>
+<script>
+require(
+	['jquery'],
+	function($) {
+    	window.filterVrma = function (url) {
+        	$('#rma_form').attr('action',url);
+        	$('#rma_form').submit();
+    	};
+	});
+</script>

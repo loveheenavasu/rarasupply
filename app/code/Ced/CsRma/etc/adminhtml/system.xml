@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+     
+        <section id="ced_csmarketplace" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+              <resource>Ced_CsRma::rma_config</resource>
+                <group id = "rma_general_group" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Vendor RMA Configuration</label>
+
+                    <!-- General Configuration -->
+                    <field id="rma_general" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>General Settings</label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    </field>
+                    <field id="activation" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable Extension</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                     <field id="transfertovendor" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Default Transfer RMA to Vendor</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="guest" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Allow Guest to request RMA</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="time" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Time after delivery for permitting RMA Request</label>
+                        <comment>in days</comment>
+                    </field> 
+                     <!-- rma_mail_group Configuration -->
+                   
+                    <field id="rma_mail_group" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Mail Contacts</label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    </field>
+                    <field id="email_notification" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable E-mail notifications</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field> 
+                    <field id="dept_name" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>RMA department display name</label>
+                    </field> 
+                    <field id="dept_email" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>RMA department email</label>
+                    </field>
+                    <field id="dept_address" translate="label" type="textarea" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>RMA department address</label>
+                    </field>
+
+                    <field id="sender" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Email Sender</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    </field>
+
+                   <!--  <field id="customer_mail_template" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Base email template for customer</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field> -->
+
+                    <!-- <field id="vendor_mail_template" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Base email template for vendor</label>
+                         <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+
+                    <field id="admin_mail_template" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Base email template for admin</label>
+                         <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field> -->
+
+                    <!-- rma_mail_group Configuration -->
+                    <field id="rma_chat_group" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Chat Contacts</label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    </field> 
+                    <field id="enable_email_notification" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable Chats and their mail notifications</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field> 
+                    <field id="chat_sender_name" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Chat sender's name</label>
+                    </field>
+
+                    <!-- <field id="base_email_chat_customer" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Base email template for customer chat notification mail</label>
+                        <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+                    <field id="base_email_chat_admin" translate="label" type="select" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Base email template for admin chat notification mail</label>
+                       <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field>
+
+                    <field id="base_email_chat_vendor" translate="label" type="select" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Base email template for vendor chat notification mail</label>
+                         <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    </field> -->
+
+
+                    <!-- rma_policy_group Configuration -->
+                    <field id="rma_policy_group" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Return Policy </label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    </field>
+                    <field id="policy_description" translate="label" type="textarea" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Return Policy Description</label>
+                        <comment>Mention your aggrement for return and exchange of Items here</comment>
+                        <validate>required-entry</validate>
+                    </field> 
+
+                    <!-- rma_property_group Configuration -->
+                    <field id="properties" translate="label" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Properties</label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    </field>
+                    <field id="reasons" type="label" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Reasons</label>
+                        <frontend_model>Ced\CsRma\Block\System\Config\Form\Field\Reasons</frontend_model>
+                        <backend_model>Ced\CsRma\Model\Backend\Serialized\Reasons</backend_model>
+                        <comment>Do not delete these option</comment>
+                    </field>
+                    <field id="resolution" type="label" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Resolutions</label>
+                        <frontend_model>Ced\CsRma\Block\System\Config\Form\Field\Resolution</frontend_model>
+                        <backend_model>Ced\CsRma\Model\Backend\Serialized\Resolution</backend_model>
+                        <comment>Do not delete these option</comment>
+                    </field>
+                    <field id="conditions" type="label" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Package Conditions</label>
+                        <frontend_model>Ced\CsRma\Block\System\Config\Form\Field\Conditions</frontend_model>
+                        <backend_model>Ced\CsRma\Model\Backend\Serialized\Conditions</backend_model>
+                        <comment>Do not delete these option</comment>
+                    </field>
+
+                    <!-- RMA for Order Status Settings -->
+                     <field id="rma_order_status" translate="label" type="text" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>RMA for Order Status Settings</label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    </field>
+                  <!--   <field id="order_cancel" translate="label" type="select" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Allow Customer To cancel Orders</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>if no, customers cannot generate RMA before shipment</comment>
+                    </field> -->
+                     <field id="cancel_order" translate="label" type="select" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Allow Customer To cancel Orders</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="product_shipped" translate="label" type="select" sortOrder="29" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Allow RMA for only shipped products</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>if yes, it allows customer to generate RMA for individual products shipped</comment>
+                    </field>
+                    <field id="product_invoiced" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Allow RMA for only invoiced products</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>if yes, it allows customer to generate refund for individual products invoiced</comment>
+                    </field>
+                </group>
+        </section>      
+    </system>
+</config>

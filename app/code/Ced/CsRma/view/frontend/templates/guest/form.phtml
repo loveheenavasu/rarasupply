@@ -1,0 +1,212 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+<form class="form form-orders-search" id="oar-widget-orders-and-returns-form" data-mage-init='{"validation":{}}' method="post" name="guest_post" >
+    <?php echo $block->getBlockHtml('formkey')?>
+    <fieldset class="fieldset">
+        <legend class="admin__legend"><span><?php /* @escapeNotVerified */ echo __('RMA Request Form') ?></span></legend>
+        <br>
+        <div class="field id required">
+            <label class="label" for="oar-order-id"><span><?php /* @escapeNotVerified */ echo __('Order ID') ?></span></label>
+            <div class="control">
+                <input type="text" class="input-text" id="oar-order-id" name="oar_order_id"
+                       data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field lastname required">
+            <label class="label" for="oar-billing-lastname"><span><?php /* @escapeNotVerified */ echo __('Billing Last Name') ?></span></label>
+
+            <div class="control">
+                <input type="text" class="input-text" id="oar-billing-lastname" name="oar_billing_lastname" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div id="oar-email" class="field email required">
+            <label class="label" for="oar_email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+
+            <div class="control">
+                <input type="email" class="input-text" id="oar_email" name="oar_email"
+                       data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+    </fieldset>
+    <div class="actions-toolbar">
+            <div class="primary">
+                <button type="button" onclick= "postForm()" title="<?php /* @escapeNotVerified */ echo __('Continue') ?>" class="action submit primary">
+                    <span><?php /* @escapeNotVerified */ echo __('Continue') ?></span>
+                </button>
+            </div>
+    </div>
+</form>
+
+<?php   
+    $reason = $this->rmaConfigHelper->getAvailableReasons(); 
+    $package = $this->rmaConfigHelper->getPackageCondition(); 
+    $resolution = $this->rmaConfigHelper->getResolution(); 
+?>
+<form class="form-rma-edit" action="<?php  echo $block->getSaveUrl() ?>" method="post" id="guest-rma" enctype="multipart/form-data" data-hasrequired="<?php  echo __('* Required Fields') ?>" style="display: none;" data-mage-init='{"validation": {}}'>
+    <fieldset class="fieldset">
+        <input type="hidden" value="<?php echo $this->rmaDataHelper->getExternalLink();?>" name="external_link"/>
+        <?php echo $block->getBlockHtml('formkey')?>
+        <legend class="legend"><span><?php  echo __('Order Information') ?></span></legend><br>
+        <div class="field orderid required">
+            <label class="label" for="order"><span><?php echo __('Order #') ?><strong id ="order-id"></strong></span></label>
+            <input type="hidden" value="" id="email" name ="email"/>
+        </div>
+        <div class="control">
+            <label class="label" for="item"><span><?php  echo __('Item Ordered') ?></span></label>
+            <table>
+                <thead>
+                    <tr class="headings">
+                        <th class="col-name"><span><?php echo __('Name') ?></span></th>
+                        <th class="col-sku"><span><?php echo __('SKU') ?></span></th>
+                        <th class="col-price"><span><?php echo __('Price') ?></span></th>
+                        <th class="col-qty"><span><?php echo __('Ordered Qty') ?></span></th>
+                        <th class="col-qty"><span><?php echo __('Qty for RMA') ?></span></th>
+                    </tr>
+                </thead>
+                <tbody id ="guest-item"></tbody>
+            </table>
+        </div>
+    </fieldset>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?php  echo __('General Information') ?></span></legend><br>
+        <div class="field reason required">
+            <label class="label" for="reason"><span><?php echo __('Reason Requested') ?></span></label>
+            <div class="control">
+                <select id="rma_reason" name="rma_reason" title="<?php echo __('Reason Requested For RMA ') ?>" data-validate="{required:true}">
+                    <option value=""><?php echo __('Please select a reason for RMA request.') ?></option>
+                <?php if(is_array($reason)):?>
+                <?php foreach($reason as $reasons =>$reason_value):?>
+                    <option value ="<?php echo $reasons?>"><?php echo $reason_value ?></option>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                </select>
+            </div>
+        </div>
+        <div class="field reason required">
+            <label class="label" for="reason"><span><?php  echo __('Package Condition') ?></span></label>
+            <div class="control">
+                <select id="rma_pk_condition" name="rma_pk_condition" title="<?php echo __('Package Condition For RMA ') ?>" data-validate="{required:true}">
+                    <option value=""><?php echo __('Please select package condition for RMA request.') ?></option>
+                <?php if(is_array($package)):?>
+                <?php foreach($package as $packages =>$package_value):?>
+                <option value ="<?php echo $packages?>"><?php echo $package_value ?></option>
+            <?php endforeach; ?>
+            <?php endif; ?>
+            </select>
+            </div>
+        </div>
+        <div class="field reason required">
+            <label class="label" for="reason"><span><?php  echo __('Resolution Requested') ?></span></label>
+            <div class="control">
+                <select id="rma_resolution" name="rma_resolution" title="<?php echo __('Resolution Requested through RMA ') ?>" data-validate="{required:true}">
+                    <option value=""><?php echo __('Please select a resoltuon for which want to request RMA') ?></option>
+                    <?php if(is_array($resolution)):?>
+                    <?php foreach($resolution as $resolutions =>$resolution_value):?>
+                    <option value ="<?php echo $packages?>"><?php echo $resolution_value ?></option>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                </select>
+            </div>
+        </div>
+        <?php $policyText = $this->rmaConfigHelper->getPolicyText();
+            if ($policyText) : ?>
+                <div class="field policy required">
+                    <label class="label" for="reason"><span><?php  echo __('Return Policy') ?></span></label>
+                    <textarea readonly="true"><?php echo $policyText; ?></textarea>
+                </div>
+                <div class="control">
+                        <input type="checkbox" required="required">
+                         <label for="ced-rma-policy-info"><?php echo __('I accept Policy') ?></label>
+                    </div>
+        <?php endif; ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action save primary" data-action="save-rma" title="<?php  echo __('Submit RMA Request') ?>">
+                <span><?php echo __('Submit RMA Request') ?></span>
+            </button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php echo __('Go back') ?></span></a>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    function validateGuestQty(qty,saveqty) {
+        var maxValue = saveqty;
+        var updateValue = qty.value;
+        if(updateValue > maxValue){
+            alert('Value is greater than available for RMA ');
+            qty.value = maxValue;
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    
+    function postForm() {
+    require(["jquery","prototype"], function(jQuery){
+        jQuery.ajax({
+                type: "POST",
+                url: '<?php echo $this->urlBuilder->getUrl('csrma/guestrma/view',
+                        array('_secure'=>true)); ?>',
+                data: {
+                        data:jQuery('#oar-widget-orders-and-returns-form').serializeArray(),
+                    },
+                showLoader: true,
+                dataType: 'json',
+                success: function(response) {
+                    if(response.status==true){
+                        document.getElementById("guest-rma").style.display = "block";
+                        document.getElementById("email").value = response.email;
+                        document.getElementById("oar-widget-orders-and-returns-form").style.display = "none";
+                        var response_order_id = response.order_id;
+                        jQuery.ajax({
+                            type: "POST",
+                            url: '<?php echo $this->urlBuilder->getUrl('csrma/guestrma/guestorder'); ?>',
+                            data: {order_id:response_order_id},
+                            showLoader: true,
+                            success: function(post) {
+                                document.getElementById("guest-item").innerHTML = post;
+                                document.getElementById("order-id").innerHTML = document.getElementById("guest_increment_id").value;
+                            }
+                        });
+                    }else{
+                        alert('Something Went Wrong!');
+                    }
+                }
+            });
+        }    
+    );
+}
+</script>
+<script type="text/javascript">
+        require(["jquery","prototype"], function($){
+
+            $("#guest-rma").submit(function(e){
+                $reason = $("#rma_reason").val();
+                $condition = $("#rma_pk_condition").val();
+                $resolution = $("#rma_resolution").val();
+                $policy = $('input[type=checkbox]').prop('checked');
+                
+                if($reason == null || $condition == null || $resolution == null || $policy == false){
+                    alert("Please select all required fields");
+                    e.preventDefault();
+                }
+            });
+        });
+</script>

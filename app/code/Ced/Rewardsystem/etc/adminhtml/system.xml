@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<!-- /**
+ * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Rewardsystem
+  * @author   	 CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+  * @license      http://cedcommerce.com/license-agreement.txt
+  */  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="reward" translate="label" sortOrder="300">
+			<label>RewardSystem</label>
+		</tab>
+		<section id="reward" translate="label" type="text" sortOrder="140"
+			showInDefault="1" showInWebsite="1" showInStore="1">
+			<label>Configurations</label>
+			<tab>reward</tab>
+			<resource>Ced_Rewardsystem::config_setting</resource>
+			<group id="setting" translate="label" type="text" sortOrder="1"
+				showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Setting</label>
+				<field id="enable" translate="label" type="select" sortOrder="0"
+					showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Reward System</label> 
+                    <comment>
+                        <![CDATA[
+                            <strong>Note:</strong> Points will be applied in the floor value.<br />
+                            <strong>Example:</strong> 5.1 will become 5 <br />
+                            5.9 will become 5<br />
+                            4.111 will become 4.
+                        ]]>
+                    </comment>
+					 <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="active" translate="label" type="select" sortOrder="1"
+					showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Show Product Page Point</label>
+					 <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					 <depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<!--<field id="point" translate="label" type="text" sortOrder="2"
+					showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Point</label>
+					<comment>Define point </comment>
+					<validate>validate-digits</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>-->
+				<field id="point_value" translate="label" type="text"
+					sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Point Price</label>
+					<comment>Define Price of 1 point</comment>
+					<validate>validate-digits validate-greater-than-zero</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<field id="product_point" translate="label" type="text"
+					sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Product Point</label>
+					<comment>Initialize all product same point</comment>
+					<validate>validate-digits</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<field id="point_expiration" translate="label" type="text"
+					sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Define RewardPoint Expiration Period</label>
+					<comment>In Days</comment>
+					<validate>validate-digits</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<field id="registration_point" translate="label" type="text"
+					sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Point For Registration Successful </label>
+                    <validate>validate-digits</validate>
+                    <depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<field id="max_point_enable" translate="label" type="select"
+					sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Active Maximum Point For Order </label>
+					 <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<field id="max_point" translate="label" type="text" sortOrder="8"
+					showInDefault="1" showInWebsite="1" showInStore="1">
+					<depends>
+					      <field id="enable">1</field>
+                          <field id="max_point_enable">1</field>
+                    </depends>
+					<label>Define Maximum Point For Order</label>
+                    <validate>validate-digits</validate>
+				</field>
+				<field id="referal_point" translate="label" type="text"
+					sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Referral Reward</label>
+					<comment>this amount customer will get if they sign up with referal url</comment>
+					<validate>validate-digits</validate>
+                    <depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<field id="signup_point" translate="label" type="text"
+					sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Signup Point</label>
+					<comment>this amount referal will get if someone sign up with hisreferal url</comment>
+					<validate>validate-digits</validate>
+ 					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<field id="support_email" translate="label" type="text"
+					sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Support Email Id</label>
+					<validate>required-entry validate-email</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<!-- <field id="default_email_subject" translate="label" type="text"
+					sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Default Email Subject</label>
+					<validate>required-entry</validate>
+				</field> -->
+				<field id="default_message" translate="label" type="textarea"
+					sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Default Email Message</label>
+					<validate>required-entry</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+                <!-- <field id="birthday_point" translate="label" type="text"
+					sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Birthday Reward Point</label>
+					<validate>validate-digits</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field> -->
+				
+				<field id="first_ref_purchase" translate="label" type="text"
+					sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Point for 1st Referral Purchase</label>
+					<validate>validate-digits</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<field id="ref_purchase" translate="label" type="text"
+					sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Point Referral Purchase</label>
+					<comment>this amount parent customer will get if customer who sign up with his referral url and done purchase(other than first)</comment>
+				    <validate>validate-digits</validate>
+				    <depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field>
+				<!-- <field id="facebook_profile" translate="label" type="text"
+					sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Facebook Profile</label>
+					<comment>add your facebook profile like https://www.facebook.com/zuck</comment>
+				</field> -->
+				<!-- <field id="install_app" translate="label" type="text"
+					sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Points for App Signup</label>
+					<validate>validate-digits</validate>
+					<depends>
+                          <field id="enable">1</field>
+                    </depends>
+				</field> -->
+				<!-- <field id="insta_userid" translate="label" type="text"
+					sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Instagram user id</label>
+					<comment>you can get your insta userid by url https://www.instagram.com/{{your insta username}}/?__a=1</comment>
+				</field>
+				<field id="insta_follow_points" translate="label" type="text"
+					sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+					<label>Instagram Follow Points</label>
+				</field> -->
+			</group>
+		</section>
+	</system>
+</config>

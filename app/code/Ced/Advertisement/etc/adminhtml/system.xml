@@ -1,0 +1,53 @@
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsMarketplace
+ * @author 		CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="advertisement" sortOrder="1">
+            <label>Advertisement</label>
+        </tab>
+        <section id="advertisement" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <tab>advertisement</tab>
+            <label>Ads Management</label>
+            <resource>Ced_Advertisement::advertisement</resource>                      
+            
+            <group id="enable_ads" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Extension</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Ads Management</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 </field>             
+            </group>
+             <group id="ads_settings" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                
+                <field id="ad_qty" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Ads that can be added at one position</label>
+                </field>  
+                <field id="approval_blocks" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Blocks approval required</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 </field>
+                 <field id="update_purchased_ads_blocks" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Update block data to already puchased ads</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                 </field>
+              </group>
+        </section>
+    </system>
+</config>

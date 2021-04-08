@@ -1,0 +1,69 @@
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Rewardsystem
+ * @author   	CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+ * @license     http://cedcommerce.com/license-agreement.txt
+ */
+-->
+
+<!-- ko if: customerLogin() -->
+<!-- ko if: totalPoint() -->
+<div class="payment-option _collapsible opc-payment-additional rewardpoint"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2">
+            <!-- ko i18n: 'Apply Point for discount '--><!-- /ko -->
+        </span>
+    </div>
+    
+        <div class="payment-option-content reward-point-content" data-role="content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <form class="form form-discount" id="discount-form" data-bind="blockLoader: isLoading">
+           <div class="block">
+            <div class="block-title">
+                 <strong><!-- ko i18n: 'Total Point'--><!-- /ko --></strong>
+            </div>
+            <div class="block-content">
+	            <input type="text" readonly="readonly" disabled="disabled" name="defaultpoint"  id="defaultpoint" data-bind="value: totalPoint()"/>
+	         </div>
+	         
+	         <div class="block-title">
+                 <strong><!-- ko i18n: 'Enter point for discount'--><!-- /ko --></strong>
+             </div>
+                <div class="block-content">
+	                <input type="text" name="enterpoint" data-bind="event:{blur:FillPoint},value: usedPoints()" id="enterpoint"/>
+	                <span id="message"></span>
+	                <span id="price"></span>
+               </div>
+              <div class="actions-toolbar">
+                <div class="primary">
+                    
+                        <button class="action action-apply" type="submit" data-bind="'value': $t('Apply Discount'), click: apply" id = "applypoint">
+                            <span><!-- ko i18n: 'Apply Point'--><!-- /ko --></span>
+                        </button>
+                        <button style="display:none" class="action action-remove" type="submit" data-bind="'value': $t('Remove Discount'), click: remove" id = "removepoint">
+                            <span><!-- ko i18n: 'Remove Point'--><!-- /ko --></span>
+                        </button>
+
+                   </div> 
+                </div>
+            
+           </div>
+        </form>
+    </div>
+</div>
+<!-- /ko -->
+<!-- /ko -->

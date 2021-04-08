@@ -1,0 +1,81 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+
+<form class="form-rma-view" action="<?php  echo $block->getSubmitUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" data-mage-init='{"validation":{}}'>
+  <?php echo $block->getBlockHtml('formkey'); ?>
+    <fieldset class="fieldset">
+        <div class="field chat required">
+              <label class="label" for="description"><span><?php echo __('Message') ?></span></label>
+                <div class="control">
+                      <textarea name="chat" cols="35" rows="3" data-validate="{required:true}"></textarea>
+                </div>
+        </div>
+
+         <div class="field chat">
+            <label class="label" for="description"><span><?php echo __('Attch Your File') ?></span></label>
+            <div class="control">
+                <input type="file" name="rma_file"  id="rma_file" onchange="validate_fileupload(this);">
+            </div>
+            <div style="display: none" class="message error file_error-msg_wrap"><span class="file_error-msg"></span></div>
+            <p class="note"><strong><?php echo __("Allowed Types: jpg, jpeg, gif, png, pdf, zip, csv, xlsx");?></strong></p>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" class="action save primary" data-action="save-rma" title="<?php /* @escapeNotVerified */ echo __('Submit RMA Request') ?>">
+                    <span><?php /* @escapeNotVerified */ echo __('Send Message') ?></span>
+                </button>
+            </div>
+            <div class="secondary">
+                <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php /* @escapeNotVerified */ echo __('Go back') ?></span></a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+<script type="text/javascript">
+var valid = false;
+function validate_fileupload(input_element)
+{require(["jquery"], function ($) {
+    var el = document.getElementById("rma_file");
+    var fileName = input_element.value;
+    var allowed_extensions = new Array("jpg","jpeg","gif","png","pdf","zip","csv","xlsx");
+    var file_extension = fileName.split('.').pop(); 
+  
+    for(var i = 0; i < allowed_extensions.length; i++)
+    {
+        if(allowed_extensions[i]==file_extension)
+        {
+            valid = true; // valid file extension
+            el.innerHTML = "";
+            return;
+        }
+    }
+    el.innerHTML="Invalid file";
+    valid = false;
+    if(!valid){
+    	$('#rma_file').val('');
+    	$('.file_error-msg').text("Invalid File Type");
+    	$('.file_error-msg_wrap').show();
+    }else{
+    	 $('.file_error-msg_wrap').hide();
+    	 $('.file_error-msg').text("");
+        }
+});   
+}
+</script>
+
+
+

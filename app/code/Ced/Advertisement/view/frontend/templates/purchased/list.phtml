@@ -1,0 +1,47 @@
+<?php $purchasedColl = $block->getPurchasedColl();?>
+<div class="block">
+	<div class="block-title">
+		<strong>
+			<?php echo __('Purchased Plans');?>
+		</strong>
+	</div>
+	<div class="block-contnet">
+		<div class="table-wrapper orders-recent">
+			<?php if(count($purchasedColl->getData())){?>
+			<table class="data table">
+				<thead>
+					<tr>
+						<th class="col"><?php echo __('Purchased Id');?></th>
+						<th class="col"><?php echo __('Block Title');?></th>
+						<th class="col"><?php echo __('Plan Title');?></th>			
+						<th class="col"><?php echo __('Price');?></th>
+						<th class="col"><?php echo __('Duration');?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($purchasedColl as $value){
+						$daysleft = '';			
+						if($value->getCreatedAt() && $value->getDuration()){
+							$lastDate = date('Y-m-d', strtotime($value->getCreatedAt(). ' + '.$value->getDuration().' days'));
+							$future = strtotime($lastDate); 
+							$timefromdb = strtotime(date('Y-m-d'));
+							$timeleft = $future-$timefromdb;
+							$daysleft = round((($timeleft/24)/60)/60); 
+						}
+						?>
+						<tr>
+							<td class="col"><?php echo $value->getId()?></td>
+							<td class="col"><?php echo $value->getBlockTitle()?></td>
+							<td class="col"><?php echo $value->getPlanTitle()?></td>
+							<td class="col"><?php echo $value->getPrice()?></td>
+							<td class="col" style="color:red"><?php echo $daysleft;?></td>
+						</tr>
+					<?php }?>
+				</tbody>
+			</table>
+			<?php }else{?>
+				<div><?php echo __('You have not purchased any plan(s).');?></div>
+			<?php }?>
+		</div>
+	</div>
+</div>

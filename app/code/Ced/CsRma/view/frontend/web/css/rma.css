@@ -1,0 +1,168 @@
+.ced-rma-left-column {
+    width: 50%;
+    float: left;
+}
+.ced-rma-right-column {
+    width: 50%;
+    float: right;
+}
+
+.ced-rma-left-chat-column {
+    width: 55%;
+    float: left;
+    background: none repeat scroll 0 0 #D3D3D3;
+    margin-bottom: 7px;
+    padding: 6px 13px;
+}
+.ced-rma-right-chat-column {
+    width: 55%;
+    float: right;
+    background: none repeat scroll 0 0 #F3F3DF;
+    margin-bottom: 7px;
+    padding: 10px 15px;
+    border-radius: 5px 0 5px 5px;
+}
+.vendor-rma-right-chat-column {
+    width: 55%;
+    float: left;
+    background: none repeat scroll 0 0 #E9967A;
+    margin-bottom: 7px;
+    padding: 10px 15px;
+}
+
+/* rma design 672 */
+.account .page-main .page-title-wrapper .page-title span {
+    font-size: 30px;
+}
+.account .page-main .page-title-wrapper .page-title {
+    margin-bottom: 25px;
+    margin-right: 0;
+}
+.order-rma-information,.order-rma-form
+{
+    border: 1px solid #ccc;
+}
+.order-rma-information,.order-rma-information .block-content,
+.order-rma-information .block-content .field .control, 
+.customer-information .block-inner-wrap .block-content .field,
+.order-rma-form,
+.address-information .block-content
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+.order-rma-information .block .block-inner-wrap,.order-rma-form .block .block-inner-wrap 
+{
+    padding: 15px;
+}
+.order-rma-information .block-title strong {
+    font-weight: 500 !important;
+    color: #000;
+}
+.order-rma-information .block-content {
+    flex-direction: column;
+}
+.order-rma-information .block-content .field {
+    margin-bottom: 15px;
+}
+.order-rma-information .order-information, 
+.order-rma-information .customer-information,
+.order-rma-information .new-chat,
+.order-rma-information .chat-history,
+.order-rma-form .order-information,
+.order-rma-form .address-information,
+.order-rma-form .general-information,
+.address-information .block-content.fieldset .field
+{
+    flex: 0 0 50%;
+}
+.order-rma-information .items-information,
+.order-rma-information .activity-notification,
+.order-rma-form .item-ordered
+{
+    flex: 0 0 100%;
+}
+.order-rma-information .block-content .field .label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.order-rma-information .block-content .field .control
+{
+    justify-content: space-between;
+}
+.customer-information .block-inner-wrap .block-content .field .control {
+    padding-left: 25px;
+}
+.order-rma-information .ced-rma-chats-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.vendor-rma-right-chat-column {
+    width: 55%;
+    float: left;
+    background: none repeat scroll 0 0 #E9967A;
+    margin-bottom: 7px;
+    padding: 10px 15px;
+    border-radius: 0 5px 5px 5px;
+}
+.activity-notification .ui-wrapper.order-items .note-list {
+    padding: 0;
+    list-style: none;
+}
+.page-wrapper .order-items.table-wrapper .col.price {
+    text-align: left;
+}
+.items-information .product-item-name {
+    margin: 0;
+}
+.page-wrapper .page-main .order-rma-information .block, 
+.page-wrapper .page-main .order-rma-form .block
+{
+    margin-bottom: 20px;
+}
+
+/* vendor design issue  */
+div.mage-error {
+    color: #fd0000;
+}
+.order-history-block .admin__field-control {
+    display: ;
+    margin-top: 15px;
+}
+.order-history-block .admin__field-control .admin__field-label {
+    margin-bottom: 5px;
+}
+.page-wrapper .note-list {
+    padding: 0;
+    list-style: none;
+}
+.panel-body .order-history-block .note-list .ced-rma-left-chat-column {
+    border-radius: 0 5px 5px 5px;
+}
+.panel-body .order-history-block .note-list .vendor-rma-right-chat-column {
+    border-radius: 5px 0 5px 5px;
+}
+.page-wrapper .admin__page-section-content {
+    border: 0;
+    padding: 0;
+}
+@media only screen and (max-width:768px)
+{
+    .order-rma-information .order-information, 
+    .order-rma-information .customer-information, 
+    .order-rma-information .new-chat, .order-rma-information .chat-history,
+    .address-information .block-content.fieldset .field,
+    .order-rma-form .block
+    {
+        flex: 0 0 100%;
+    }
+    .ced-rma-right-chat-column,.vendor-rma-right-chat-column {
+        width: 70%;
+    }
+    .order-rma-form .item-ordered {
+        overflow-y: hidden;
+    }
+
+}

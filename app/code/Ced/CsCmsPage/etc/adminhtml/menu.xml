@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--  /**
+ * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_CsCmsPage
+  * @author   CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+  * @license      http://cedcommerce.com/license-agreement.txt
+  */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <menu>
+
+        <add id="Ced_CsCmsPage::vendor_cms" title="Vendor CMS" module="Ced_CsCmsPage" sortOrder="100" parent="Ced_CsMarketplace::csmarketplace" resource="Ced_CsCmsPage::vendor_cms" dependsOnConfig="ced_csmarketplace/general/cscmspage" />
+        <add id="Ced_CsCmsPage::manage_vendor_cms" title="Manage Vendor CMS" module="Ced_CsCmsPage" sortOrder="200" parent="Ced_CsCmsPage::vendor_cms" action="cscmspage/vcmspage/index/" resource="Ced_CsCmsPage::vendor_cms"/>
+        <add id="Ced_CsCmsPage::manage_vendor_block" title="Manage Vendor Blocks" module="Ced_CsCmsPage" sortOrder="207" parent="Ced_CsCmsPage::vendor_cms" action="cscmspage/vblock/index/" resource="Ced_CsCmsPage::vendor_cms"/>
+    </menu>
+</config>

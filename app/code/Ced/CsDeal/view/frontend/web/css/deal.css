@@ -1,0 +1,9 @@
+.deal-wrapper .deals-form{
+  position: relative;
+}
+.deal-wrapper .deals-form input{
+  background: rgba(0, 0, 0, 0) url("../images/callendor-input.png") no-repeat scroll calc(100% - 10px) center / 15px auto !important;
+}
+.deal-wrapper ul.form-list{
+  list-style-type: none;
+}

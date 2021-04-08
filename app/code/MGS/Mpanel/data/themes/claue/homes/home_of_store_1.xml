@@ -1,0 +1,448 @@
+<home>
+	<section>
+		<name><![CDATA[block18]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[1]]></fullwidth>
+		<padding_top><![CDATA[]]></padding_top>
+		<padding_bottom><![CDATA[]]></padding_bottom>
+		<block_position><![CDATA[1]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block20]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[30]]></padding_top>
+		<padding_bottom><![CDATA[7]]></padding_bottom>
+		<block_position><![CDATA[2]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block21]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[20]]></padding_top>
+		<padding_bottom><![CDATA[20]]></padding_bottom>
+		<block_position><![CDATA[3]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block22]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[]]></padding_top>
+		<padding_bottom><![CDATA[20]]></padding_bottom>
+		<block_position><![CDATA[4]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block23]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[category-product-list]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[10]]></padding_top>
+		<padding_bottom><![CDATA[10]]></padding_bottom>
+		<block_position><![CDATA[5]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block24]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[50]]></padding_top>
+		<padding_bottom><![CDATA[10]]></padding_bottom>
+		<block_position><![CDATA[6]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block25]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[category-product-list]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[30]]></padding_top>
+		<padding_bottom><![CDATA[30]]></padding_bottom>
+		<block_position><![CDATA[7]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block26]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[30]]></padding_top>
+		<padding_bottom><![CDATA[30]]></padding_bottom>
+		<block_position><![CDATA[8]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block28]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[3,3,3,3]]></block_cols>
+		<tablet_cols><![CDATA[["12","12","12","12"]]]></tablet_cols>
+		<mobile_cols><![CDATA[["12","12","12","12"]]]></mobile_cols>
+		<block_class><![CDATA[["margin-bottom30","margin-bottom30","margin-bottom30","margin-bottom30"]]]></block_class>
+		<class><![CDATA[home-garden]]></class>
+		<background><![CDATA[#76a72f]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[45]]></padding_top>
+		<padding_bottom><![CDATA[2]]></padding_bottom>
+		<block_position><![CDATA[10]]></block_position>
+	</section>
+	<block>
+		<block_name><![CDATA[block20-0]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"banner_1_left"}]]></setting>
+		<col><![CDATA[6]]></col>
+		<class><![CDATA[margin-bottom30 button-link organic-banner]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="banner_1_left" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block20-0]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[2]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":"50","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"banner_1_right"}]]></setting>
+		<col><![CDATA[6]]></col>
+		<class><![CDATA[margin-bottom30 button-link organic-banner]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="banner_1_right" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block21-0]]></block_name>
+		<type><![CDATA[tabs]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"title":"Today\u2019s Best Deal","additional_content":"","animation":"","animation_delay":"50","tabs":{"4467":{"value":"featured","label":"Featured","position":"0"},"5851":{"value":"best_seller","label":"Best seller","position":"1"},"1649":{"value":"special","label":"Special","position":"2"},"4809":{"value":"lastest","label":"Lastest","position":"3"}},"tab_template":"1","limit":"8","perrow":"5","ratio":"1","use_slider":"1","number_row":"1","stop_auto":"1","navigation":"1","category_id":["67"],"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","autoplay":0,"pagination":0,"use_tabs":0,"loadmore":0}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[{{block class="MGS\Mpanel\Block\Products\Tabs" mgs_panel_title="Today’s Best Deal" mgs_panel_note="" limit="8" perrow="5" category_ids="67" use_slider="1" loadmore="0" ratio="1" tabs="featured,best_seller,special,lastest" template="products/tabs/grid.phtml" tab_template="1" autoplay="0" stop_auto="1" navigation="1" pagination="0" number_row="1"labels="Featured,Best seller,Special,Lastest"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block22-0]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":"50","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"banner_2_left"}]]></setting>
+		<col><![CDATA[8]]></col>
+		<class><![CDATA[margin-bottom30 button-link organic-banner]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="banner_2_left" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block22-0]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[2]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":"50","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"banner_2_right"}]]></setting>
+		<col><![CDATA[4]]></col>
+		<class><![CDATA[margin-bottom30 button-link organic-banner]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="banner_2_right" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block23-0]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":"50"}]]></setting>
+		<col><![CDATA[3]]></col>
+		<class><![CDATA[width-20 category-list]]></class>
+		<block_content><![CDATA[<ul class="resp-tabs-list">
+<li class="category-title">Garden</li>
+<li><span class="tab-title"><a href="#">Fruits</a></span></li>
+<li><span class="tab-title"><a href="#">Vegetables</a></span></li>
+<li><span class="tab-title"><a href="#">Dried Fruits</a></span></li>
+<li><span class="tab-title"><a href="#">Juice</a></span></li>
+<li class="product-button"><a class="button-text" href="#" target="_blank">All Category</a></li>
+</ul>]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block23-0]]></block_name>
+		<type><![CDATA[sale]]></type>
+		<position><![CDATA[2]]></position>
+		<setting><![CDATA[{"title":"","additional_content":"","animation":"","animation_delay":"50","limit":"8","perrow":"4","numbercol":"1","percol":"","template":"grid.phtml","ratio":"1","use_slider":"1","number_row":"1","navigation":"1","category_id":["67"],"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","autoplay":0,"stop_auto":0,"pagination":0,"use_tabs":0,"loadmore":0}]]></setting>
+		<col><![CDATA[9]]></col>
+		<class><![CDATA[width-80 product-list]]></class>
+		<block_content><![CDATA[{{block class="MGS\Mpanel\Block\Products\Sale" mgs_panel_title="" mgs_panel_note="" limit="8" ratio="1" category_ids="67" use_slider="1" loadmore="0" template="products/sale/grid.phtml" perrow="4" autoplay="0" stop_auto="0" navigation="1" pagination="0" number_row="1"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block24-0]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":"50","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"banner_3_left"}]]></setting>
+		<col><![CDATA[4]]></col>
+		<class><![CDATA[margin-bottom30 button-link organic-banner]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="banner_3_left" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block24-0]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[2]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":"50","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"banner_3_right"}]]></setting>
+		<col><![CDATA[8]]></col>
+		<class><![CDATA[margin-bottom30 button-link organic-banner]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="banner_3_right" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block25-0]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":"50"}]]></setting>
+		<col><![CDATA[4]]></col>
+		<class><![CDATA[width-20 category-list]]></class>
+		<block_content><![CDATA[<ul class="resp-tabs-list">
+<li class="category-title">Vegetables</li>
+<li><span class="tab-title"><a href="#">Dark Green</a></span></li>
+<li><span class="tab-title"><a href="#">Orange Vegetables</a></span></li>
+<li><span class="tab-title"><a href="#">Beans &amp; Peas</a></span></li>
+<li><span class="tab-title"><a href="#">Starchy Vegetables</a></span></li>
+<li class="product-button"><a class="button-text" target="_blank" href="#">All Category</a></li>
+</ul>]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block25-0]]></block_name>
+		<type><![CDATA[category_products]]></type>
+		<position><![CDATA[2]]></position>
+		<setting><![CDATA[{"title":"","additional_content":"","animation":"","animation_delay":"50","limit":"8","perrow":"4","numbercol":"1","percol":"","template":"grid.phtml","ratio":"1","use_slider":"1","number_row":"1","navigation":"1","category_id":["69","73","74","75"],"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","autoplay":0,"stop_auto":0,"pagination":0,"use_tabs":0,"loadmore":0}]]></setting>
+		<col><![CDATA[8]]></col>
+		<class><![CDATA[width-80 product-list]]></class>
+		<block_content><![CDATA[{{block class="MGS\Mpanel\Block\Products\Category" mgs_panel_title="" mgs_panel_note="" limit="8" ratio="1" category_ids="69,73,74,75" use_slider="1" loadmore="0" template="products/category_products/grid.phtml" perrow="4" autoplay="0" stop_auto="0" navigation="1" pagination="0" number_row="1"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block26-0]]></block_name>
+		<type><![CDATA[brands]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"title":"","additional_content":"","animation":"","animation_delay":"50","limit":"8","perrow":"5","brand_by":"all","use_slider":"1","number_row":"1","autoplay":"1","navigation":"1","stop_auto":0,"pagination":0}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[{{block class="MGS\Brand\Block\Widget\Home" mgs_panel_title="" mgs_panel_note="" limit="8" perrow="5" use_slider="1" brand_by="all" template="widget/home.phtml" autoplay="1" stop_auto="0" navigation="1" pagination="0" number_row="1"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block18-0]]></block_name>
+		<type><![CDATA[owl_banner]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"block_link":"","animation":"","animation_delay":"","removeimg":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""],"html_slider":"<div data-text-position=\"middle\" data-text-animate=\"slideInUp\" class=\"item slideInUp\"><a class=\"item-image\" href=\"\" style=\"background-image:url(https:\/\/themes.magesolution.com\/claue\/m2\/pub\/media\/wysiwyg\/slider\/slider-food1.jpg)\"><img class=\"img-responsive\" src=\"https:\/\/themes.magesolution.com\/claue\/m2\/pub\/media\/wysiwyg\/slider\/slider-food1.jpg\" alt=\"\"><\/a><div class=\"container slide-text middle\"><div class=\"inner-text\"><div class=\"slider-content organic-slide\" style=\"text-align: center;\">\r\n<h5 class=\"special\" style=\"margin-bottom: 25px;font-size: 23px;line-height: 20px;\">Special Discount On Sale<\/h5>\r\n<h2 class=\"text-bottom\" style=\"font-size: 40px;margin-bottom: 20px; font-weight:500\">Organic Vegetables<\/h2>\r\n<p class=\"text-between\" style=\"font-size: 23px;\">We Supply Highly Quality<\/p>\r\n\r\n<button class=\"btn btn-default\">Buy now<\/button> \r\n<\/div><\/div><\/div><\/div><div data-text-position=\"middle\" data-text-animate=\"slideInDown\" class=\"item slideInDown\"><a class=\"item-image\" href=\"\" style=\"background-image:url(https:\/\/themes.magesolution.com\/claue\/m2\/pub\/media\/wysiwyg\/slider\/slider-food2.jpg)\"><img class=\"img-responsive\" src=\"https:\/\/themes.magesolution.com\/claue\/m2\/pub\/media\/wysiwyg\/slider\/slider-food2.jpg\" alt=\"\"><\/a><div class=\"container slide-text middle\"><div class=\"inner-text\"><div class=\"slider-content organic-slide\" style=\"text-align: center;\">\r\n<h5 class=\"special\" style=\"margin-bottom: 25px;font-size: 23px;line-height: 20px;\">Special Discount On Sale<\/h5>\r\n<h2 class=\"text-bottom\" style=\"font-size: 40px;margin-bottom: 20px; font-weight:500\">Organic Vegetables<\/h2>\r\n<p class=\"text-between\" style=\"font-size: 23px;\">We Supply Highly Quality<\/p>\r\n\r\n<button class=\"btn btn-default\">Buy now<\/button> \r\n<\/div><\/div><\/div><\/div>","fullscreen":"1","offset":"","effect":"1","autoplay":"1","speed":"100","stop_auto":"1","navigation":"1","navtemple":"1","loop":"1","pagination":0,"fullheight":0}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[{{block class="MGS\Mpanel\Block\Widget\OwlCarousel" fullscreen="1" autoplay="1" stop_auto="1" navigation="1" offset="" fullheight="0" pagination="0" loop="1" speed="100" html_slider="&lt;div data-text-position=&quot;middle&quot; data-text-animate=&quot;slideInUp&quot; class=&quot;item slideInUp&quot;&gt;&lt;a class=&quot;item-image&quot; href=&quot;&quot; style=&quot;background-image:url(https://themes.magesolution.com/claue/m2/pub/media/wysiwyg/slider/slider-food1.jpg)&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;https://themes.magesolution.com/claue/m2/pub/media/wysiwyg/slider/slider-food1.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;div class=&quot;container slide-text middle&quot;&gt;&lt;div class=&quot;inner-text&quot;&gt;&lt;div class=&quot;slider-content organic-slide&quot; style=&quot;text-align: center;&quot;&gt;
+&lt;h5 class=&quot;special&quot; style=&quot;margin-bottom: 25px;font-size: 23px;line-height: 20px;&quot;&gt;Special Discount On Sale&lt;/h5&gt;
+&lt;h2 class=&quot;text-bottom&quot; style=&quot;font-size: 40px;margin-bottom: 20px; font-weight:500&quot;&gt;Organic Vegetables&lt;/h2&gt;
+&lt;p class=&quot;text-between&quot; style=&quot;font-size: 23px;&quot;&gt;We Supply Highly Quality&lt;/p&gt;
+
+&lt;button class=&quot;btn btn-default&quot;&gt;Buy now&lt;/button&gt; 
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div data-text-position=&quot;middle&quot; data-text-animate=&quot;slideInDown&quot; class=&quot;item slideInDown&quot;&gt;&lt;a class=&quot;item-image&quot; href=&quot;&quot; style=&quot;background-image:url(https://themes.magesolution.com/claue/m2/pub/media/wysiwyg/slider/slider-food2.jpg)&quot;&gt;&lt;img class=&quot;img-responsive&quot; src=&quot;https://themes.magesolution.com/claue/m2/pub/media/wysiwyg/slider/slider-food2.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;div class=&quot;container slide-text middle&quot;&gt;&lt;div class=&quot;inner-text&quot;&gt;&lt;div class=&quot;slider-content organic-slide&quot; style=&quot;text-align: center;&quot;&gt;
+&lt;h5 class=&quot;special&quot; style=&quot;margin-bottom: 25px;font-size: 23px;line-height: 20px;&quot;&gt;Special Discount On Sale&lt;/h5&gt;
+&lt;h2 class=&quot;text-bottom&quot; style=&quot;font-size: 40px;margin-bottom: 20px; font-weight:500&quot;&gt;Organic Vegetables&lt;/h2&gt;
+&lt;p class=&quot;text-between&quot; style=&quot;font-size: 23px;&quot;&gt;We Supply Highly Quality&lt;/p&gt;
+
+&lt;button class=&quot;btn btn-default&quot;&gt;Buy now&lt;/button&gt; 
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" navtemple="1" effect="1" template="widget/owl_slider.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block28-0]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":""}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[<div class="icon-service">
+<div class="icon"><i class="pe-7s-car"> </i></div>
+<div class="text">
+<h6 class="margin-bottom5">FREE SHIPPING</h6>
+<p class="no-margin">Free shipping on all US order or order above $200</p>
+</div>
+</div>]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block28-1]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":""}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[<div class="icon-service">
+<div class="icon"><i class="pe-7s-help2"> </i></div>
+<div class="text">
+<h6 class="margin-bottom5">SUPPORT 24/7</h6>
+<p class="no-margin">Contact us 24 hours a day, 7 days a week</p>
+</div>
+</div>]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block28-2]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":""}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[<div class="icon-service">
+<div class="icon"><i class="pe-7s-refresh"> </i></div>
+<div class="text">
+<h6 class="margin-bottom5">30 DAYS RETURN</h6>
+<p class="no-margin">Simply return it within 30 days for an exchange.</p>
+</div>
+</div>]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block28-3]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":""}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[<div class="icon-service">
+<div class="icon"><i class="pe-7s-door-lock"> </i></div>
+<div class="text">
+<h6 class="margin-bottom5">100% PAYMENT SECURE</h6>
+<p class="no-margin">We ensure secure payment with PEV</p>
+</div>
+</div>]]></block_content>
+	</block>
+	<promo_banner>
+		<item>
+			<title><![CDATA[banner_1_left]]></title>
+			<filename><![CDATA[/s/u/sub-banner-01_2.jpg]]></filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[top-left]]></text_align>
+			<content><![CDATA[<span class="static-wrapper cms-left-text"><span class="text1 static-text">Fresh Peaches Fruit</span><span class="text2 static-text">25% Flat</span><span class="banner-text"><button class="btn btn-default">Shop Now</button></span></span>]]></content>
+			<effect><![CDATA[flashed-square]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[banner_1_left]]></identifier>
+			<alt><![CDATA[]]></alt>
+		</item>
+		<item>
+			<title><![CDATA[banner_1_right]]></title>
+			<filename><![CDATA[/s/u/sub-banner-02_1.jpg]]></filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[top-left]]></text_align>
+			<content><![CDATA[<span class="static-wrapper cms-left-text"><span class="text1 static-text">American Apple</span><span class="text2 static-text" >20% Flat</span><span class="banner-text"><button class="btn btn-default">Shop Now</button></span></span>]]></content>
+			<effect><![CDATA[flashed-square]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[banner_1_right]]></identifier>
+			<alt><![CDATA[]]></alt>
+		</item>
+		<item>
+			<title><![CDATA[banner_2_left]]></title>
+			<filename><![CDATA[/s/u/sub-banner-03_1.jpg]]></filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[top-left]]></text_align>
+			<content><![CDATA[<span class="static-wrapper cms-left-text"><span class="text1 static-text" >On All Fresh Vegetables</span><span class="text2 static-text" >Sale 30% Off</span><span class="banner-text"><button class="btn btn-default">Shop Now</button></span></span>]]></content>
+			<effect><![CDATA[flashed-square]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[banner_2_left]]></identifier>
+			<alt><![CDATA[]]></alt>
+		</item>
+		<item>
+			<title><![CDATA[banner_2_right]]></title>
+			<filename><![CDATA[/s/u/sub-banner-04_1.jpg]]></filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[top-left]]></text_align>
+			<content><![CDATA[<span class="static-wrapper cms-left-text"><span class="text1 static-text" ">Fresh Chestnut</span><span class="text2 static-text" >40% Flat</span><span class="banner-text"><button class="btn btn-default">Shop Now</button></span></span>]]></content>
+			<effect><![CDATA[flashed-square]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[banner_2_right]]></identifier>
+			<alt><![CDATA[]]></alt>
+		</item>
+		<item>
+			<title><![CDATA[banner_3_left]]></title>
+			<filename><![CDATA[/s/u/sub-banner-05_1.jpg]]></filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[top-left]]></text_align>
+			<content><![CDATA[<span class="static-wrapper cms-left-text"><span class="text1 static-text">Orange Juice</span><span class="text2 static-text">40% Flat</span><button class="btn btn-default" onclick="setLocation('#')" style="font-size:14px;">Shop Now</button></span>]]></content>
+			<effect><![CDATA[flashed-square]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[banner_3_left]]></identifier>
+			<alt><![CDATA[]]></alt>
+		</item>
+		<item>
+			<title><![CDATA[banner_3_right]]></title>
+			<filename><![CDATA[/s/u/sub-banner-06_2.jpg]]></filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[top-left]]></text_align>
+			<content><![CDATA[<span class="static-wrapper cms-left-text"><span class="text1 static-text" style="color:#000000;">Healthy Organic Vegetables</span><span class="text2 static-text" style="color:#000000;">Sale 20% Off</span><button class="btn btn-default">Shop Now</button></span>]]></content>
+			<effect><![CDATA[flashed-square]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[banner_3_right]]></identifier>
+			<alt><![CDATA[]]></alt>
+		</item>
+	</promo_banner>
+
+</home>

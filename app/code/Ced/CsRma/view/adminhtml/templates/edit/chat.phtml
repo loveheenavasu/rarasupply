@@ -1,0 +1,97 @@
+
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+
+<?php $_request = $this->getRmaCollection();?>
+ <?php if($_request->getStatus() != "Completed"){ ?>
+ <form id="chat_form" method="post" novalidate="novalidate" enctype="multipart/form-data" data-mage-init='{"validation": {}}'>
+  <div id="comments_block" class="edit-order-comments">
+      <div class="order-history-block" id="history_form">
+          <div class="admin__field">
+              <label for="history_comment" class="admin__field-label">
+                  <?php echo __('Chat Section') ?>
+              </label>
+              <div class="admin__field-control">
+                  <textarea name="comment"
+                            rows="3"
+                            cols="15"
+                            id="history_comment"
+                            class="admin__control-textarea" data-validate="{required:true}"></textarea>
+
+              </div>
+              <div class="admin__field-control">
+                  <span><?php echo __('Attch Your File')?></span><br>
+                 <input type="file" name="rma_file" id="rma_file" onchange="validate_fileupload(this);">
+                <div style="display: none" class="message error file_error-msg_wrap"><span class="file_error-msg"></span></div>
+                <p class="note"><strong><?php echo __("Allowed Types: jpg, jpeg, gif, png, pdf, zip, csv, xlsx");?></strong></p>
+              </div>
+          </div>
+          <div class="admin__field">
+              <div class="order-history-comments-actions">
+                  <button class="action-default scalable save primary ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" title="Save" type="submit" id="save_butn" 
+                    style="float: none;" onclick="chatForm('<?php echo $block->getSubmitUrl()?>')">
+                      <span><span><?php echo __('Send Message') ?></span></span>
+                  </button>
+              </div>
+          </div>
+      </div>
+      <?php echo $block->getBlockHtml('formkey')?>
+  </div>
+</form>
+<?php  } ?>
+<?php echo $block->getChildHtml('admin_rma_history')?>
+<?php echo $block->getChildHtml('admin_rma_notification')?>  
+<script>
+  require(
+    ['jquery'],
+    function($) {
+        window.chatForm = function (url) {
+            $('#chat_form').attr('action',url);
+            $('#chat_form').submit();
+        };
+    });
+  var valid = false;
+  function validate_fileupload(input_element)
+  {require(["jquery"], function ($) {
+      var el = document.getElementById("rma_file");
+      var fileName = input_element.value;
+      var allowed_extensions = new Array("jpg","jpeg","gif","png","pdf","zip","csv","xlsx");
+      var file_extension = fileName.split('.').pop(); 
+    
+      for(var i = 0; i < allowed_extensions.length; i++)
+      {
+          if(allowed_extensions[i]==file_extension)
+          {
+              valid = true; // valid file extension
+              el.innerHTML = "";
+              return;
+          }
+      }
+      el.innerHTML="Invalid file";
+      valid = false;
+      if(!valid){
+      	$('#rma_file').val('');
+      	$('.file_error-msg').text("Invalid File Type");
+      	$('.file_error-msg_wrap').show();
+      }else{
+      	 $('.file_error-msg_wrap').hide();
+      	 $('.file_error-msg').text("");
+          }
+  });   
+  }
+</script>
+

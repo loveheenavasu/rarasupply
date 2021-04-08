@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Ced_Advertisement::css/owl.carousel.min.css" />
+        <css src="Ced_Advertisement::css/advertisement.css" />
+    </head>
+    <body>    
+        <referenceContainer name="header.container">            
+            <container name="header.advertisement.slider" label="Advertisement Header Slider" htmlTag="div" htmlClass="header advertisement" after="header-wrapper">
+                <block class="Ced\Advertisement\Block\Slider\Position\Header" ifconfig="advertisement/enable_ads/enable" name="advertisement_slider_header" template="Ced_Advertisement::slider/position/header.phtml"/>
+            </container>
+        </referenceContainer>    
+        <referenceContainer name="footer-container">            
+            <container name="footer.advertisement.slider" label="Advertisement Footer Slider" htmlTag="div" htmlClass="footer advertisement" before="footer">
+                <block class="Ced\Advertisement\Block\Slider\Position\Footer" ifconfig="advertisement/enable_ads/enable" name="advertisement_slider_footer" template="Ced_Advertisement::slider/position/footer.phtml"/>
+            </container>
+        </referenceContainer> 
+        <referenceContainer name="div.sidebar.main">
+            <block class="Ced\Advertisement\Block\Slider\Position\LeftSidebarUpper" ifconfig="advertisement/enable_ads/enable" name="advertisement_slider_leftsidebar_upper" before="-" template="Ced_Advertisement::slider/position/leftsidebarupper.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <block class="Ced\Advertisement\Block\Slider\Position\LeftSidebarLower" ifconfig="advertisement/enable_ads/enable" after="-" name="advertisement_slider_leftsidebar_lower" template="Ced_Advertisement::slider/position/leftsidebarlower.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="main.content">
+            <block class="Ced\Advertisement\Block\Slider\Position\MainContentTop" name="advertisement_slider_maincontenttop" ifconfig="advertisement/enable_ads/enable" before="-" template="Ced_Advertisement::slider/position/maincontenttop.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="main.content">
+            <block class="Ced\Advertisement\Block\Slider\Position\MainContentBottom" name="advertisement_slider_maincontentbottom" ifconfig="advertisement/enable_ads/enable" template="Ced_Advertisement::slider/position/maincontentbottom.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="main.content">
+            <block class="Ced\Advertisement\Block\Slider\Position\ProductInfo" name="advertisement_slider_product" template="Ced_Advertisement::slider/position/productinfo.phtml"/>
+        </referenceContainer>
+        <move element="advertisement_slider_headerr" ifconfig="advertisement/enable_ads/enable" destination="product.info.extrahint" before="product.info.social"/>
+    </body>
+</page>

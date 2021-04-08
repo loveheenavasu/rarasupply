@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="email_status_template" label="Status" file="status.html" type="html" module="Ced_CsRma" area="frontend"/>
+
+     <template id="admin_email_status_template" label="Status" file="admin_status.html" type="html" module="Ced_CsRma" area="adminhtml"/>
+
+    <template id="customer_mail_template" label="Chat" file="customer_mail.html" type="html" module="Ced_CsRma" area="frontend"/>
+	<template id="admin_new_mail_template" label="New RMA" file="admin_new_mail.html" type="html" module="Ced_CsRma" area="frontend"/>
+    <template id="vendor_mail_template" label="Vendor Chat" file="vendor_mail.html" type="html" module="Ced_CsRma" area="frontend"/>
+
+    <template id="admin_mail_template" label="Chat" file="admin_mail.html" type="html" module="Ced_CsRma" area="frontend"/>
+
+    <template id="base_email_chat_customer" label="Chat" file="base_email_chat_customer.html" type="html" module="Ced_CsRma" area="frontend"/>
+
+    <template id="base_email_chat_admin" label="Chat" file="base_email_chat_admin.html" type="html" module="Ced_CsRma" area="frontend"/>
+
+    <template id="base_email_chat_vendor" label="Chat" file="base_email_chat_vendor.html" type="html" module="Ced_CsRma" area="frontend"/>
+
+</config>

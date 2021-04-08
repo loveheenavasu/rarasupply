@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<!-- /**
+ * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_CsCmsPage
+  * @author      CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+  * @license     http://cedcommerce.com/license-agreement.txt
+  */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+   <preference for="Ced\CsMarketplace\Controller\Router" type="Ced\CsCmsPage\Controller\Router" /> 
+   <type name="Ced\CsCmsPage\Model\Wysiwyg\Config">
+        <arguments>
+            <argument name="windowSize" xsi:type="array">
+                <item name="height" xsi:type="number">600</item>
+                <item name="width" xsi:type="number">1000</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Ced\CsCmsPage\Model\Wysiwyg\Images\Storage">
+        <arguments>
+            <argument name="resizeParameters" xsi:type="array">
+                <item name="height" xsi:type="number">75</item>
+                <item name="width" xsi:type="number">100</item>
+            </argument>
+            <argument name="extensions" xsi:type="array">
+                <item name="allowed" xsi:type="array">
+                    <item name="jpg" xsi:type="string">image/jpg</item>
+                    <item name="jpeg" xsi:type="string">image/jpeg</item>
+                    <item name="png" xsi:type="string">image/png</item>
+                    <item name="gif" xsi:type="string">image/gif</item>
+                </item>
+                <item name="image_allowed" xsi:type="array">
+                    <item name="jpg" xsi:type="string">image/jpg</item>
+                    <item name="jpeg" xsi:type="string">image/jpeg</item>
+                    <item name="png" xsi:type="string">image/png</item>
+                    <item name="gif" xsi:type="string">image/gif</item>
+                </item>
+                <item name="media_allowed" xsi:type="array">
+                    <item name="flv" xsi:type="string">video/x-flv</item>
+                    <item name="swf" xsi:type="string">application/x-shockwave-flash</item>
+                    <item name="avi" xsi:type="string">video/x-msvideo</item>
+                    <item name="mov" xsi:type="string">video/x-sgi-movie</item>
+                    <item name="rm" xsi:type="string">application/vnd.rn-realmedia</item>
+                    <item name="wmv" xsi:type="string">video/x-ms-wmv</item>
+                </item>
+            </argument>
+            <argument name="dirs" xsi:type="array">
+                <item name="exclude" xsi:type="array">
+                    <item name="captcha" xsi:type="array">
+                        <item name="regexp" xsi:type="boolean">true</item>
+                        <item name="name" xsi:type="string">pub[/\\]+media[/\\]+captcha[/\\]*$</item>
+                    </item>
+                    <item name="catalog/product" xsi:type="array">
+                        <item name="regexp" xsi:type="boolean">true</item>
+                        <item name="name" xsi:type="string">pub[/\\]+media[/\\]+catalog[/\\]+product[/\\]*$</item>
+                    </item>
+                    <item name="customer" xsi:type="array">
+                        <item name="regexp" xsi:type="boolean">true</item>
+                        <item name="name" xsi:type="string">pub[/\\]+media[/\\]+customer[/\\]*$</item>
+                    </item>
+                    <item name="downloadable" xsi:type="array">
+                        <item name="regexp" xsi:type="boolean">true</item>
+                        <item name="name" xsi:type="string">pub[/\\]+media[/\\]+downloadable[/\\]*$</item>
+                    </item>
+                    <item name="import" xsi:type="array">
+                        <item name="regexp" xsi:type="boolean">true</item>
+                        <item name="name" xsi:type="string">pub[/\\]+media[/\\]+import[/\\]*$</item>
+                    </item>
+                    <item name="theme" xsi:type="array">
+                        <item name="regexp" xsi:type="boolean">true</item>
+                        <item name="name" xsi:type="string">pub[/\\]+media[/\\]+theme[/\\]*$</item>
+                    </item>
+                    <item name="theme_customization" xsi:type="array">
+                        <item name="regexp" xsi:type="boolean">true</item>
+                        <item name="name" xsi:type="string">pub[/\\]+media[/\\]+theme_customization[/\\]*$</item>
+                    </item>
+                    <item name="tmp" xsi:type="array">
+                        <item name="regexp" xsi:type="boolean">true</item>
+                        <item name="name" xsi:type="string">pub[/\\]+media[/\\]+tmp[/\\]*$</item>
+                    </item>
+                </item>
+                <item name="include" xsi:type="array"/>
+            </argument>
+        </arguments>
+    </type>
+     <type name="Ced\CsCmsPage\Model\Wysiwyg\CompositeConfigProvider">
+        <arguments>
+            <argument name="variablePluginConfigProvider" xsi:type="array">
+                <item name="default" xsi:type="string">Magento\Variable\Model\Variable\ConfigProvider</item>
+            </argument>
+            <argument name="widgetPluginConfigProvider" xsi:type="array">
+                <item name="default" xsi:type="string">Magento\Widget\Model\Widget\Config</item>
+            </argument>
+            <argument name="wysiwygConfigPostProcessor" xsi:type="array">
+                <item name="default" xsi:type="string">Ced\CsCmsPage\Model\Wysiwyg\DefaultConfigProvider</item>
+            </argument>
+            <argument name="galleryConfigProvider" xsi:type="array">
+                <item name="default" xsi:type="string">Ced\CsCmsPage\Model\Wysiwyg\Gallery\DefaultConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Cms\Model\Config\Source\Wysiwyg\Editor">
+        <arguments>
+            <argument name="adapterOptions" xsi:type="array">
+                <item name="tinymce4" xsi:type="array">
+                    <item name="value" xsi:type="string">mage/adminhtml/wysiwyg/tiny_mce/tinymce4Adapter</item>
+                    <item name="label" xsi:type="string" translatable="true">TinyMCE 4</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Ced\CsCmsPage\Model\Wysiwyg\Gallery\DefaultConfigProvider">
+        <arguments>
+            <argument name="currentTreePath" xsi:type="const">\Magento\Cms\Model\Wysiwyg\Config::IMAGE_DIRECTORY</argument>
+            <argument name="windowSize" xsi:type="array">
+                <item name="height" xsi:type="number">600</item>
+                <item name="width" xsi:type="number">1000</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

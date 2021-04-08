@@ -1,0 +1,247 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+ <?php $_request = $block->getRmaData();
+    $_order = $block->getOrderData();
+    $_items = $block->getRmaItemsData()->getData();   
+    
+?>
+
+<div class="order-rma-information">
+    <div class="block order-information">
+        <div class="block-inner-wrap">
+            <div class="block-title">
+                <strong>
+                <?php  echo __('Order Information'); ?>
+                </strong>
+            </div>
+            <div class="block-content">
+                <div class="field" id="customer-order-body">
+                    <label for="order_id" class="label">
+                    <?php echo __('Order Id') ?>
+                    </label>
+                    <div class="control">
+                        <span><?php echo "#".$_request->getOrderId() ?></span>
+                        <span><?php /* @escapeNotVerified */ echo $_request->getStatus() ?></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="reason" class="label">
+                    <?php echo __('Reason') ?>
+                    </label>
+                    <div class="control">
+                        <select title="Package Condition For RMA " name="rma_pk_condition" id="rma_pk_condition" readonly="readonly">
+                            <option value="<?php echo $_request->getReason() ?>">
+                                <?php echo $_request->getReason() ?>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="package_condition" class="label">
+                    <?php echo __('Package Condition') ?>
+                    </label>
+                    <div class="control">
+                        <select title="Package Condition For RMA " name="rma_pk_condition" id="rma_pk_condition" readonly="readonly">
+                            <option value="<?php echo $_request->getPackageCondition() ?>">
+                                <?php echo $_request->getPackageCondition() ?>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="package_condition" class="label">
+                    <?php echo __('Resolution Requested') ?>
+                    </label>
+                    <div class="control">
+                        <select title="Package Condition For RMA " name="rma_pk_condition" id="rma_pk_condition" readonly="readonly">
+                            <option value="<?php echo $_request->getResolutionRequested() ?>">
+                                <?php echo $_request->getResolutionRequested() ?>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block customer-information">
+        <div class="block-inner-wrap">
+            <div class="block-title">
+                <strong>
+                <?php  echo __('Customer Information') ?>
+                </strong>
+            </div>
+            <div class="block-content">
+                <div class="field" id="customer-order-body">
+                    <label for="customer_name" class="label">
+                    <?php echo __('Customer Name') ?>
+                    </label>
+                    <div class="control">
+                        <span><?php echo $_request->getCustomerName() ?></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="customer_email" class="label">
+                    <?php echo __('Customer Email') ?>
+                    </label>
+                    <div class="control">
+                        <span>
+                        <?php echo $_request->getCustomerEmail() ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="customer_title" class="label">
+                    <?php echo __('Customer Group') ?>
+                    </label>
+                    <div class="control">
+                        <?php  $group = $this->groupRepository->getById($_order->getCustomerGroupId())->getCode() ?>
+                        <span>
+                        <?php echo $group ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="customer_group" class="label">
+                    <?php echo __('Customer Address') ?>
+                    </label>
+                    <div class="control">
+                        <span>
+                        <?php echo $block->rmaDataHelper->getAddress($_order) ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block items-information">
+        <div class="block-inner-wrap">
+            <div class="block-title">
+                <strong>
+                <?php  echo __('Items Information') ?>
+                </strong>
+            </div>
+            <div class="block-content">
+                <div class="table-wrapper order-items">
+                    <table id="my-orders-table" class="data table table-order-items history">
+                        <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Items Ordered') ?></caption>
+                        <thead>
+                            <tr>
+                                <th class="col name"><?php echo __('Product') ?></th>
+                                <th class="col name"><?php echo __('Sku') ?></th>
+                                <th class="col price"><?php echo __('Price') ?></th>
+                                <th class="col rma-qty"><?php  echo __('RMA Qty') ?></th>
+                                <th class="col price"><?php  echo __('Row Total') ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($_items as $key ): ?>
+                            <tr>
+                                <td data-th="Product Name" class="col name">
+                                    <div class="product-item-details">
+                                        <strong class="product-item-name">
+                                        <?php echo $key['item_name']?>
+                                        </strong>
+                                    </div>
+                                </td>
+                                <td class="item-options">
+                                	<?php echo $key['sku']?>
+                                </td>
+                                <td data-th="Price" class="col price">
+                                    <?php
+                                        $itemPrice = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($key['price'],true,false);
+                                        ?>
+                                    <span data-label="Excl. Tax" class="price-excluding-tax">
+                                    <span class="cart-price">
+                                    <span class="price">
+                                    <?php echo $itemPrice ?>
+                                    </span>
+                                    </span>
+                                    </span>
+                                </td>
+                                <td data-th="Rma Qty" class="col rma-qty">
+                                    <div class="field qty">
+                                        <div class="control qty">
+                                            <?php echo $key['rma_qty']?>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-th="Price" class="col price">
+                                    <?php
+                                        $itemRowPrice = $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($key['row_total'],true,false);
+                                        ?>
+                                    <span data-label="Excl. Tax" class="price-excluding-tax">
+                                    <span class="cart-price">
+                                    <span class="price">
+                                    <?php echo $itemRowPrice ?>
+                                    </span>
+                                    </span>
+                                    </span>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php if($_request->getStatus() != "Completed"):?>
+    <?php if($this->rmaConfigHelper->getAllowChats()): ?>
+    <div class="block new-chat">
+        <div class="block-inner-wrap">
+            <div class="block-title">
+                <strong><?php  echo __('New Chat') ?></strong>
+            </div>
+            <div class="block-content">
+                <div class="block block-order-details-view" id="customer-chat-body">
+                    <?php echo $block->getChildHtml('customer_rma_chat'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block chat-history">
+        <div class="block-inner-wrap">
+            <div class="block-title">
+                <strong><?php  echo __('Chat History') ?></strong>
+            </div>
+            <div class="block-content">
+                <div class="block block-order-details-view" id="customer-chat-body">
+                    <?php echo $block->getChildHtml('customer_rma_history'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif;?>
+    <?php endif;?>
+    <div class="block activity-notification">
+        <div class="block-inner-wrap">
+            <div class="block-title">
+                <span><?php  echo __('Activity Notification') ?></span>
+            </div>
+            <div class="block-content">
+                <div class="block block-order-details-view" id="customer-chat-body">
+                    <?php echo $block->getChildHtml('customer_rma_notification'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

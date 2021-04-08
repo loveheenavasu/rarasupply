@@ -1,0 +1,295 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_CsStripePayment
+ * @author    CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright Copyright CEDCOMMERCE (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */
+namespace Ced\CsStripePayment\Helper;
+
+use StripeIntegration\Payments\Helper\Logger;
+use StripeIntegration\Payments\Exception\WebhookException;
+
+class Webhooks extends \StripeIntegration\Payments\Helper\Webhooks
+{
+	public function __construct(
+        \Magento\Framework\App\Request\Http $request,
+        \Magento\Framework\App\Response\Http $response,
+        \StripeIntegration\Payments\Logger\WebhooksLogger $webhooksLogger,
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\Event\ManagerInterface $eventManager,
+        \StripeIntegration\Payments\Helper\Api $api,
+        \StripeIntegration\Payments\Helper\Generic $helper,
+        \StripeIntegration\Payments\Model\StripeCustomer $stripeCustomer,
+        \Magento\Sales\Model\Order\Email\Sender\OrderSender $orderSender,
+        \Magento\Framework\App\CacheInterface $cache,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \StripeIntegration\Payments\Model\Config $config,
+        \Magento\Sales\Model\Order\CreditmemoFactory $creditmemoFactory,
+        \Magento\Sales\Model\Service\CreditmemoService $creditmemoService,
+        \Magento\Framework\DB\TransactionFactory $transactionFactory,
+        \Magento\Sales\Model\Order\Invoice $invoiceModel,
+        \Magento\Framework\UrlInterface $urlInterface,
+        \StripeIntegration\Payments\Model\ResourceModel\Webhook\Collection $webhookCollection,
+        \StripeIntegration\Payments\Helper\WebhooksSetup $webhooksSetup,
+        \Ced\CsStripePayment\Model\PaymentIntent $cedPaymentIntent,
+        \Ced\CsMarketplace\Model\VordersFactory $vordersFactory,
+        \Ced\CsStripePayment\Model\ManagedFactory $managedFactory,
+        \Ced\CsMarketplace\Model\VsettingsFactory $vsettingfactory,
+        \Ced\CsStripePayment\Model\StandaloneFactory $standAloneFactory,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+    ) {
+    	parent::__construct(
+            $request,
+            $response,
+            $webhooksLogger,
+            $logger,
+            $eventManager,
+            $api,
+            $helper,
+            $stripeCustomer,
+            $orderSender,
+            $cache,
+            $storeManager,
+            $config,
+            $creditmemoFactory,
+            $creditmemoService,
+            $transactionFactory,
+            $invoiceModel,
+            $urlInterface,
+            $webhookCollection,
+            $webhooksSetup
+        );
+        $this->request = $request;
+        $this->response = $response;
+        $this->webhooksLogger = $webhooksLogger;
+        $this->logger = $logger;
+        $this->cache = $cache;
+        $this->api = $api;
+        $this->helper = $helper;
+        $this->stripeCustomer = $stripeCustomer;
+        $this->eventManager = $eventManager;
+        $this->orderSender = $orderSender;
+        $this->storeManager = $storeManager;
+        $this->config = $config;
+        $this->creditmemoFactory = $creditmemoFactory;
+        $this->creditmemoService = $creditmemoService;
+        $this->transactionFactory = $transactionFactory;
+        $this->invoiceModel = $invoiceModel;
+        $this->urlInterface = $urlInterface;
+        $this->webhookCollection = $webhookCollection;
+        $this->webhooksSetup = $webhooksSetup;
+        $this->cedPaymentIntent = $cedPaymentIntent;
+        $this->vsettingfactory = $vsettingfactory;
+        $this->managedFactory = $managedFactory;
+        $this->vordersFactory = $vordersFactory;
+        $this->standAloneFactory = $standAloneFactory;
+        $this->_scopeConfig = $scopeConfig;
+    }
+
+	// Called after a source.chargable event
+    public function charge($order, $object, $addTransaction = true, $sendNewOrderEmail = true)
+    {
+        $orderId = $order->getIncrementId();
+        $payment = $order->getPayment();
+        if (!$payment)
+            throw new WebhookException("Could not load payment method for order #$orderId");
+
+        $vendorOrders = $this->vordersFactory->create()->getCollection()->addFieldToFilter('order_id',$orderId);
+        
+        
+        //echo $payment->getMethod();
+        //print_r($vendorOrders->getData());die(get_class($this));
+        if(!count($vendorOrders->getData()) || ($payment->getMethod()!='stripe_payments_sofort' && $payment->getMethod()!='stripe_payments_giropay')){
+        	//$this->log($payment->getMethod()." --in cedcommerce -- ".count($vendorOrders->getData()));
+        	//throw new WebhookException("Could not load payment method for order #$orderId");
+        	return parent::charge($order, $object);
+        }
+        //$this->log($payment->getMethod());
+        //throw new WebhookException("==== method for order #$orderId");
+
+        $orderSourceId = $payment->getAdditionalInformation('source_id');
+        $webhookSourceId = $object['id'];
+        if ($orderSourceId != $webhookSourceId)
+            throw new WebhookException("Received source.chargeable webhook for order #$orderId but the source ID on the webhook $webhookSourceId was different than the one on the order $orderSourceId");
+
+        $stripeParams = $this->config->getStripeParamsFrom($order);
+
+        // Reusable sources may not have an amount set
+        if (empty($object['amount']))
+        {
+            $amount = $stripeParams['amount'];
+        }
+        else
+        {
+            $amount = $object['amount'];
+        }
+
+        $params = array(
+            "amount" => $amount,
+            "currency" => $object['currency'],
+            "source" => $webhookSourceId,
+            "description" => $stripeParams['description'],
+            "metadata" => $stripeParams['metadata']
+        );
+
+        $capture = $this->getCaptureParamFor($object);
+        if ($capture !== null)
+            $params["capture"] = $capture;
+
+        $statementDescription = $this->getStatementDescriptionFor($order, $object);
+        if ($statementDescription !== null)
+            $params["statement_descriptor"] = $statementDescription;
+
+        // For reusable sources, we will always need a customer ID
+        $customerStripeId = $payment->getAdditionalInformation('customer_stripe_id');
+        if (!empty($customerStripeId))
+            $params["customer"] = $customerStripeId;
+
+        try
+        {
+            $charge = \Stripe\Charge::create($params);
+
+            $payment->setTransactionId($charge->id);
+            $payment->setLastTransId($charge->id);
+            $payment->setIsTransactionClosed(0);
+
+            // Log additional info about the payment
+            $info = $this->getClearSourceInfo($object[$object['type']]);
+            $payment->setAdditionalInformation('source_info', json_encode($info));
+            $payment->save();
+
+            if ($addTransaction)
+            {
+                if (!$charge->captured)
+                    $transactionType = \Magento\Sales\Model\Order\Payment\Transaction::TYPE_AUTH;
+                else
+                    $transactionType = \Magento\Sales\Model\Order\Payment\Transaction::TYPE_CAPTURE;
+                //Transaction::TYPE_PAYMENT
+
+                $transaction = $payment->addTransaction($transactionType, null, false);
+                $transaction->save();
+            }
+
+            if ($charge->status == 'succeeded')
+            {
+                if ($charge->captured == false)
+                    // $invoice = $this->helper->invoicePendingOrder($order, \Magento\Sales\Model\Order\Invoice::NOT_CAPTURE, $charge->id);
+                    return;
+                else
+                    $invoice = $this->helper->invoiceOrder($order, $charge->id);
+
+                if ($sendNewOrderEmail)
+                    $this->sendNewOrderEmailFor($order);
+            }
+            // SEPA, SOFORT and other asynchronous methods will be pending
+            else if ($charge->status == 'pending')
+            {
+                $invoice = $this->helper->invoicePendingOrder($order, $charge->id);
+
+                if ($sendNewOrderEmail)
+                    $this->sendNewOrderEmailFor($order);
+            }
+            else
+            {
+                // In theory we should never have failed charges because they would throw an exception
+                $comment = "Authorization failed. Transaction ID: {$charge->id}. Charge status: {$charge->status}";
+                $order->addStatusHistoryComment($comment);
+                $order->save();
+            }
+
+            /* custom code for vendor wise transfer starts */
+            try{
+            	$account_type = $this->_scopeConfig->getValue ( 'ced_csmarketplace/csstripe/account_type' );
+
+	        	foreach($vendorOrders as $vendorOrder)
+	            {
+	                $netVendorEarn = $vendorOrder['order_total'] - $vendorOrder ['shop_commission_fee'];
+	                $vendorId = $vendorOrder['vendor_id'];	
+                    $vsetting = $this->vsettingfactory->create()->getCollection()->addFieldToFilter('vendor_id',$vendorId)->addFieldToFilter('group','payment')->addFieldToFilter('key','payment/vstripe/active');
+                    
+                    if(!count($vsetting->getData()))
+                    	continue;
+
+                    $stripe_acc = '';
+                    if ($account_type == 'managed'){
+                        $check_acc = $this->managedFactory->create()->load($vendorId,'vendor_id');
+                        
+                        if (count($check_acc->getData()))
+                            $stripe_acc = $check_acc['account_id'];
+                    }else{
+                        $standAlone = $this->standAloneFactory->create()->load($vendorId,'vendor_id');
+                        /**
+                         * get token, if Mode is set to standalone
+                         */
+                        if(count($standAlone->getData()))
+                        	$stripe_acc = $standAlone['stripe_user_id'];
+                    }
+                    if($stripe_acc){
+	                    try {
+	                        $transfer =   \Stripe\Transfer::create([
+	                            "amount" => $netVendorEarn*100, // amount in cents
+	                            "currency" => $object['currency'],
+	                            "source_transaction" => $charge->id,
+	                            "destination" => $stripe_acc,
+	                            "transfer_group" => $orderId 
+	                        ]);
+	                    }catch ( \Stripe\Exception\CardException $e ) {
+	                    	//echo $e->getMessage();die;
+	                        throw new \Magento\Framework\Exception\LocalizedException(__( $e->getMessage()));
+	                    }
+	                    $transferId = $transfer->id;
+	                    
+	                    $event_data_array = [
+	                        'transaction_id' => $transferId,
+	                        'vendor_id' => $vendorId,
+	                        'amount' => $netVendorEarn,
+	                        'order_id' => $orderId
+	                    ];
+	                    $this->cedPaymentIntent->saveVpayment($event_data_array, $vendorId, 2 );
+	                } 
+	            }
+	        }catch(\Exception $e){
+	        	throw new \Magento\Framework\Exception\LocalizedException ( __ ( $e->getMessage () ) );
+	        }
+
+            /* custom code ends */
+
+            return $charge;
+        }
+        catch (\Stripe\Error\Card $e)
+        {
+            $comment = "Order could not be charged because of a card error: " . $e->getMessage();
+            $order->addStatusHistoryComment($comment);
+            $order->save();
+            $this->log($e->getMessage());
+            throw new WebhookException($e->getMessage(), 202);
+        }
+        catch (\Stripe\Error $e)
+        {
+            $comment = "Order could not be charged because of a Stripe error: " . $e->getMessage();
+            $order->addStatusHistoryComment($comment);
+            $order->save();
+            $this->log($e->getMessage());
+            throw new WebhookException($e->getMessage(), 202);
+        }
+        catch (\Exception $e)
+        {
+            $comment = "Order could not be charged because of server side error: " . $e->getMessage();
+            $order->addStatusHistoryComment($comment);
+            $order->save();
+            $this->log($e->getMessage());
+            throw new WebhookException($e->getMessage(), 202);
+        }
+    }
+}

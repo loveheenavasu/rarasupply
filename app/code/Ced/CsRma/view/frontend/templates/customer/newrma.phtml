@@ -1,0 +1,300 @@
+
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+ <?php 
+    $reason = $this->rmaConfigHelper->getAvailableReasons(); 
+    $package = $this->rmaConfigHelper->getPackageCondition(); 
+    $resolution = $this->rmaConfigHelper->getResolution(); 
+    $order = $block->getCustomerOrders(); 
+   
+    if($order) {
+        $currentId = $this->getRequest()->getParam('order_id',false) ?:'';
+?>
+
+
+<form class="form-rma-edit" action="<?php  echo $block->getSaveUrl() ?>" method="post" id="rma-form" enctype="multipart/form-data" data-mage-init='{"validation":{}}'>
+    <div class="order-rma-form">
+        <div class="block order-information">
+            <div class="block-inner-wrap">
+                <div class="block-title">
+                    <strong>
+                    <?php  echo __('Order Information') ?>
+                    </strong>
+                </div>
+                <div class="block-content fieldset">
+                    <div class="field orderid required">
+                        <label class="label" for="reason"><span><?php echo __('Order #') ?></span></label>
+                        <?php if(is_array($order)):?>
+                        <div class="control">
+                            <select id="order_id" name="order_id" title="<?php echo __('Order Id for RMA ') ?>" onchange = "callChange()" data-validate="{required:true, messages:{required:'Please select order Id'}}" class="required-entry">
+                                <option value="">
+                                    <?php echo __('Please select ORDER #') ?>
+                                </option>
+                                <?php foreach($order as $order_key =>$order_value):?>
+                                <option value ="<?php echo $order_value['increment_id']?>" <?php if($currentId==$order_value['increment_id']){ ?>selected="selected" <?php }?> >
+                                    <?php echo '#'.$order_value['increment_id']?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block address-information">
+            <div class="block-inner-wrap">
+                <div class="block-title">
+                    <strong>
+                    <?php /* @escapeNotVerified */ echo __('Address Information') ?>
+                    </strong>
+                </div>
+                <div class="block-content fieldset">
+                    <div class="field billing-address required">
+                        <label class="label" for="billing-address"><span><?php /* @escapeNotVerified */ echo __('Billing Address') ?></span></label>
+                        <address id="billing_address"></address>
+                    </div>
+                    <div class="field shipping-address required">
+                        <label class="label" for="shipping-address"><span><?php /* @escapeNotVerified */ echo __('Shipping Address') ?></span></label>
+                        <address id ="shipping_address"></address>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block item-ordered">
+            <div class="block-inner-wrap">
+                <div class="block-title">
+                    <strong>
+                        <?php echo __('Item Ordered') ?>
+                    </strong>
+                </div>
+                <div class="block-content">
+                    <div class="table-responsive">
+                        <table data-validate="{required:true, messages:{required:'Item(s) can't be empty'}}" class="data table table-credit-cards table-striped">
+                            <thead id ="order-thead">
+                                <tr>
+                                    <th><?php echo __('SKU')?></th>
+                                    <th><?php echo __('Name')?></th>
+                                    <th><?php echo __('PRICE')?></th>
+                                    <th><?php echo __('ROW TOTAL')?></th>
+                                    <th><?php echo __('QTY ORDERED')?></th>
+                                    <th><?php echo __('RMA QTY')?></th>
+                                </tr>
+                            </thead>
+                            <tbody id ="order-item">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block general-information">
+            <div class="block-inner-wrap">
+                <div class="block-title">
+                    <strong><?php /* @escapeNotVerified */ echo __('General Information') ?></strong>
+                </div>
+                <div class="block-content fieldset">
+                    <?php echo $block->getBlockHtml('formkey')?>
+                    <div class="field reason required">
+                        <label class="label" for="reason"><span><?php /* @escapeNotVerified */ echo __('Reason Requested') ?></span></label>
+                        <div class="control">
+                            <select id="rma_reason" name="rma_reason" title="<?php echo __('Reason Requested For RMA ') ?>" data-validate="{required:true, messages:{required:'Please select one of reason'}}">
+                                <option value=""><?php echo __('Please select a reason for RMA request.') ?></option>
+                                <?php if(is_array($reason)):?>
+                                <?php foreach($reason as $reasons =>$reason_value):?>
+                                <option value ="<?php echo $reasons?>"><?php echo $reason_value ?></option>
+                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field reason required">
+                        <label class="label" for="reason"><span><?php /* @escapeNotVerified */ echo __('Package Condition') ?></span></label>
+                        <div class="control">
+                            <select id="rma_pk_condition" name="rma_pk_condition" title="<?php echo __('Package Condition For RMA ') ?>" data-validate="{required:true, messages:{required:'Please select one of Package Condition'}}">
+                                <option value=""><?php echo __('Please select package condition for RMA request.') ?></option>
+                                <?php if(is_array($package)):?>
+                                <?php foreach($package as $packages =>$package_value):?>
+                                <option value ="<?php echo $packages?>"><?php echo $package_value ?></option>
+                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="field resolution required">
+                        <label class="label" for="reason"><span><?php /* @escapeNotVerified */ echo __('Resolution Requested') ?></span></label>
+                        <div class="control">
+                            <select id="rma_resolution" name="rma_resolution" title="<?php echo __('Resolution Requested through RMA ') ?>" data-validate="{required:true, messages:{required:'Please select one of Resolution Requested'}}">
+                                <option value=""><?php echo __('Please select a resoltuon for which want to request RMA') ?></option>
+                                <?php print_r($resolution); if(is_array($resolution)):?>
+                                <?php foreach($resolution as $resolutions =>$resolution_value):?>
+                                <option value ="<?php echo $resolutions?>"><?php echo $resolution_value ?></option>
+                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <?php   $policyText = $this->rmaConfigHelper->getPolicyText();
+                        if ($policyText) : ?>
+                    <div class="field reason required">
+                        <label class="label" for="policy">
+                        <span><?php echo __('Rma Policy Information') ?></span>
+                        </label>
+                        <textarea class="required" readonly="true" name="policy-text"><?php echo $policyText;?></textarea>
+                        <div class="check-box">
+                            <input id="ced-rma-policy-info" type="checkbox" name="check" data-validate="{required:true, messages:{required:'Please select policy'}}">
+                            <label for="ced-rma-policy-info"><?php echo __('I accept Policy') ?></label>
+                        </div>
+                    </div>
+                    <?php   endif; ?>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="action save primary" data-action="save-rma" title="<?php /* @escapeNotVerified */ echo __('Submit RMA Request') ?>" id="save-request">
+                            <span><?php /* @escapeNotVerified */ echo __('Submit RMA Request') ?></span>
+                            </button>
+                        </div>
+                        <div class="secondary">
+                            <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php /* @escapeNotVerified */ echo __('Go back') ?></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    function callChange()
+    {
+        var currentId = document.getElementById('order_id').value;
+        if(currentId =='' ){
+            return false;
+        }
+        var htmlcontent = '';
+        var resolution = new Array();
+        var orders = new Array();
+        <?php   foreach ($order as $orderItem => $itemValue):
+            $resolution ='';
+
+            /* for billing and shipping address */
+            $orderData = $block->getOrderData($itemValue['increment_id']);
+            $billing_address = $this->rmaDataHelper->getAddress($orderData);
+            $billing_address = str_replace(PHP_EOL, '', $billing_address);
+            $shipping_address = $this->rmaDataHelper->getShippingAddress($orderData);
+            $shipping_address = str_replace(PHP_EOL, '', $shipping_address);
+
+            /* for resolution value */
+            $resolutionValue = $block->getResolutionForOrder($itemValue['increment_id']);
+            if(is_array($resolutionValue)):
+                foreach($resolutionValue as $resolutions =>$resolution_value):
+                    $resolution .= '<option value="'.$resolutions.'">'.$resolution_value.'</option>';
+                endforeach; 
+            endif;
+            ?>
+            resolution["<?= $itemValue['increment_id'] ?>"] = '<?= $resolution ?>';
+            billing_address["<?= $itemValue['increment_id'] ?>"] = "<?php 
+            echo str_replace(array("\n","\r","\r\n"),'',$billing_address);?>";
+            shipping_address["<?= $itemValue['increment_id'] ?>"] = "<?php 
+            echo str_replace(array("\n","\r","\r\n"),'',$shipping_address);?>";
+            <?php
+
+            if(!$block->rmaDataHelper->checkOtherRma($itemValue['increment_id'])):
+                $OrderItemList = $block->getCustomerOrdersItems($itemValue['increment_id']);
+
+                foreach ($OrderItemList as $data => $item):    
+                 ?>        
+                 var orderItems_<?= $item['item_id'] ?> = new Array();
+                 orderItems_<?= $item['item_id'] ?>['id'] = "<?= $item['product_id'] ?>";
+                 orderItems_<?= $item['item_id'] ?>['item_id'] = "<?= $item['item_id'] ?>";
+                 orderItems_<?= $item['item_id'] ?>['sku'] = "<?=  $block->escapeHtmlAttr($item['sku']) ?>";
+                 orderItems_<?= $item['item_id'] ?>['name'] = "<?= $block->escapeHtmlAttr($item['name']) ?>";;
+                 orderItems_<?= $item['item_id'] ?>['price'] = "<?= $this->priceHelper->currency($item['price'], true, false) ?>";
+                 orderItems_<?= $item['item_id'] ?>['qty'] = "<?= floatval($item['qty']) ?>";
+                 orderItems_<?= $item['item_id'] ?>['row_total'] = "<?= $this->priceHelper->currency($item['row_total_incl_tax'],true, false) ?>";
+             <?php       endforeach;     ?>
+             orders["<?= $itemValue['increment_id'] ?>"] = [
+             <?php       foreach ($OrderItemList as $item):  ?>
+                orderItems_<?= $item['item_id'] ?>,
+            <?php       endforeach; ?>
+            ];    
+            <?php   else:       ?>
+                orders["<?= $itemValue['increment_id'] ?>"] = [];
+            <?php   endif; ?>
+
+        <?php   endforeach;     ?>
+
+        htmlcontent = '';
+        if(orders[currentId].length)
+        {
+        	// document.getElementById('order-thead').style.display = "";  
+            // document.getElementById('item_ordered').style.display = "";
+            for (var i=0; i < orders[currentId].length; i++) {
+
+                htmlcontent += '<tr class="item-list">';
+                htmlcontent += '<td>'+ orders[currentId][i]['sku'] + '</td>';
+                htmlcontent += '<td>'+orders[currentId][i]['name'] + '</td>';
+                htmlcontent += '<td>'+ orders[currentId][i]['price'] + '</td>';
+                htmlcontent += '<td>'+ orders[currentId][i]['row_total'] + '</td>';
+                htmlcontent += '<td>'+ orders[currentId][i]['qty'] + '</td>';
+                htmlcontent += '<td><input type="text"  class="validate-number validate-digits validate-zero-greater-than-zero required" value="' + orders[currentId][i]['qty'] + '" id="rma-qty" name="item-data[rma-qty][]" onchange="validateQty(this,'+ orders[currentId][i]['qty'] +','+orders[currentId].length+')"></td>';
+
+                htmlcontent += '<td>';
+                htmlcontent += '<input type="hidden" value="'+orders[currentId][i]['sku']+'" name="item-data[item-sku][]">';
+                htmlcontent += '<input type="hidden" value="'+orders[currentId][i]['row_total']+'" name="item-data[item-row-total][]">';
+                htmlcontent += '<input  type="hidden" value="'+orders[currentId][i]['name']+'" name="item-data[item-name][]">';
+                htmlcontent += '<input  type="hidden" value="'+orders[currentId][i]['price']+'" name="item-data[item-price][]">';
+                htmlcontent += '<input  type="hidden" value="'+orders[currentId][i]['id']+'" name="item-data[item-id][]">';
+                htmlcontent += '<input  type="hidden" value="'+orders[currentId][i]['item_id']+'" name="item-data[order_item_id][]">';
+                htmlcontent += '</tr>';
+            }
+        }
+        else
+        {
+            htmlcontent += '<tr><td colspan="4">Order has other RMA also and no items </td></tr>';
+            //document.getElementById('order-thead').style.display = "none";  
+            //document.getElementById('item_ordered').style.display = "none"; 
+
+            
+        }
+        document.getElementById('shipping_address').innerHTML = shipping_address[currentId];
+        document.getElementById('billing_address').innerHTML = billing_address[currentId];
+        document.getElementById('rma_resolution').innerHTML = resolution[currentId];
+        document.getElementById('order-item').innerHTML = htmlcontent;
+
+    } callChange();
+</script>
+<script type="text/javascript">
+    function validateQty(qty,saveqty,length) {
+        var maxValue = saveqty;
+        var updateValue = qty.value;
+        var lengths = length;
+        if(updateValue == 0 && lengths == 1){
+            alert('You cannot create RMA request for 0 quantity as only single item is present');
+            qty.value = maxValue;
+        }
+        if(updateValue > maxValue){
+            alert('Value is greater than available for RMA ');
+            qty.value = maxValue;
+        }
+    }
+    //document.getElementById('order-thead').style.display = "none";  
+    //document.getElementById('item_ordered').style.display = "none";
+</script>
+
+<?php } else { ?>
+    <div class="message info empty"><span><?php /* @escapeNotVerified */ echo __('You have no Eligible orders for RMA.'); ?></span></div>
+<?php } ?>

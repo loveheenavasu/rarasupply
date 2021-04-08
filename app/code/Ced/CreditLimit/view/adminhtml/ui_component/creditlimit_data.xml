@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- -
+/**
+ * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category  Ced
+  * @package   Ced_CreditLimit
+  * @author    CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright Copyright CEDCOMMERCE (http://cedcommerce.com/)
+  * @license      https://cedcommerce.com/license-agreement.txt
+  */
+-->
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">creditlimit_data.creditlimit_data_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="add" class ="Ced\CreditLimit\Block\Adminhtml\CreditLimit\Button">
+                <!--<url path="*/*/new"/>
+                <class>primary</class>
+                <label translate="true">Add Credit Limit</label>-->
+            </button>
+        </buttons>
+        <spinner>creditlimit_data_columns</spinner>
+        <deps>
+            <dep>creditlimit_data.creditlimit_data_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="creditlimit_data_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="creditlimit_data_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+         
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="climit/climit/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+    
+            
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="creditlimit_data_columns">
+        
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="customer_email">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Customer Email</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="credit_amount" class="Ced\CreditLimit\Ui\Component\Listing\Columns\CreditAmount">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Credit Amount</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        
+        <column name="used_amount" class="Ced\CreditLimit\Ui\Component\Listing\Columns\UsedAmount">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Used Amount</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        
+        <column name="remaining_amount" class="Ced\CreditLimit\Ui\Component\Listing\Columns\RemainingAmount">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Remaining Amount</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        
+        <actionsColumn name="actions" class="Ced\CreditLimit\Ui\Component\Listing\Columns\Actions">
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+        <actionsColumn name="pay" class="Ced\CreditLimit\Ui\Component\Listing\Columns\ActionPay">
+
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+        
+    </columns>
+</listing>
+

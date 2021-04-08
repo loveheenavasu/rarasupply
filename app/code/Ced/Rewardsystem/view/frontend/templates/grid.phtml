@@ -1,0 +1,52 @@
+<?php 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Rewardsystem
+ * @author   	 CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */
+?>
+<?php 
+$data = $this->getPoint();
+$pointsData = $block->getPointsValue();
+?>
+<span><b><?php echo __('One Point equals '.$pointsData);?></b></span>
+<?php 
+if($data->getSize())
+{
+	echo '<table id="tab">
+		<tr><td><h4>Id</h4></td>
+		<td><h4>Title</h4></td>
+		<td><h4>Point<h4></td>
+		<td><h4>Creating Date<h4></td>
+		<td><h4>Expiration Date<h4></td>
+		<td><h4>Status<h4></td>
+		<td><h4>Used Point<h4></td><tr>';
+
+
+$subtotal = $this->subtotal();
+
+foreach($data as $foo){
+	echo '<tr><td>'.$foo->getId().'</td><td>'.$foo->getTitle().'</td><td>'.$foo->getPoint().'</td><td>'.$foo->getCreatingDate().'</td><td>'.$foo->getExpirationDate().'</td><td>'.$foo->getStatus().'</td><td>'.$foo->getPointUsed().'</td></tr>';
+	
+}
+
+echo "</table>";
+echo '<span style="float:right">Total  Points:</span>';
+echo "</br>";
+echo '<div><span style="float:right">'.$subtotal.'points'.'</span></div>';
+?>
+<?php echo $block->getPagerHtml(); ?>
+<?php }else{?>
+	 <div class="message info empty"><span><?php echo __('No records available.'); ?></span></div>
+<?php }?>

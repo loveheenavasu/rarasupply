@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+ <default>
+		<ced_csmultishipping>
+			<shipping>
+				<methods>
+					<fedex>
+						<model>Ced\CsFedexShipping\Model\Vsettings\Shipping\Methods\Fedex</model>
+						<config_path>ced_csfedexshipping/general/active</config_path>
+					</fedex>
+				</methods>
+			</shipping>
+		</ced_csmultishipping>
+        <carriers>
+            <fedex>
+                <active>1</active>
+                 <title>Vendor Fedex Shipping</title>
+                <name>Vendor Fedex Shipping</name>
+                <model>Ced\CsFedexShipping\Model\Carrier\Fedex</model>
+            </fedex>
+        </carriers>
+        <ced_csfedexshipping>
+        	<general>
+        		<active>1</active>
+        	</general>
+        </ced_csfedexshipping>
+    </default>
+</config>

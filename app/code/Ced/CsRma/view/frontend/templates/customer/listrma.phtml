@@ -1,0 +1,130 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+<?php $_requests = $block->getRmaRequestData(); ?>
+<?php echo $block->getChildHtml('info');?>
+
+<!--<div class="actions-toolbar  clearfix rmalist-tool">
+    <div class="primary  pull-right">
+        <button type="button" role="add-rma" title="<?php /* @escapeNotVerified */ echo __('Request New RMA') ?>" class="action primary add"><span><?php /* @escapeNotVerified */ echo __('Request New RMA') ?></span></button>
+    </div>
+    <div class="secondary">
+        <a class="action back" href="<?php echo $block->escapeUrl($block->getBackUrl()) ?>"><span><?php /* @escapeNotVerified */ echo __('Back') ?></span></a>
+    </div>
+</div> -->
+
+<div class="block">
+    <div class="block-title rmalist-tool">
+        <strong>My return</strong>
+        <button type="button" role="add-rma" title="<?php /* @escapeNotVerified */ echo __('Request New RMA') ?>" class="action primary add pull-right"><span><?php /* @escapeNotVerified */ echo __('Request New RMA') ?></span></button>
+    </div>
+    <div class="block-content">
+        <?php if ($_requests && count($_requests)):?>
+            <div class="table-wrapper orders-history">
+                <table class="data table table-rma-items history" id="my-rma-table">
+                    <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('RMA Requests') ?></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="col id"><?php /* @escapeNotVerified */ echo __('Rma Id #') ?></th>
+                            <th scope="col" class="col id"><?php /* @escapeNotVerified */ echo __('Seller ') ?></th>
+                            <th scope="col" class="col id"><?php /* @escapeNotVerified */ echo __('Order #') ?></th>
+                            <th scope="col" class="col date"><?php /* @escapeNotVerified */ echo __('Date') ?></th>
+                            <th scope="col" class="col shipping"><?php /* @escapeNotVerified */ echo __('Bill To') ?></th>
+                            <th scope="col" class="col status"><?php /* @escapeNotVerified */ echo __('Status') ?></th>
+                            <th scope="col" class="col actions">&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($_requests->getData() as $_request):?>
+                            <tr>
+                                <td data-th="<?php echo $block->escapeHtml(__('Rma Id')) ?>" class="col id"><?php /* @escapeNotVerified */ echo $_request['rma_id'] ?></td>
+
+                                <?php if($_request['vendor_id']=='admin'){ ?>
+                                    <td data-th="<?php echo $block->escapeHtml(__('Rma Id')) ?>" class="col id"><?php echo "Admin" ?></td>
+                                <?php } else{ ?>
+                                    <td data-th="<?php echo $block->escapeHtml(__('Rma Id')) ?>" class="col id"><?php echo 'Seller'?></td>
+
+                                <?php } ?>
+                                <td data-th="<?php echo $block->escapeHtml(__('Order #')) ?>" class="col id"><?php /* @escapeNotVerified */ echo $_request['order_id'] ?></td>
+                                <td data-th="<?php echo $block->escapeHtml(__('Date')) ?>" class="col date"><?php /* @escapeNotVerified */ echo $block->formatDate($_request['created_at']) ?></td>
+
+                                <td data-th="<?php echo $block->escapeHtml(__('Bill To')) ?>" class="col shipping"><?php echo $block->escapeHtml($_request['customer_name']) ?></td>
+
+                                <td data-th="<?php echo $block->escapeHtml(__('Status')) ?>" class="col status"><?php /* @escapeNotVerified */ echo $_request['status'] ?></td>
+
+                                <td data-th="<?php echo $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                                    <a href="<?php /* @escapeNotVerified */ echo $block->getViewUrl($_request) ?>" class="action view">
+                                        <span><?php /* @escapeNotVerified */ echo __('View Request') ?></span>
+                                    </a>
+                            <?php if ($_request['status']=='Pending'): ?>
+                                    <a onclick="cancel( <?php echo $_request['rma_request_id']?>)" href="javascript:void(0)"><?php echo
+                                        __('Cancel') ?>
+
+                                    </a>
+                            <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if ($block->getPagerHtml()): ?>
+                <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+            <?php endif ?>
+        <?php else: ?>
+            <div class="message info empty"><span><?php /* @escapeNotVerified */ echo __('You have requested no rma.'); ?></span></div>
+        <?php endif ?>
+    </div>
+</div>
+
+
+<script type="text/x-magento-init">
+    {
+        ".page-main": {
+            "address": {
+                "addAddress": "button[role='add-rma']",
+                "addAddressLocation": "<?php /* @escapeNotVerified */ echo $block->getNewRmaUrl() ?>"
+            }
+        }
+    }
+</script>
+<script type="text/javascript">
+    function cancel(rmaId)
+    {
+        var cancelPopup = confirm ("<?php echo __('Are you sure you would like to cancel this RMA Request?') ?>");
+        if (cancelPopup){
+            require(["jquery","prototype"], function(jQuery){
+                jQuery.ajax({
+                    type: "POST",
+                    url: '<?php echo $this->urlBuilder->getUrl("csrma/customerrma/cancel") ?>',
+                    data: {
+                            rma_request_id:rmaId
+                        },
+                    showLoader: true,
+                    success: function(response) {
+                        if(response.error==0){
+                            window.location.reload();
+                        }
+                    }
+                });
+            });   
+        }
+    }
+</script>
+
+
+
+

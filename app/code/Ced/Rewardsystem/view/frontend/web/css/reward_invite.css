@@ -1,0 +1,15 @@
+.control .twitter-share-button {
+	display: inline-block;
+	padding: 5px 10px;
+	background: #50abf1;
+	color: #fff;
+	font-weight: 600;
+	border-radius: 5px;
+	font-size: 13px;
+	margin-top: 10px;
+}
+.control .twitter-share-button img
+{
+	vertical-align: middle;
+	padding-right: 2px;
+}

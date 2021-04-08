@@ -1,0 +1,19 @@
+{
+    "name": "ced/module-csmarketplace",
+    "description": "Extension which will convert your magento 2 store in to multi-vendor marketplace.",
+    "require": {
+        "php": "~7.1.3|~7.2.0|~7.3.0"
+    },
+    "type": "magento2-module",
+    "version": "3.0.0",
+    "license": [
+        "EULA"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Ced\\CsMarketplace\\": ""
+        }
+    }
+}
+

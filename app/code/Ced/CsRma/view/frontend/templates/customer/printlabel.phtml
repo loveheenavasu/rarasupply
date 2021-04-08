@@ -1,0 +1,93 @@
+<?php
+/*
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author       CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */
+
+?>
+<?php if ($this->getRmaRequest() && $this->getFormData()) : ?>
+    <?php $rmaRequest = $this->getRmaRequest() ?>
+    <style type="text/css">
+        
+        .ced-rma-line {
+            border-bottom: dotted 1px #000;
+        }
+        .ced-rma-table td {
+            padding-right: 7px;
+        }
+    </style> 
+    <h1><?php echo $this->__('RMA') . ' ' . $rmaRequest->getRmaId() ?></h1>
+    <p><?php echo $this->__('Date:') ?> <?php echo $this->formatDate($rmaRequest->getCreatedAt()) ?></p>
+    <p class="ced-rma-line"></p>
+    <div class="ced-rma-left-column">
+        <h2><?php echo $this->__('Return Address') ?></h2>
+        <p>
+            <?php echo $this->getFormData()->getCustomerFirstName() ?> <?php echo $this->getFormData()->getCustomerLastName() ?><br />
+            <?php if ($this->getFormData()->getCompany()) : ?><?php echo $this->getFormData()->getCompany() ?><br /><?php endif ?>
+            <?php echo $this->getFormData()->getAddressLine1() ?><br />
+            <?php echo $this->getFormData()->getAddressLine2() ?><br />
+            <?php echo $this->getFormData()->getDestRegion() ?><br />
+            <?php echo $this->getCountryName() ?><br />
+            <?php echo $this->getFormData()->getDestZip() ?><br />
+            <?php /*echo $this->getFormData()->getTelephone() ?><?php if ($this->getFormData()->getFax()) : ?>, <?php echo $this->getFormData()->getFax() ?><?php endif */?>
+        </p>
+    </div>
+    <div class="ced-rma-right-column">
+        <h2><?php echo $this->__('Details') ?></h2>
+        <table border="0" class="ced-rma-table">
+            <tr valign="top">
+                <td><?php echo $this->__('Order Id') ?>:</td>
+                <td>#<?php echo $rmaRequest->getOrderId() ?></td>
+            </tr>
+            <tr valign="top">
+                <td><?php echo $this->__('Resolution Requested') ?>:</td>
+                <td><?php echo $rmaRequest->getResolutionRequested() ?></td>
+            </tr>
+            <tr valign="top">
+                <td><?php echo $this->__('Package Condition') ?>:</td>
+                <td><?php echo $rmaRequest->getPackageCondition() ?></td>
+            </tr>
+            <tr valign="top">
+                <td><?php echo $this->__('Status') ?>:</td>
+                <td><?php echo $rmaRequest->getStatus() ?></td>
+            </tr>
+            <?php if ($rmaRequest->getApprovalCode() != null): ?>
+                <tr valign="top">
+                    <td><?php echo $this->__('Approval Code') ?>:</td>
+                    <td><?php echo $rmaRequest->getApprovalCode() ?></td>
+                </tr>
+            <?php endif;?>
+            <?php if (Mage::helper('ced_rma/config')->getReasonsEnabled()) : ?>
+                <tr valign="top">
+                    <td><?php echo $this->__('Reason') ?>:</td>
+                    <td>
+                        <?php echo $rmaRequest->getReason(); ?>
+                    </td>
+                </tr>
+            <?php endif;?>
+        </table>
+    </div>
+    <div style="clear: both"></div>
+
+    <h2><?php echo $this->__('Items RMA Requested for') ?></h2>
+    <?php $_order = $rmaRequest->getOrder() ?>
+    <?php if ($rmaRequest->getSelectedItemsTable($rmaRequest->getRmaRequestId())) {
+        echo $rmaRequest->getSelectedItemsTable($rmaRequest->getRmaRequestId());
+    }?>
+<?php endif;?>
+<script type="text/javascript">
+    decorateTable('ced-rma-requested-items');
+    window.print();
+</script>

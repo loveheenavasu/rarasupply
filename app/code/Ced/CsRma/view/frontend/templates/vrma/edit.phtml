@@ -1,0 +1,309 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */ -->
+<?php $_request = $block->getRmaCollection();
+$transferToVendor = $this->helper('Ced\CsRma\Helper\Config')->transferTovendor();
+$flag = false;
+if ($transferToVendor || $_request->getIsTransfered()) {
+    $flag = true;
+}
+
+$_item = $block->getVendorItemCollection();
+$_order = $block->getOrderData();
+?>
+<div class="row">
+    <div class="col-md-12" style="margin-top:10px;">
+        <div class="panel panel-default">
+            <div class="panel-heading uptransform clearfix" style="font-weight:bold;padding:4px 15px;">
+                <div class="col-md-6 panel_product_heading" style="line-height:31px;font-size:17px;">
+                    <?php echo __('Edit Return Request') ?>
+                </div>
+                <?php if (!in_array($_request->getStatus(), ["Completed"]) && $flag): ?>
+                    <div class="buttons-set col-md-6 buttons_scb" style="text-align:right;">
+                        <button class="button btn btn-success uptransform product-button" title="Save" type="submit"
+                                id="save_butn"
+                                style="float: none;"
+                                onclick="postForm('<?php echo $this->getUrl('csrma/vrma/save', array('rma_request_id' => $_request->getRmaRequestId())) ?>')">
+
+                            <span><span><?php echo __('Save') ?></span></span>
+                        </button>
+                        <button type="reset" style="float: none;" onCLick="location.reload()"
+                                class="uptransform button btn btn-warning product-button">
+                            <span><span><?php echo __('Reset') ?></span></span>
+                        </button>
+                        <button style="float: none;" type="button"
+                                onCLick="window.location='<?php echo $this->escapeUrl($this->getBackUrl()) ?>'"
+                                title="<?php echo __('Back') ?>"
+                                class="button btn btn-info uptransform product-button back-button">
+                            <span><span><?php echo __('Back') ?></span></span>
+                        </button>
+                    </div>
+                <?php endif; ?>
+            </div>
+            <div class="panel-body panel-min-height">
+                <div class="">
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form action="" id="edit_rma_form" method="post" novalidate="novalidate">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"
+                                         style="text-transform: uppercase;font-weight:bold;padding:4px 15px;"
+                                         id="order-header">
+                                        <?php echo __('Order Information') ?>
+                                    </div>
+                                    <div class="panel-body" id="order-body">
+                                        <br/>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Order Id') ?></label>:
+                                            <div class="input-box">
+                                                <input type="text" readonly="readonly"
+                                                       value="<?php echo $_request->getOrderId() ?>"
+                                                       class="required-entry input-text form-control"
+                                                       name="request[order_id]"
+                                                       id="order_id"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Purchase From') ?></label>:
+                                            <div style="clear:both"></div>
+                                            <div class="input-box" style="padding-left:0">
+                                                <p><?php echo $this->helper('Ced\CsRma\Helper\Data')->getStoreValue($_request->getStoreId()); ?></p>
+                                            </div>
+                                        </div>
+                                        <?php $availableStatus = $this->helper('Ced\CsRma\Helper\Config')->getAvailableStatus(); ?>
+                                        <div class="form-group col-md-6"><label><?php echo __('Status') ?></label>:
+                                            <div style="clear:both"></div>
+                                            <div class="input-box" style="padding-left:0">
+                                                <?php if (!$_request->getIsTransfered() && !$flag): ?>
+                                                    <?php echo __($_request->getStatus()); ?>
+                                                <?php elseif (in_array($_request->getStatus(), ["Completed"])): ?>
+                                                    <?php echo __($_request->getStatus());
+                                                elseif (in_array($_request->getStatus(), ["Approved", "Cancelled"])):?>
+                                                    <select class=" required-entry _required select admin__control-select"
+                                                            name="status" id="status" aria-required="true">
+                                                        <option value="<?php echo $_request->getStatus() ?>"
+                                                                selected="selected"> <?= $_request->getStatus() ?></option>
+                                                        <option value="Completed"> <?= __("Completed"); ?></option>
+                                                    </select>
+                                                <?php else:
+                                                    ?>
+                                                    <select class=" required-entry _required select admin__control-select"
+                                                            name="status" id="status" aria-required="true">
+                                                        <?php foreach ($availableStatus as $status) {
+
+                                                            ?>
+                                                            <option value="<?php echo $status ?>" <?php if ($status == $_request->getStatus()) { ?> selected="selected" <?php } ?>> <?= $status ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6"><label><?php echo __('Reason') ?></label>
+                                            <div style="clear:both"></div>
+                                            <div class="input-box" style="padding-left:0">
+                                                <select class=" required-entry _required select admin__control-select"
+                                                        name="reason" id="reason" aria-required="true"
+                                                        disabled="disabled">
+                                                    <option value="<?php echo $_request->getReason() ?>"> <?php echo $_request->getReason() ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Package Condition') ?></label>
+                                            <div style="clear:both"></div>
+                                            <div class="input-box" style="padding-left:0">
+                                                <select class=" required-entry _required select admin__control-select"
+                                                        name="package_condition" id="package_condition"
+                                                        aria-required="true" disabled="disabled">
+                                                    <option value="<?php echo $_request->getPackageCondition() ?>"> <?php echo $_request->getPackageCondition() ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Resolution Requested') ?></label>
+                                            <div style="clear:both"></div>
+                                            <div class="input-box" style="padding-left:0">
+                                                <select class=" required-entry _required select admin__control-select"
+                                                        name="resolution_requested" id="resolution_requested"
+                                                        aria-required="true" readonly="readonly">
+                                                    <option value="<?php echo $_request->getResolutionRequested() ?>"> <?php echo $_request->getResolutionRequested() ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Shipping Price') ?></label>:
+                                            <div class="input-box">
+                                                <input type="text" value="0.00" class="input-text form-control"
+                                                       name="request[shipping_price]"
+                                                       id=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"
+                                         style="text-transform: uppercase;font-weight:bold;padding:4px 15px;"
+                                         id="customer-header">
+                                        <?php echo __('Customer Information') ?>
+                                    </div>
+                                    <div class="panel-body" id="customer-body">
+                                        <br/>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Customer Name') ?></label>:
+                                            <div class="input-box">
+                                                <input type="text" readonly="1"
+                                                       value="<?php echo $_request->getCustomerName() ?>"
+                                                       class="required-entry input-text form-control"
+                                                       name="request[customer_name]"
+                                                       id="customer_name"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Customer Email') ?></label>:
+                                            <div style="clear:both"></div>
+                                            <div class="input-box" style="padding-left:0">
+                                                <input name="request[customer_email]" readonly="1" id="customer_email"
+                                                       type="text" value="<?php echo $_request->getCustomerEmail(); ?>"
+                                                       class="form-control required-entry input-text"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Customer Group') ?></label>:
+                                            <div style="clear:both"></div>
+                                            <div class="input-box" style="padding-left:0">
+                                                <?php $group = $this->groupRepository->getById($_order->getCustomerGroupId())
+                                                    ->getCode() ?>
+                                                <input readonly="1" type="text" value="<?php echo $group ?>"
+                                                       class="form-control required-entry input-text"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label><?php echo __('Customer Address') ?></label>:
+                                            <div class="input-box">
+                                                <address> <?php echo $this->helper('Ced\CsRma\Helper\Data')->getAddress($_order) ?></address>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"
+                                         style="text-transform: uppercase;font-weight:bold;padding:4px 15px;"
+                                         id="item-header">
+                                        <?php echo __('Item Information') ?>
+                                    </div>
+                                    <div class="panel-body" id="item-body">
+                                        <br/>
+                                        <table align="center" class="data-grid">
+                                            <thead>
+                                            <tr class="headings">
+                                                <th class="col-product data-grid-th">
+                                                    <span><?php echo __('Product') ?></span></th>
+                                                <th class="col-status data-grid-th">
+                                                    <span><?php echo __('Item SKU') ?></span></th>
+                                                <th class="col-price-original data-grid-th">
+                                                    <span><?php echo __('Price') ?></span></th>
+                                                <th class="col-ordered-qty data-grid-th">
+                                                    <span><?php echo __('Qty for RMA') ?></span></th>
+                                                <th class="col-row-total-original data-grid-th">
+                                                    <span><?php echo __('Row Total') ?></span></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php foreach ($_item as $items) { ?>
+                                                <tr>
+                                                    <td><?php echo $items->getItemName() ?></td>
+                                                    <td><?php echo $items->getSku() ?></td>
+                                                    <td><?php echo $items->getPrice() ?></td>
+                                                    <td><?php echo $items->getRmaQty() ?></td>
+                                                    <td><?php echo $items->getRowTotal() ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                            <?php if ($this->helper('Ced\CsRma\Helper\Config')->getAllowChats()) { ?>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"
+                                         style="text-transform: uppercase;font-weight:bold;padding:4px 15px;"
+                                         id="chat-header">
+                                        <?php echo __('Chat Information') ?>
+                                    </div>
+                                    <div class="panel-body" id="chat-body">
+                                        <br/>
+                                        <?php echo $block->getChildHtml('csrma_vendor_chat') ?>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require(
+        ['jquery'],
+        function ($) {
+            $("#order-header").click(function () {
+                $("#order-body").toggle("slow", function () {
+                });
+            });
+            $("#customer-header").click(function () {
+                $("#customer-body").toggle("slow", function () {
+                });
+            });
+            $("#item-header").click(function () {
+                $("#item-body").toggle("slow", function () {
+                });
+            });
+            $("#chat-header").click(function () {
+                $("#chat-body").toggle("slow", function () {
+                });
+            });
+        });
+</script>
+<script>
+    require(
+        ['jquery'],
+        function ($) {
+            window.postForm = function (url) {
+                $('#edit_rma_form').attr('action', url);
+                $('#edit_rma_form').submit();
+            };
+        });
+</script>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    table, td, th {
+        border: 1px solid black;
+    }
+
+    th {
+        height: 50px;
+    }
+
+    th, td {
+        padding: 15px;
+    }
+</style>

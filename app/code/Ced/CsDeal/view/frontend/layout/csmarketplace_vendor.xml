@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsDeal
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license     http://cedcommerce.com/license-agreement.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="vendorpanel" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Ced_CsMarketplace::css/ced/csmarketplace/vpanel-admin-2k18.css"/>
+	</head>
+    <body>
+		<referenceBlock name="csmarketplace_vendor_navigation">
+			     <block class="Ced\CsMarketplace\Block\Link\Current" name="vendor_deal_addon" after="vendor_orders" ifconfig="ced_csmarketplace/csdeal/enable">
+			       <arguments>
+			       <argument name="name" xsi:type="string">csdeal</argument>
+			       <argument name="label" xsi:type="string">Vendor Deals</argument>
+			       <argument name="font_awesome" xsi:type="string">fa fa-gift fa-fw</argument>
+			       <argument name="path" xsi:type="string">#</argument>
+			       </arguments>
+			       
+			       <block class="Ced\CsMarketplace\Block\Links" name="vendor_deal_addon_container" as="vendor_deal_addon_container" ifconfig="ced_csmarketplace/csdeal/enable">
+							<arguments>
+								<argument name="css_class" xsi:type="string">nav nav-second-level collapse</argument>
+							</arguments>
+							<block class="Ced\CsMarketplace\Block\Link\Current" name="create" ifconfig="ced_csmarketplace/csdeal/enable">
+								<arguments>
+									<argument name="name" xsi:type="string">create</argument>
+									<argument name="label" xsi:type="string">Create Deals </argument>
+									<argument name="path" xsi:type="string">csdeal/deal/create</argument>
+									<argument name="font_awesome" xsi:type="string">fa fa-gift fa-fw</argument>
+									<argument name="sort_order" xsi:type="string">10</argument>
+								</arguments>
+							</block>
+							<block class="Ced\CsMarketplace\Block\Link\Current" name="list" ifconfig="ced_csmarketplace/csdeal/enable">
+								<arguments>
+									<argument name="name" xsi:type="string">history</argument>
+									<argument name="label" xsi:type="string">List Deals </argument>
+									<argument name="path" xsi:type="string">csdeal/deal/listi</argument>
+									<argument name="font_awesome" xsi:type="string">fa fa-gift fa-fw</argument>
+									<argument name="sort_order" xsi:type="string">20</argument>
+								</arguments>
+							</block>
+							<block class="Ced\CsMarketplace\Block\Link\Current" name="setting" ifconfig="ced_csmarketplace/csdeal/enable">
+								<arguments>
+									<argument name="name" xsi:type="string">setting</argument>
+									<argument name="label" xsi:type="string">Deal Setting </argument>
+									<argument name="path" xsi:type="string">csdeal/setting/index</argument>
+									<argument name="font_awesome" xsi:type="string">fa fa-gift fa-fw</argument>
+									<argument name="sort_order" xsi:type="string">30</argument>
+								</arguments>
+							</block>
+						</block>
+			       
+			      </block>
+		</referenceBlock>
+  </body>
+ </page>
+   

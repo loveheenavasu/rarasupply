@@ -1,0 +1,57 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="vendorpanel" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+	<!--   /**
+ * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_CsCmsPage
+  * @author   CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+  * @license      http://cedcommerce.com/license-agreement.txt
+  */ -->
+	<body>
+		<referenceBlock name="csmarketplace_vendor_navigation">
+		  	<block class="Ced\CsMarketplace\Block\Link\Current" name="vendor_cms" after="vendor_payments" ifconfig="ced_csmarketplace/general/cscmspage">
+				<arguments>
+					<argument name="name" xsi:type="string">vendor_cms</argument>
+					<argument name="label" xsi:type="string">Seller CMS</argument>
+					<argument name="path" xsi:type="string">#</argument>
+					<argument name="font_awesome" xsi:type="string">fa fa-file-text-o</argument>
+					<argument name="sort_order" xsi:type="string">70</argument>
+					<argument name="level" xsi:type="string">1</argument>
+				</arguments>
+				<block class="Ced\CsMarketplace\Block\Links" name="vendor_cms_container" as="vendor_cms_container">
+					<arguments>
+						<argument name="css_class" xsi:type="string">nav nav-second-level collapse</argument>
+					</arguments>
+					<block class="Ced\CsMarketplace\Block\Link\Current" name="cms_page">
+						<arguments>
+							<argument name="name" xsi:type="string">cms_page</argument>
+							<argument name="label" xsi:type="string">Manage Seller CMS</argument>
+							<argument name="path" xsi:type="string">cscmspage/vcmspage/index</argument>
+							<argument name="font_awesome" xsi:type="string">fa fa-file-text</argument>
+							<argument name="sort_order" xsi:type="string">30</argument>
+							<argument name="level" xsi:type="string">2</argument>
+						</arguments>
+					</block>
+					<block class="Ced\CsMarketplace\Block\Link\Current" name="cms_block">
+						<arguments>
+							<argument name="name" xsi:type="string">cms_block</argument>
+							<argument name="label" xsi:type="string">Manage Static Blocks</argument>
+							<argument name="path" xsi:type="string">cscmspage/vblock/index</argument>
+							<argument name="font_awesome" xsi:type="string">fa fa-file</argument>
+							<argument name="sort_order" xsi:type="string">20</argument>
+							<argument name="level" xsi:type="string">2</argument>
+						</arguments>
+					</block>
+				</block>
+			</block>
+		</referenceBlock>
+    </body>
+</page>

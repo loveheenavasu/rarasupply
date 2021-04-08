@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+    <module name="Ced_CsFedexShipping" schema_version="0.0.1" release_version="0.0.5" setup_version="0.0.1"></module>
+</config>

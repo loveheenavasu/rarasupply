@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- /**
+ * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Rewardsystem
+  * @author   	 CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+  * @license      http://cedcommerce.com/license-agreement.txt
+  */  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ced_Rewardsystem::rewardsystem_content" title="Reward System" module="Ced_Rewardsystem"  sortOrder="40" resource="Ced_Rewardsystem::rewardsystem_content" dependsOnConfig="reward/setting/enable" />
+         <add id="Ced_Rewardsystem::catalogrule" title="Catalog Rule" module="Ced_Rewardsystem" sortOrder="0" parent="Ced_Rewardsystem::rewardsystem_content" action="rewardsystem/reward/catalogrule" resource="Ced_Rewardsystem::catalogrule"/>
+         <add id="Ced_Rewardsystem::shoppingcartrule" title="Shopping Cart Rule" module="Ced_Rewardsystem" sortOrder="0" parent="Ced_Rewardsystem::rewardsystem_content" action="rewardsystem/reward/shoppingcartrule" resource="Ced_Rewardsystem::shoppingcartrule"/>
+         <add id="Ced_Rewardsystem::customerreport" title="Customer Report" module="Ced_Rewardsystem" sortOrder="0" parent="Ced_Rewardsystem::rewardsystem_content" action="rewardsystem/reward/customerreport" resource="Ced_Rewardsystem::customerreport"/>
+         <add id="Ced_Rewardsystem::configuration" title="Configurations" module="Ced_Rewardsystem" sortOrder="0" parent="Ced_Rewardsystem::rewardsystem_content" action="adminhtml/system_config/edit/section/reward" resource="Ced_Rewardsystem::customerreport"/>
+    </menu>
+</config>
+

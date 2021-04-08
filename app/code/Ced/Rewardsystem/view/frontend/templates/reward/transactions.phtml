@@ -1,0 +1,19 @@
+<?php
+$pointsData = $block->getPointsValue();
+$subtotal = $this->subtotal();
+?>
+<div class="block">
+    <div class="block-title"> 
+		<div>
+			<strong><?php echo __('My Reward Points : '.$subtotal);?></strong>
+		</div>
+    </div>
+    <div class="block-content"> 
+		<div>
+			<span><?php echo __('One Point equals '.$pointsData);?></span>
+		</div>
+	
+	
+<?php echo $block->getGridHtml() ;?>
+   </div>
+</div>

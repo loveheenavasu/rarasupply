@@ -1,0 +1,128 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */
+  -->
+<div class="order-history-block" id="history_form">
+    <div class="admin__field">
+        <label for="history_comment" class="admin__field-label">
+            <?php echo __('Chat History') ?>
+    	</label>
+    </div>
+    <?php if(count($block->getChatDataCollection())>0){ ?>
+	    <div class="ui-wrapper order-items">
+		    <ul class="note-list">
+				<?php foreach ($block->getChatDataCollection() as $_item):?>
+				<?php if($_item->getChatFlow()== \Ced\CsRma\Model\Request::OWNER_CUSTOMER){ ?>
+			  		<li class="ced-rma-left-chat-column">
+				      <span class="ced-rma-left-chat-column-date"><?php  echo $block->formatDate($_item
+				      		->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?></span>
+				      <span class="ced-rma-left-chat-column-date"><?php  echo $block->formatTime($_item
+				      		->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?></span>
+				      <span class="separator">|</span>
+		              <span class="ced-rma-left-chat-column-sender">
+		                    <strong><?php echo $block->getRmaCustomer() ?></strong>
+		              </span>
+				      <?php if ($_item->getChat()): ?>
+				          <div class="ced-rma-left-chat-column-chat"><?php echo $block->escapeHtml($_item->getChat(), ['b', 'br', 'strong', 'i', 'u', 'a']) ?>
+				          	<?php $path =  $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); ?>
+	                           <a href="<?php echo $path. 'ced/csrma/chat/'.$_item->getFile()?>" download>
+	                            <?php echo $_item->getFile()?>
+	                          </a>
+				          </div>
+				      <?php endif; ?>
+			  		</li>
+				<?php } else if($_item->getChatFlow()== \Ced\CsRma\Model\Request::OWNER_ADMIN) { ?>
+					<li class="ced-rma-right-chat-column" >
+				      <span class="ced-rma-right-chat-column-date"><?php  echo $block->formatDate($_item
+				      		->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?></span>
+				      <span class="ced-rma-right-chat-column-time"><?php  echo $block->formatTime($_item
+				      		->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?></span>
+				      <span class="separator">|</span>
+		              <span class="ced-rma-right-chat-column-sender">
+		                    <strong><?php echo $this->helper('Ced\CsRma\Helper\Config')->getDepartmentChatName(); ?></strong>
+		               </span>
+				      <?php if ($_item->getChat()): ?>
+				          <div class="note-list-comment"><?php echo $block->escapeHtml($_item->getChat(), ['b', 'br', 'strong', 'i', 'u', 'a']) ?>
+					          	<?php $path =  $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); ?>
+		                        <a href="<?php echo $path. 'ced/csrma/chat/'.$_item->getFile()?>" download>
+		                           		<?php echo $_item->getFile()?>
+		                        </a>
+				         </div>
+				      <?php endif; ?>
+				  	</li>
+				<?php } elseif ($_item->getChatFlow()== \Ced\CsRma\Model\Request::OWNER_VENDOR) { ?>
+					<li class="vendor-rma-right-chat-column" >
+				      	<span class="vendor-rma-right-chat-column-date"><?php  echo $block->formatDate($_item
+				      		->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?></span>
+				      	<span class="vendor-rma-right-chat-column-time"><?php  echo $block->formatTime($_item
+				      		->getCreatedAt(), \IntlDateFormatter::MEDIUM) ?></span>
+				      	<span class="separator">|</span>
+		              	<span class="vendor-rma-right-chat-column-sender">
+		                    <strong><?php echo __('Vendor') ?></strong>
+		               	</span>
+					    <?php if ($_item->getChat()): ?>
+				          	<div class="note-list-comment"><?php echo $block->escapeHtml($_item->getChat(), ['b', 'br', 'strong', 'i', 'u', 'a']) ?>
+					          	<?php $path =  $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); ?>
+		                        <a href="<?php echo $path. 'ced/csrma/chat/'.$_item->getFile()?>" download>
+		                           		<?php echo $_item->getFile()?>
+		                        </a>
+				         	</div>
+					    <?php endif; ?>
+				  	</li>
+				<?php } ?>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	<?php } else{ ?>
+		<div class="message info empty"><span><?php  echo __(' No chat history.') ?></span></div>
+	<?php }?>
+</div>
+<style type="text/css">
+	.ced-rma-left-column {
+    width: 50%;
+    float: left;
+	}
+	.ced-rma-right-column {
+	    width: 50%;
+	    float: right;
+	}
+	.vendor-rma-right-column {
+	    width: 50%;
+	    float: right;
+	}
+	.ced-rma-left-chat-column {
+	    width: 55%;
+	    float: left;
+	    background: none repeat scroll 0 0 #D3D3D3;
+	    margin-bottom: 7px;
+	    padding: 6px 13px;
+	}
+	.ced-rma-right-chat-column {
+	    width: 55%;
+	    float: right;
+	    background: none repeat scroll 0 0 #F3F3DF;
+	    margin-bottom: 7px;
+	    padding: 6px 13px;
+	}
+	.vendor-rma-right-chat-column {
+	    width: 55%;
+	    float: right;
+	    background: none repeat scroll 0 0 #E9967A;
+	    margin-bottom: 7px;
+	    padding: 6px 13px;
+	}
+
+</style>

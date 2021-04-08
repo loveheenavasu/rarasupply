@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  /**
+* CedCommerce
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the End User License Agreement (EULA)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://cedcommerce.com/license-agreement.txt
+*
+* @category    Ced
+* @package     Ced_Rewardsystem
+* @author   	 CedCommerce Core Team <connect@cedcommerce.com >
+* @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+* @license      http://cedcommerce.com/license-agreement.txt
+*/  -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <!--Declare data source, columns list, button...-->
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">customer_report.ced_reward_grid_data_source</item>
+            <item name="deps" xsi:type="string">customer_report.ced_reward_grid_data_source</item>
+            <!--Declare the data source name which will be defined below-->
+        </item>
+        <item name="spinner" xsi:type="string">rule_columns</item>
+        <!--Declare the listing of columns which will be defined below-->
+        <item name="buttons" xsi:type="array">
+            <!--The button on the top of the Grid-->
+        </item>
+    </argument>
+    <dataSource name="ced_reward_grid_data_source">
+        <!--The data source-->
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Ced\Rewardsystem\Model\ReportDataprovider</argument>
+            <argument name="name" xsi:type="string">ced_reward_grid_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">customer_id</argument>
+            <argument name="requestFieldName" xsi:type="string">customer_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">customer_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+
+
+
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+            </item>
+        </argument>
+
+        <bookmark name="bookmarks">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="namespace" xsi:type="string">customer_report</item>
+                    </item>
+                </item>
+            </argument>
+        </bookmark>
+
+        <component name="columns_controls">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsData" xsi:type="array">
+                        <item name="provider" xsi:type="string">customer_report.customer_report.rule_columns</item>
+                    </item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+                    <item name="displayArea" xsi:type="string">dataGridActions</item>
+                </item>
+            </argument>
+        </component>
+
+        <!-- <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsProvider" xsi:type="string">customer_report.customer_report.rule_columns</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">customer_report.customer_report.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.filters</item>
+                    </item>
+                    <item name="childDefaults" xsi:type="array">
+                        <item name="provider" xsi:type="string">customer_report.customer_report.listing_top.listing_filters</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="visible" xsi:type="string">customer_report.customer_report.rule_columns.${ $.index }:visible</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </filters> -->
+        <paging name="listing_paging"/>
+
+    </container>
+
+
+    <columns name="rule_columns">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="childDefaults" xsi:type="array">
+                    <item name="fieldAction" xsi:type="array">
+                        <item name="provider" xsi:type="string">customer_report.customer_report.rule_columns.actions</item>
+                        <item name="target" xsi:type="string">applyAction</item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+
+
+        <column name="customer_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Ced\Rewardsystem\Model\Source\Customer</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Customer</item>
+                </item>
+            </argument>
+        </column>
+        <column name="point_used">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Points Used</item>
+                    <item name="add_field" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </column>
+   <!--     <column name="earned_point">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Earned Points</item>
+                    <item name="add_field" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </column>-->
+        <column name="point">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Total Points</item>
+                    <item name="add_field" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </column>
+
+
+    </columns>
+
+</listing>

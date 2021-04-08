@@ -1,0 +1,163 @@
+Actions,Actions
+"Apply To","Apply To"
+Conditions,Conditions
+"Apply the rule only if the following conditions are met (leave blank for all products).","Apply the rule only if the following conditions are met (leave blank for all products)."
+Back,Back
+"Delete Customer","Delete Customer"
+"Reset Password","Reset Password"
+Save,Save
+Fee,Fee
+"My Reward Point","My Reward Point"
+"Reward System","Reward System"
+Ced,Ced
+"Hello World","Hello World"
+"Reward System Report","Reward System Report"
+Grid,Grid
+"Reward Grid","Reward Grid"
+"Manage Grid","Manage Grid"
+"Edit Post","Edit Post"
+"New Grid","New Grid"
+Grids,Grids
+"From Date Must Be less Than Or Equal to ToDate.","From Date Must Be less Than Or Equal to ToDate."
+"You saved the rule.","You saved the rule."
+Reward,Reward
+"Please login first","Please login first"
+"Please enter an email address.","Please enter an email address."
+"Please enter a valid email address.","Please enter a valid email address."
+"Unable To Send Email","Unable To Send Email"
+"Your invitation is successfully sent to %1 recipients","Your invitation is successfully sent to %1 recipients"
+Discount,Discount
+"Update the Product","Update the Product"
+"Rule price","Rule price"
+"To Fixed Value","To Fixed Value"
+"To Percentage","To Percentage"
+"By Fixed value","By Fixed value"
+"By Percentage","By Percentage"
+"Update product's %1 %2: %3","Update product's %1 %2: %3"
+"Apply as percentage of original","Apply as percentage of original"
+"Apply as fixed amount","Apply as fixed amount"
+"Adjust final price to this percentage","Adjust final price to this percentage"
+"Adjust final price to discount value","Adjust final price to discount value"
+Subtotal,Subtotal
+"Total Items Quantity","Total Items Quantity"
+"Total Weight","Total Weight"
+"Payment Method","Payment Method"
+"Shipping Method","Shipping Method"
+"Shipping Postcode","Shipping Postcode"
+"Shipping Region","Shipping Region"
+"Shipping State/Province","Shipping State/Province"
+"Shipping Country","Shipping Country"
+"Product attribute combination","Product attribute combination"
+"Products subselection","Products subselection"
+"Conditions combination","Conditions combination"
+"Cart Attribute","Cart Attribute"
+"Quantity in cart","Quantity in cart"
+"Price in cart","Price in cart"
+"Row total in cart","Row total in cart"
+"Conditions Combination","Conditions Combination"
+"Cart Item Attribute","Cart Item Attribute"
+"Product Attribute","Product Attribute"
+FOUND,FOUND
+"NOT FOUND","NOT FOUND"
+"If an item is %1 in the cart with %2 of these conditions true:","If an item is %1 in the cart with %2 of these conditions true:"
+"total quantity","total quantity"
+"total amount","total amount"
+is,is
+"is not","is not"
+"equals or greater than","equals or greater than"
+"equals or less than","equals or less than"
+"greater than","greater than"
+"less than","less than"
+"is one of","is one of"
+"is not one of","is not one of"
+"If %1 %2 %3 for a subselection of items in cart matching %4 of these conditions:","If %1 %2 %3 for a subselection of items in cart matching %4 of these conditions:"
+Edit,Edit
+"No Records found","No Records found"
+"Referral Url and Code","Referral Url and Code"
+"Referral Url","Referral Url"
+"Referral Code","Referral Code"
+"Refer Via Social Network","Refer Via Social Network"
+"Follow ' . . ' on Instagram and get Reward Points","Follow ' . . ' on Instagram and get Reward Points"
+"Access Token","Access Token"
+Follow,Follow
+"You are already following ' . . ' on Instagram","You are already following ' . . ' on Instagram"
+"Send Invitation","Send Invitation"
+"Email addresses, separated by comma","Email addresses, separated by comma"
+Subject,Subject
+Message,Message
+Send,Send
+"Referrals Pending","Referrals Pending"
+"Referrals Acknowledged","Referrals Acknowledged"
+"Total Earned Amount","Total Earned Amount"
+"Email Id","Email Id"
+Status,Status
+"Invited Date","Invited Date"
+"Earned Amount","Earned Amount"
+Pending,Pending
+Joined,Joined
+"Reward point is","Reward point is"
+"Thanks,<br>%store_name","Thanks,<br>%store_name"
+"Check out now and earn","Check out now and earn"
+Login,Login
+"and check out now earn","and check out now earn"
+"You will earn","You will earn"
+"Apply Point for discount ","Apply Point for discount "
+"Apply Point","Apply Point"
+RewardSystem,RewardSystem
+Configurations,Configurations
+Setting,Setting
+"Enable Reward System","Enable Reward System"
+"Show Product Page Point","Show Product Page Point"
+Point,Point
+Point_Price,Point_Price
+"Product Point","Product Point"
+"Define RewardPoint Expiration Period","Define RewardPoint Expiration Period"
+"Point For Registration Successful ","Point For Registration Successful "
+"Active Maximum Point For Order ","Active Maximum Point For Order "
+"Define Maximum Point For Order","Define Maximum Point For Order"
+"Referral Reward","Referral Reward"
+"Signup Point","Signup Point"
+"Support Email Id","Support Email Id"
+"Default Email Message","Default Email Message"
+"Birthday Reward Point","Birthday Reward Point"
+"Point for 1st Referral Purchase","Point for 1st Referral Purchase"
+"Point Referral Purchase","Point Referral Purchase"
+"Points for App Signup","Points for App Signup"
+CustomerID,CustomerID
+point_used,point_used
+"Total Points","Total Points"
+"All Store Views","All Store Views"
+"Store View","Store View"
+"Delete items","Delete items"
+"Delete selected items?","Delete selected items?"
+Delete,Delete
+"Change status","Change status"
+Enable,Enable
+Disable,Disable
+"Update attributes","Update attributes"
+ID,ID
+Thumbnail,Thumbnail
+Name,Name
+Type,Type
+"Attribute Set","Attribute Set"
+SKU,SKU
+Price,Price
+Visibility,Visibility
+"Add New Rule","Add New Rule"
+RULE,RULE
+START,START
+END,END
+STATUS,STATUS
+"Product Reward point","Product Reward point"
+"Reward pointset","Reward pointset"
+"Cart Price Rule","Cart Price Rule"
+save,save
+reset,reset
+"Rule Information","Rule Information"
+Active,Active
+Inactive,Inactive
+"Parent Option","Parent Option"
+Yes,Yes
+No,No
+DiscountPoint,DiscountPoint
+"Refer to Friends","Refer to Friends"

@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsDeal
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+
+?>
+<div class="vendor-dashboard">
+    <div class="row">
+        <div class="col-md-12" style="margin-top:10px;">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="deal-setting-wrapper" class="deal-setting-wrapper">
+                        <form id="deal_form" action="<?php echo $this->getUrl('csdeal/setting/save'); ?>" method="post">
+                            <?php
+                            $vendorid = $this->getVendorId();
+                            $setting = $this->helper('Ced\CsDeal\Helper\Data')->dealsettingCollectionFactory->create()
+                                ->addFieldToFilter('vendor_id', $vendorid)->getFirstItem();
+                            ?>
+                            <div class="fieldset">
+                                <ul class="form-list" style="list-style: none;">
+                                    <li class="fields" style="display: none;">
+                                        <label class="required"
+                                               for="date_from"><?php echo __('Show Deals'); ?></label><em>*</em>
+                                        <div class="clear:both"></div>
+                                        <div class="input-box">
+                                            <select class="input-text required-entry" id="deal_enable" name="status">
+                                                <option value="enable" <?php if ($setting->getStatus() == 'enable') echo 'selected'; ?> >
+                                                    Enable
+                                                </option>
+                                                <option value="disable" <?php if ($setting->getStatus() == 'disable') echo 'selected'; ?> >
+                                                    Disable
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <input type="hidden" value="<?php echo $vendorid; ?>" id="vendor_id"
+                                               name="vendor_id"/>
+                                        <input type="hidden" value="<?php echo $setting->getId(); ?>" id="setting_id"
+                                               name="setting_id"/>
+                                    </li>
+
+                                    <li class="fields">
+                                        <label class="required"
+                                               for="deal_message"><?php echo __('Deal Message'); ?></label><em>*</em>
+                                        <div class="clear:both"></div>
+                                        <div class="input-box">
+                                            <input type="text" class="input-text required-entry"
+                                                   value="<?php echo $setting->getDealMessage() ?>" id="deal_message"
+                                                   name="deal_message"/>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <button class="btn btn-primary button"><span><?php echo __('Submit') ?></span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>	
+				

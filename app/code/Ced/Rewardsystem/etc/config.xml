@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_Rewardsystem
+  * @author   	 CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+  * @license      http://cedcommerce.com/license-agreement.txt
+  */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <reward>
+            <setting>
+                <enable>1</enable>
+                <referal_point>10</referal_point>
+                <signup_point>20</signup_point>
+                <birthday_point>10</birthday_point>
+                <first_ref_purchase>10</first_ref_purchase>
+                <ref_purchase>5</ref_purchase>
+                <install_app>10</install_app>
+                <insta_follow_points>10</insta_follow_points>
+                <default_email_subject>Contact Form</default_email_subject>
+                <default_message>Come Join Our Website!!</default_message>
+                <point>1</point>
+                <point_value>1</point_value>
+                <registration_point>10</registration_point>
+                <support_email>test@xample.com</support_email>
+            </setting>
+        </reward>
+    </default>
+</config>

@@ -1,0 +1,220 @@
+<?php
+
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsDeal
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+
+?>
+<?php
+$requestInterface = $this->helper('Ced\CsDeal\Helper\Data')->_request;
+$routeName = $requestInterface->getRouteName();
+$moduleName = $requestInterface->getModuleName();
+$controllerName = $requestInterface->getControllerName();
+$actionName = $requestInterface->getActionName();
+?>
+<?php if ($moduleName == 'catalog' && $controllerName == 'product' && $actionName == 'view') { ?>
+    <?php
+    $product = $product = $block->getSaleableItem();
+    $productId = $product->getId();
+
+    $this->helper('Ced\CsDeal\Helper\Data')->initDeal($product);
+    $this->helper('Ced\CsDeal\Helper\Data')->isModuleEnable();
+    $this->helper('Ced\CsDeal\Helper\Data')->ShowTimer();
+    $this->helper('Ced\CsDeal\Helper\Data')->ShowDeal();
+    list ($fyear, $fmonth, $fday, $fhour, $fminute, $fsecond) = explode('-', date('Y-m-d-h-i-s', strtotime($this->helper('Ced\CsDeal\Helper\Data')->getDealEnd($product->getId()))));
+
+    if ($this->helper('Ced\CsDeal\Helper\Data')->canShowDeal($product->getId())) {
+
+        ?>
+        <!-- Timer start here-->
+        <?php if ($this->helper('Ced\CsDeal\Helper\Data')->ShowTimer()) { ?>
+
+            <div class="deal-wrapper-timer">
+                <div id="counter-wrapper-<?php echo $product->getId(); ?>"></div>
+                <div class="clear" style="clear: both;"></div>
+                <div class='message-deal'>
+		<span class="special-price"><?php
+            ?></span>
+                    <?php
+                    $dealText = $this->helper('Ced\CsDeal\Helper\Data')->getDealText();
+                    ?>
+                </div>
+            </div>
+            <?php $timeremain = strtotime($this->helper('Ced\CsDeal\Helper\Data')->getDealEnd($product->getId())) - strtotime(date("Y-m-d H:i:s", $this->helper('Ced\CsDeal\Helper\Data')->dateTime->timestamp(time()))); ?>
+            <?php $productId = $product->getId(); ?>
+            <script type="text/javascript">
+                var iDiv = document.createElement('div');
+                iDiv.id = 'counter-<?php echo $productId ?>';
+                iDiv.className = 'counter';
+
+                document.getElementById('counter-wrapper-<?php echo $productId; ?>').appendChild(iDiv);
+                var second<?php echo $productId; ?>= '<?php echo $timeremain; ?>';
+                var seconds<?php echo $productId; ?> = parseInt(second<?php echo $productId; ?>);
+                if (seconds<?php echo $productId; ?> != 0) {
+                    function secondPassed<?php echo $productId; ?>() {
+                        var day<?php echo $productId; ?> = Math.floor(seconds<?php echo $productId; ?> / 86400);
+                        var hour<?php echo $productId; ?> = Math.floor((seconds<?php echo $productId; ?> % 86400) / 3600);
+                        var minutes<?php echo $productId; ?> = Math.floor((seconds<?php echo $productId; ?> % 3600) / 60);
+                        var remainingSeconds<?php echo $productId; ?> = seconds<?php echo $productId; ?> % 60;
+
+                        if (hour<?php echo $productId; ?> < 10) {
+                            hour<?php echo $productId; ?> = "0" + hour<?php echo $productId; ?>;
+                        }
+                        if (minutes<?php echo $productId; ?> < 10) {
+                            minutes<?php echo $productId; ?> = "0" + minutes<?php echo $productId; ?>;
+                        }
+                        if (remainingSeconds<?php echo $productId; ?> < 10) {
+                            remainingSeconds<?php echo $productId; ?> = "0" + remainingSeconds<?php echo $productId; ?>;
+                        }
+
+                        document.getElementById('counter-<?php echo $productId ?>').innerHTML = "<ul><li><span class='head-time'> Day </span>" + day<?php echo $productId ?>+ "</span></li><li><span class='head-time'>Hour</span>" + hour<?php echo $productId ?>+ "</li><li> <span class='head-time'> Min </span> " + minutes<?php echo $productId ?>+ "</li><li><span class='head-time'> Sec </span>" + remainingSeconds<?php echo $productId ?>+ "</li><div class='clear' style='clear:both;'></div>";
+                        if (seconds<?php echo $productId; ?> == 0) {
+                            clearInterval(countdownTimer<?php echo $productId; ?>);
+                            dealexpire<?php echo $productId; ?>();
+                        } else {
+                            seconds<?php echo $productId; ?>--;
+                        }
+
+                    }
+
+                    var countdownTimer<?php echo $productId; ?> = setInterval('secondPassed<?php echo $productId; ?>()', 1000);
+                }
+
+                function dealexpire<?php echo $productId; ?>() {
+                    jQuery.ajax("<?php echo $this->getUrl('csdeal/deal/expire') ?>", {
+                        type: "POST",
+                        data: {product_id:<?php echo $productId; ?>},
+                        success: function (transport) {
+                        }
+                    });
+                }
+            </script>
+            <?php
+
+        }
+    }
+    ?>
+
+<?php } else { ?>
+    <?php
+    $product = $product = $block->getSaleableItem();
+    $productId = $product->getId();
+
+    $this->helper('Ced\CsDeal\Helper\Data')->initDeal($product);
+    $this->helper('Ced\CsDeal\Helper\Data')->isModuleEnable();
+    $this->helper('Ced\CsDeal\Helper\Data')->ShowTimer();
+    $this->helper('Ced\CsDeal\Helper\Data')->ShowDeal();
+    list ($fyear, $fmonth, $fday, $fhour, $fminute, $fsecond) = explode('-', date('Y-m-d-h-i-s', strtotime($this->helper('Ced\CsDeal\Helper\Data')->getDealEnd($product->getId()))));
+
+    if ($this->helper('Ced\CsDeal\Helper\Data')->canShowDeal($product->getId())) {
+
+        ?>
+        <!-- Timer start here-->
+        <?php if ($this->helper('Ced\CsDeal\Helper\Data')->ShowTimer()) { ?>
+            <div class="deal-wrapper-gulshan2">
+                <div id="counter-wrapper-<?php echo $product->getId(); ?>"></div>
+                <div class="clear" style="clear: both;"></div>
+                <div class='message-deal'>
+		<span class="special-price"><?php
+            ?></span>
+                    <?php
+                    $dealText = $this->helper('Ced\CsDeal\Helper\Data')->getDealText();
+                    ?>
+                </div>
+            </div>
+            <?php $timeremain = strtotime($this->helper('Ced\CsDeal\Helper\Data')->getDealEnd($product->getId())) - strtotime(date("Y-m-d H:i:s", $this->helper('Ced\CsDeal\Helper\Data')->dateTime->timestamp(time()))); ?>
+            <?php $productId = $product->getId(); ?>
+            <script type="text/javascript">
+                var iDiv = document.createElement('div');
+                iDiv.id = 'counter-<?php echo $productId ?>';
+                iDiv.className = 'counter';
+
+                document.getElementById('counter-wrapper-<?php echo $productId; ?>').appendChild(iDiv);
+                var second<?php echo $productId; ?>= '<?php echo $timeremain; ?>';
+                var seconds<?php echo $productId; ?> = parseInt(second<?php echo $productId; ?>);
+                if (seconds<?php echo $productId; ?> != 0) {
+                    function secondPassed<?php echo $productId; ?>() {
+                        var day<?php echo $productId; ?> = Math.floor(seconds<?php echo $productId; ?> / 86400);
+                        var hour<?php echo $productId; ?> = Math.floor((seconds<?php echo $productId; ?> % 86400) / 3600);
+                        var minutes<?php echo $productId; ?> = Math.floor((seconds<?php echo $productId; ?> % 3600) / 60);
+                        var remainingSeconds<?php echo $productId; ?> = seconds<?php echo $productId; ?> % 60;
+
+                        if (hour<?php echo $productId; ?> < 10) {
+                            hour<?php echo $productId; ?> = "0" + hour<?php echo $productId; ?>;
+                        }
+                        if (minutes<?php echo $productId; ?> < 10) {
+                            minutes<?php echo $productId; ?> = "0" + minutes<?php echo $productId; ?>;
+                        }
+                        if (remainingSeconds<?php echo $productId; ?> < 10) {
+                            remainingSeconds<?php echo $productId; ?> = "0" + remainingSeconds<?php echo $productId; ?>;
+                        }
+
+                        document.getElementById('counter-<?php echo $productId ?>').innerHTML = "<ul><li><span class='head-time'> Day </span>" + day<?php echo $productId ?>+ "</span></li><li><span class='head-time'>Hour</span>" + hour<?php echo $productId ?>+ "</li><li> <span class='head-time'> Min </span> " + minutes<?php echo $productId ?>+ "</li><li><span class='head-time'> Sec </span>" + remainingSeconds<?php echo $productId ?>+ "</li><div class='clear' style='clear:both;'></div>";
+                        if (seconds<?php echo $productId; ?> == 0) {
+                            clearInterval(countdownTimer<?php echo $productId; ?>);
+                            dealexpire<?php echo $productId; ?>();
+                        } else {
+                            seconds<?php echo $productId; ?>--;
+                        }
+
+                    }
+
+                    var countdownTimer<?php echo $productId; ?> = setInterval('secondPassed<?php echo $productId; ?>()', 1000);
+                }
+
+                function dealexpire<?php echo $productId; ?>() {
+                    jQuery.ajax("<?php echo $this->getUrl('csdeal/deal/expire') ?>", {
+                        type: "POST",
+                        data: {product_id:<?php echo $productId; ?>},
+                        success: function (transport) {
+                        }
+                    });
+                }
+
+            </script>
+            <?php
+
+        }
+    }
+    ?>
+<?php } ?>
+<script>
+    function secondPassed<?php echo $productId; ?>() {
+        var day<?php echo $productId; ?> = Math.floor(seconds<?php echo $productId; ?> / 86400);
+        var hour<?php echo $productId; ?> = Math.floor((seconds<?php echo $productId; ?> % 86400) / 3600);
+        var minutes<?php echo $productId; ?> = Math.floor((seconds<?php echo $productId; ?> % 3600) / 60);
+        var remainingSeconds<?php echo $productId; ?> = seconds<?php echo $productId; ?> % 60;
+
+        if (hour<?php echo $productId; ?> < 10) {
+            hour<?php echo $productId; ?> = "0" + hour<?php echo $productId; ?>;
+        }
+        if (minutes<?php echo $productId; ?> < 10) {
+            minutes<?php echo $productId; ?> = "0" + minutes<?php echo $productId; ?>;
+        }
+        if (remainingSeconds<?php echo $productId; ?> < 10) {
+            remainingSeconds<?php echo $productId; ?> = "0" + remainingSeconds<?php echo $productId; ?>;
+        }
+
+        document.getElementById('counter-<?php echo $productId ?>').innerHTML = "<ul><li><span class='head-time'> Day </span>" + day<?php echo $productId ?>+ "</span></li><li><span class='head-time'>Hour</span>" + hour<?php echo $productId ?>+ "</li><li> <span class='head-time'> Min </span> " + minutes<?php echo $productId ?>+ "</li><li><span class='head-time'> Sec </span>" + remainingSeconds<?php echo $productId ?>+ "</li><div class='clear' style='clear:both;'></div>";
+        if (seconds<?php echo $productId; ?> == 0) {
+            clearInterval(countdownTimer<?php echo $productId; ?>);
+            dealexpire<?php echo $productId; ?>();
+        } else {
+            seconds<?php echo $productId; ?>;
+        }
+
+    }
+</script>

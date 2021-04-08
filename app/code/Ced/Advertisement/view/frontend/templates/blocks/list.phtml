@@ -1,0 +1,40 @@
+<?php $blockColl = $block->getBlocksColl()?>
+<div class="block">
+	<div class="block-title add-new-advrtmnt-block">
+		<strong>
+			<?php echo __('Advertisement Blocks');?>
+		</strong>
+		<a class="action add primary" href="<?php echo $this->getUrl('advertisement/blocks/edit');?>">
+			<?php echo __('Add New Block');?>
+		</a>
+	</div>
+	<div class="block-contnet">
+		<div class="table-wrapper orders-recent">
+			<table class="data table">
+				<thead>
+					<th class="col"><?php echo __('Id');?></th>
+					<th class="col"><?php echo __('Image');?></th>
+					<th class="col"><?php echo __('Title');?></th>			
+					<th class="col"><?php echo __('Url');?></th>
+					<th class="col"><?php echo __('Status');?></th>
+					<th class="col"><?php echo __('Action');?></th>
+				</thead>
+				<tbody>
+					<?php foreach($blockColl as $value){?>
+						<tr>
+							<td class="col"><?php echo $value->getId()?></td>
+							<td class="col"><?php echo $value->getImage()?></td>
+							<td class="col"><?php echo $value->getTitle()?></td>
+							<td class="col"><?php echo $value->getUrl()?></td>
+							<td><?php if($value->getStatus() == '1'){echo __('Approved');}elseif($value->getStatus() == '2'){echo __('New');}else{echo __('Disapproved');}?></td>
+							<td class="col actions">
+								<a class="action edit" href="<?php echo $this->getUrl('advertisement/blocks/edit',['id'=>$value->getId()]);?>"><?php echo __('Edit');?></a>
+								<a class="action delete" href="<?php echo $this->getUrl('advertisement/blocks/delete',['id'=>$value->getId()]);?>"><?php echo __('Delete');?></a>
+							</td>
+						</tr>
+					<?php }?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

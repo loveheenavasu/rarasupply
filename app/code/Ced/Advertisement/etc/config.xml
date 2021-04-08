@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>    
+        <advertisement>
+			<enable_ads>
+				<enable>1</enable>
+			</enable_ads>
+			<ads_settings>
+				<ad_qty>10</ad_qty>
+				<approval_blocks>1</approval_blocks>
+				<update_purchased_ads_blocks>0</update_purchased_ads_blocks>
+			</ads_settings>
+		</advertisement>		
+    </default>
+</config>

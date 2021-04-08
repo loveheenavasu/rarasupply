@@ -1,0 +1,166 @@
+<?php
+
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsDeal
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+
+?>
+<div class="panel panel-default">
+    <div class="panel-heading col-md-12 uptransform"
+         style="line-height:31px;font-weight:bold;padding:4px 15px;font-size:17px;">
+        <?php echo __('Create Deals') ?>
+        <div class="buttons-set col-md-6 buttons_scb" style="float:right;text-align:right;margin-right:2px;">
+            <button onclick="dealback()" class="scalable btn-warning" type="button" id="deal_createback">
+                <span><?= __('Back') ?></span></button>
+            <button class="scalable btn-success " type="button" id="deal_createsave"><span><?= __('Create Deal')?></span></button>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="panel-body">
+        <div class="vendor panel" style="padding:2%">
+            <div id="deal-wrapper" class="deal-wrapper">
+                <form id="deal_form" action="<?php echo $this->getUrl('csdeal/deal/save'); ?>" method="post"
+                      data-mage-init='{"validation":{}}'>
+                    <div class="fieldset" id="deal_date_range">
+                        <ul class="form-list">
+                            <li class="fields">
+                                <label class="required"
+                                       for="date_from"><?php echo __('Product Id'); ?></label>
+                                <div class="clear:both"></div>
+                                <div class="input-box">
+                                    <input type="text" class="input-text required-entry" readonly="true"
+                                           value="<?php echo $block->getProductId(); ?>" id="product_id"
+                                           name="product_id"/>
+                                </div>
+                                <input type="hidden" value="<?php echo $this->getVendorId(); ?>" id="vendor_id"
+                                       name="vendor_id"/>
+                            </li>
+                            <li class="fields">
+                                <label class="required"
+                                       for="deal_product_name"><?php echo __('Product Name'); ?></label>
+                                <div class="clear:both"></div>
+                                <div class="input-box">
+                                    <input type="text" class="input-text required-entry" readonly="readonly"
+                                           value="<?php echo $this->getProductName(); ?>" id="deal_product_name"
+                                           name="deal_product_name"/>
+                                </div>
+                            </li>
+                            <li class="fields">
+                                <label class="required" for="enable_status"><?php echo __('Deal Status'); ?></label>
+                                <div class="clear:both"></div>
+                                <div class="input-box">
+                                    <select id="enable_status" class="validate-select required-entry" name="status">
+                                        <?php
+                                        $status = $this->statusFactory->create()->toOptionArray();
+                                        foreach ($status as $key => $value) { ?>
+                                            <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </li>
+                            <li class="fields">
+                                <label class="required"
+                                       for="deal_price"><?php echo __('Deal Price'); ?></label><em>*</em>
+                                <div class="clear:both"></div>
+                                <div class="input-box">
+                                    <input type="text" class="input-text required-entry validate-number" value=""
+                                           id="deal_price" name="deal_price"/>
+                                </div>
+                            </li>
+                            <li class="fields deals-form">
+                                <label class="required" for="date_from"><?php echo __('Deal From'); ?></label>
+                                <div class="clear:both"></div>
+                                <div class="input-box">
+                                    <input type="text" class="input-text required-entry" readonly="readonly" value=""
+                                           id="start_date" name="start_date"/>
+                                </div>
+                            </li>
+                            <li class="fields deals-form">
+                                <label class="required" for="date_to"><?php echo __('Deal To'); ?></label>
+                                <div class="input-box">
+                                    <input type="text" class="input-text required-entry" readonly="readonly" value=""
+                                           id="end_date" name="end_date"/>
+                                </div>
+                                <div class="clear:both"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        "jquery",
+        "mage/calendar"
+    ], function ($) {
+
+        $("#deal_date_range").dateRange({
+            buttonText: "<?php echo __('Select Date') ?>",
+            from: {
+                id: "start_date"
+            },
+            to: {
+                id: "end_date"
+            },
+        });
+    });
+</script>
+<script type="text/javascript">
+    function dealback() {
+        document.location.href = '<?php echo $this->getUrl("csdeal/deal/create"); ?>';
+    }
+</script>
+<style>
+    label.required em, span.required em {
+        display: none;
+    }
+
+    label.required::after, span.required::after {
+        color: red;
+        content: " *";
+        font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: normal;
+    }
+</style>
+<script type="text/x-magento-init">
+    {
+        "#deal_form": {
+            "validation": {}
+        }
+    }
+
+</script>
+<script>
+    require([
+        "jquery",
+        'mage/mage'
+    ], function (jQuery) {
+        var dataForm = jQuery('#deal_form');
+        jQuery("#deal_createsave").click(function () {
+            if (jQuery('#deal_form').validation('isValid') && jQuery('#deal_form').validation()) {
+                jQuery(this).attr('disabled', true);
+                jQuery('#deal_form').submit();
+            } else {
+                return false;
+            }
+
+        });
+    });
+</script>

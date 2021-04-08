@@ -1,0 +1,196 @@
+<?php 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_RequestToQuote
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<?php
+$po_info = $block->getPoInfo();
+$poData = $block->getPoData($po_info->getPoIncrementId(), $po_info->getQuoteId());
+$subtotal = 0;
+$customer_id = $po_info->getPoCustomerId();
+$customer = $block->getCustomer($customer_id);
+$customer_email = $customer->getEmail();
+$customer_name = $customer->getName();
+$address = $block->getCustomerAddress();
+$pricingHelper = $this->helper('Magento\Framework\Pricing\Helper\Data');
+$quoteCheckoutUrl = $this->getUrl('requesttoquote/quotes/addtocart', [
+                            'id'=>$po_info->getQuoteId(),
+                            'po_incId'=>$po_info->getPoIncrementId()
+                    ]);
+$popupTitle = __('The shopping cart isn\'t empty');
+$popupContent = __('You have item(s) in your shopping cart. It will be remove from shoping cart.');
+?>
+<div class="form-quote-wrap">
+    <ul class="items order-links">
+        <li class="nav item current">
+            <strong><?php echo __('Proposal Items');?></strong>
+        </li>
+        <?php if ($po_info->getStatus() == \Ced\RequestToQuote\Model\Po::PO_STATUS_PENDING ||
+                  $po_info->getStatus() == \Ced\RequestToQuote\Model\Po::PO_STATUS_CONFIRMED
+                ) { ?>
+                <?php if ($block->getQuotePoId() == $po_info->getId()) { ?>
+                    <span class="order-status">
+                        <?php
+                            $url = $this->getUrl("requesttoquote/quotes/removeItemsFromCart");
+                            $data = ['id' => $po_info->getId()];
+                            $deleteData = json_encode(['action' => $url, 'data' => $data]);
+                         ?>
+                         <a href="#"
+                           title="<?php echo $block->escapeHtml(__('Remove Item(s) From Cart')); ?>"
+                           class="action action-delete"
+                           data-post='<?= $deleteData ?>'>
+                            <span>
+                                <?php /* @escapeNotVerified */ echo __('Remove Item(s) From Cart')?>
+                            </span>
+                        </a>
+                    </span>
+                <?php } else { ?>
+                    <span class="order-status">
+                        <a href="javascript:void(0)" class="ced-ref-add-to-cart-action">
+                            <?= __('Add To Cart') ?>
+                        </a>
+                    </span>
+            <?php } ?>
+        <?php } else { ?>
+            <span class="order-status">
+                <?= $block->getPoStatus() ?>
+            </span>
+        <?php }?>
+    </ul>
+    <div class="order-details-items ordered">
+    <div class="table-wrapper order-items">
+        <table class="data table table-order-items" id="my-orders-table" summary="Items Ordered">
+            <caption class="table-caption">PO Items</caption>
+            <thead>
+                <tr>
+                    <th class="col name"><?php echo __('Name');?></th>
+                    <th class="col sku"><?php echo __('SKU');?></th>
+                    <th class="col price"><?php echo __('Price');?></th>
+                    <th class="col qty"><?php echo __('Qty');?></th>
+                    <th class="col subtotal"><?php echo __('Subtotal');?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                foreach ($poData->getData() as $value) {
+                    $remainingQty = $value['remaining_qty'];
+                    $subtotal += $value['po_price'];
+                ?>
+                <tr id="order-item-row-48">
+                    <td class="col name" data-th="Product Name">
+                        <strong class="product name product-item-name"><?php echo $value['name'];  ?></strong>
+                    </td>
+                    <td class="col sku" data-th="SKU"><?php echo $value['sku'];  ?></td>
+                    <td class="col price" data-th="Price">
+                        <span class="price-excluding-tax" data-label="Excl. Tax">
+                            <span class="cart-price">
+                                <span class="price"><?php echo $pricingHelper->currency($value['po_price']/$value['product_qty'], true, false);  ?></span>
+                            </span>
+                        </span>
+                    </td>
+                    <td class="col qty" data-th="Qty">
+                        <ul class="items-qty">
+                            <li class="item">
+                                <span class="content"><?php echo $value['product_qty'];  ?></span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td class="col subtotal" data-th="Subtotal">
+                        <span class="price-excluding-tax" data-label="Excl. Tax">
+                            <span class="cart-price">
+                                <span class="price"><?php echo $pricingHelper->currency($value['po_price'], true, false);  ?></span>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+                    <?php }?>
+            </tbody>
+            <tfoot>
+                <tr class="subtotal">
+                    <th colspan="4" class="mark" scope="row"><?php echo __('Subtotal');?></th>
+                    <td class="amount" data-th="Subtotal">
+                        <span class="price">
+                                <?php echo $pricingHelper->currency($subtotal, true, false);?>
+                        </span>                    
+                    </td>
+                </tr>
+                <tr class="grand_total">
+                    <th colspan="4" class="mark" scope="row">
+                        <strong><?php echo __('Grand Total')?></strong>
+                    </th>
+                    <td class="amount" data-th="Grand Total">
+                        <strong><span class="price"><?php echo $pricingHelper->currency($subtotal + $block->getShippingAmount(), true, false);?></span></strong>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="actions">
+        <div class="secondary">
+            <a class="action" href="<?php echo $this->getUrl('requesttoquote/customer/editquote', ['quoteId' => $po_info->getQuoteId()]);?>">
+                <span><?= __('Back to Quote')?></span>
+            </a>
+        </div>
+    </div>
+</div>
+    <div class="block block-order-details-view">
+    <div class="block-title">
+        <strong><?= __('Address Information')?></strong>
+    </div>
+    <div class="block-content">
+        <div class="box box-order-shipping-address">
+            <strong class="box-title">
+                <span><?= __('Shipping Address')?></span>
+            </strong>
+            <div class="box-content">
+                <address><?php echo $customer_name;?><br>
+                    <?php echo $address['street'];?><br>
+                    <?php echo $address['city'];?>, <?php echo $address['state'];?>, <?php echo $address['pincode'];?><br>
+                    <?php echo $address['country'];?><br>
+                    T: <?php echo $address['telephone'];?>
+                </address>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    require(['jquery' , "Magento_Ui/js/modal/confirm"], function($ , confirmation){
+        $('.form-quote-wrap').on('click', '.ced-ref-add-to-cart-action', function () {
+            var quoteCheckoutUrl = '<?php echo $quoteCheckoutUrl ;?>';
+            <?php if($block->isCurrentQuoteHasItems()) : ?>
+                confirmation({
+                    title: "<?= $popupTitle ?>",
+                    content: "<?= $popupContent ?>",
+                    buttons: [{
+                        text: 'Confirm',
+                        class: 'action-primary',
+                        click: function(){
+                            window.location.href = quoteCheckoutUrl;
+                        }
+                    },
+                        {
+                            text: 'Cancel',
+                            class: 'action-secondary',
+                        }
+                    ]
+                });
+            <?php else: ?>
+                window.location.href = quoteCheckoutUrl;
+            <?php endif; ?>
+        });
+    });
+</script>

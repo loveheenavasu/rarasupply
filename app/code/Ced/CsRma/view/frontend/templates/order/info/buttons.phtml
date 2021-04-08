@@ -1,0 +1,48 @@
+<?php
+/*
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author       CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<div class="actions">
+    <?php  $_order = $block->getOrder() ?>
+    <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($_order->getEntityId())) : ?>
+        <a href="#" data-post='<?php /* @escapeNotVerified */ echo
+        $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+            ->getPostData($block->getReorderUrl($_order))
+        ?>' class="action order">
+            <span><?= /* @escapeNotVerified */ __('Reorder') ?></span>
+        </a>
+    <?php endif ?>
+
+    <?php if($this->helper('Ced\CsRma\Helper\OrderDetail')->getRmaLabel($_order->getId())): ?>
+        <a class="action reorder" href="<?php /* @escapeNotVerified */ echo $block->getRmaUrl($_order) ?>">
+            <span><?php /* @escapeNotVerified */ echo __('RMA Request') ?></span>
+        </a>
+    <?php endif; ?>
+
+    <?php if($block->cancelOrder($_order->getId())): ?>
+        <a class="action reorder" href="<?php /* @escapeNotVerified */ echo $this->getUrl('csrma/customerrma/cancelorder',['order_id'=>$_order->getId()]); ?>">
+            <span><?php /* @escapeNotVerified */ echo __('Cancel Order') ?></span>
+        </a>
+    <?php endif; ?>
+    
+    <a class="action print"
+       href="<?= /* @escapeNotVerified */ $block->getPrintUrl($_order) ?>"
+       onclick="this.target='_blank';">
+        <span><?= /* @escapeNotVerified */ __('Print Order') ?></span>
+    </a>
+    <?php echo $block->getChildHtml(); ?>
+</div>

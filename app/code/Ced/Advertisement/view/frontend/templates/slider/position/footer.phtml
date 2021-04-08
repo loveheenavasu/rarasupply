@@ -1,0 +1,62 @@
+<?php $purchasedPlans = $block->sliderData();
+$url = $this->getBaseUrl().'pub/media/advertisement/';?>
+<?php if(count($purchasedPlans)){?>
+	<div class="advertisement_header_poistion">
+		<div class="advertisement_footer_slider owl-carousel three-item-slider
+">
+			<?php foreach ($purchasedPlans as $purchasedPlan): ?>
+				<?php if(count($purchasedPlans) > 1){?>
+					<div class="item advertisement_footer_slider_item">
+						<a target="_blank" href="<?php echo $purchasedPlan->getBlockUrl();?>"><img src="<?php echo $url.$purchasedPlan->getBlockImage()?>"></a>
+					</div>
+				<?php }else{?>
+					<div class="item advertisement_header_image">
+						<a target="_blank" href="<?php echo $purchasedPlan->getBlockUrl();?>"><img src="<?php echo $url.$purchasedPlan->getBlockImage()?>"></a>
+					</div>
+				<?php }?>
+			<?php endforeach ?>	
+		</div>		
+	</div>
+	<script type="text/javascript">
+		require([
+	        'jquery',
+	        'Ced_Advertisement/js/owlcarousel/owl.carousel'
+	    ], function ($) {
+	    	var isNav = false;
+	        var navText = '';
+	        var loop = false;
+	        var totalItems = $('.advertisement_footer_slider_item').length;
+	        if (totalItems > 3) {
+	            isNav = true;
+	            navText = ["<i class='fa fa-angle-left' aria-hidden='true'></i>", "<i class='fa fa-angle-right'></i>"];
+	            loop = true;
+	        }
+	    	$('.advertisement_footer_slider').owlCarousel({
+	    		autoplay: true,
+	            autoplayTimeout: 5000,
+	            autoplayHoverPause: true,
+			    loop:loop,
+			    navRewind: true,
+			    nav:isNav,
+			    navText: navText,
+			    dots: false,
+	            items:3,
+			    responsive: {
+	               0:{
+			            items:1
+			        },
+			        600:{
+			            items:3
+			        }
+	            }
+			});
+	    });	
+	</script>
+
+	<style type="text/css">
+		.advertisement_footer_slider .item img {
+		  max-width: 100%;
+		  width: 100%;
+		}
+	</style>
+<?php }?>

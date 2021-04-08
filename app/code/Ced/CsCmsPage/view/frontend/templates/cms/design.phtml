@@ -1,0 +1,15 @@
+<script type="text/javascript">
+	var layout_shop ='<referenceContainer name="sidebar.additional"><referenceBlock name="wishlist_sidebar" remove="true"/><referenceBlock name="catalog.compare.sidebar" remove="true"/><block class="Ced\\CsMarketplace\\Block\\Vshops\\View" name="csmarketplace_vshops_view" before="catalog.leftnav" template="Ced_CsMarketplace::vshops/view.phtml"/><block cacheable="false" class="Ced\\CsMarketplace\\Block\\Vshops\\Left" name="csmarketplace.vshops.category.filter" template="vshops/left.phtml"/><block class="Ced\\CsCmsPage\\Block\\Vshops\\View" name="cscmspage.navigation"  template="Ced_CsCmsPage::vshops/additional.phtml"/> </referenceContainer><referenceContainer name="content"><block class="Ced\\CsMarketplace\\Block\\Vshops\\View" name="csmarketplace_vshops_banners" template="Ced_CsMarketplace::vshops/banner.phtml"/><block class="Ced\\CsMarketplace\\Block\\Vshops\\View" name="csmarketplace_vshops_about" template="Ced_CsMarketplace::vshops/about.phtml" after="csmarketplace_vshops_banner"/><block class="Ced\\CsMarketplace\\Block\\Vshops\\Catalog\\Product\\ListProduct" name="vendors.homepage.list" template="Ced_CsMarketplace::vshops/catalog/product/list.phtml" after="csmarketplace_vshops_about"/>'+'</referenceContainer>'; 
+			                                        		
+		require(["jquery"], function ($) {
+			$(document).ready(function ()  { 
+				$('#default_layout').change(function () { 
+					if(this.checked) {
+						$('#layout_xml').val(layout_shop);
+					}else{
+						 $('#layout_xml').val('');
+					}
+		   		}); 
+			});
+		});
+</script>

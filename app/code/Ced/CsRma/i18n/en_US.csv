@@ -1,0 +1,267 @@
+"Save Request","Save Request"
+"Save and Continue Edit","Save and Continue Edit"
+"Select Order to Create Return Request","Select Order to Create Return Request"
+ID,ID
+"Purchased Point","Purchased Point"
+"Purchased Date","Purchased Date"
+"Grnad Total (Base)","Grnad Total (Base)"
+"Grnad Total (Purchased)","Grnad Total (Purchased)"
+Status,Status
+Edit,Edit
+Cancel,Cancel
+"Are you sure you want to send an order email to customer?","Are you sure you want to send an order email to customer?"
+"Send Email","Send Email"
+"This will create an offline refund. To create an online refund, open an invoice and create credit memo for it. Do you want to continue?","This will create an offline refund. To create an online refund, open an invoice and create credit memo for it. Do you want to continue?"
+"Credit Memo","Credit Memo"
+"Are you sure you want to void the payment?","Are you sure you want to void the payment?"
+Void,Void
+Hold,Hold
+hold,hold
+Unhold,Unhold
+unhold,unhold
+"Are you sure you want to accept this payment?","Are you sure you want to accept this payment?"
+"Accept Payment","Accept Payment"
+"Are you sure you want to deny this payment?","Are you sure you want to deny this payment?"
+"Deny Payment","Deny Payment"
+"Get Payment Update","Get Payment Update"
+"Invoice and Ship","Invoice and Ship"
+Invoice,Invoice
+Ship,Ship
+"Create Rma","Create Rma"
+Reorder,Reorder
+"Rma Request","Rma Request"
+"Order Return Request","Order Return Request"
+"Save Status","Save Status"
+"Edit Status '%1'","Edit Status '%1'"
+"New Status","New Status"
+"Block Information","Block Information"
+"General Information","General Information"
+"Status Label","Status Label"
+"Status Sort Order","Status Sort Order"
+Enable,Enable
+Enabled,Enabled
+Disabled,Disabled
+"Notify Customer by Email ","Notify Customer by Email "
+Yes,Yes
+No,No
+"Visible on Storefront","Visible on Storefront"
+"Notification Message","Notification Message"
+"Return Merchandise List","Return Merchandise List"
+"Request New RMA","Request New RMA"
+"no data available","no data available"
+"RMA ID # %1","RMA ID # %1"
+"Back to My Orders","Back to My Orders"
+"View Another Order","View Another Order"
+"Package Conditions","Package Conditions"
+Add,Add
+Reasons,Reasons
+Resolution,Resolution
+"Order Id#","Order Id#"
+"Customer Name","Customer Name"
+"Customer Email","Customer Email"
+"Resolution Requested","Resolution Requested"
+"Updated At","Updated At"
+"You submitted the request.","You submitted the request."
+"Something went wrong while saving this request.","Something went wrong while saving this request."
+"Please enter a comment.","Please enter a comment."
+"Message Sent Successfully","Message Sent Successfully"
+"We cannot send message.","We cannot send message."
+"The request has been deleted.","The request has been deleted."
+"Something went wrong  deleting this request.","Something went wrong  deleting this request."
+"Return Request","Return Request"
+"'#' .","'#' ."
+"RMA Manage","RMA Manage"
+"We can't retrieve the Order ID.","We can't retrieve the Order ID."
+"Please select item(s).","Please select item(s)."
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"Something went wrong while deleting these records.","Something went wrong while deleting these records."
+"New RMA Request","New RMA Request"
+error,error
+"Updated Successfully","Updated Successfully"
+"Something went wrong while saving the page.","Something went wrong while saving the page."
+"The status has been deleted.","The status has been deleted."
+"Something went wrong  deleting this status.","Something went wrong  deleting this status."
+RMA,RMA
+"Manage Status","Manage Status"
+"This page no longer exists.","This page no longer exists."
+"Edit Status","Edit Status"
+Statuses,Statuses
+"The request status has been changed.","The request status has been changed."
+"Something went wrong  with this request.","Something went wrong  with this request."
+"Your request has been submitted.","Your request has been submitted."
+"We can't save the address.","We can't save the address."
+"Your message has been sent sucessfully.","Your message has been sent sucessfully."
+"We can't submit the message.","We can't submit the message."
+"Returns Request","Returns Request"
+"We can't save.","We can't save."
+"Please enter message.","Please enter message."
+"Manage Return Request","Manage Return Request"
+"Cant Save Rma Request","Cant Save Rma Request"
+"You entered incorrect data. Please try again.","You entered incorrect data. Please try again."
+Home,Home
+"Go to Home Page","Go to Home Page"
+"RMA Information","RMA Information"
+"your email doesnot match with order email please try again","your email doesnot match with order email please try again"
+"Can Not create CreditMemo","Can Not create CreditMemo"
+"Can Not cancel Order","Can Not cancel Order"
+"The credit memo's total must be positive.","The credit memo's total must be positive."
+"Cannot create online refund for Refund to Store Credit.","Cannot create online refund for Refund to Store Credit."
+Delete,Delete
+"Delete ","Delete "
+"Are you sure you wan't to delete record?","Are you sure you wan't to delete record?"
+View,View
+"Order & Account Information","Order & Account Information"
+"Order Information","Order Information"
+Order,Order
+"Purchased From","Purchased From"
+"Return Request Status","Return Request Status"
+"Account Information","Account Information"
+"Customer Group","Customer Group"
+"Address Information","Address Information"
+"Billing Address","Billing Address"
+"Shipping Address","Shipping Address"
+Product,Product
+"Item SKU","Item SKU"
+Price,Price
+Qty,Qty
+"Row Total","Row Total"
+"Rma Qty","Rma Qty"
+"General Request Information ","General Request Information "
+Reason,Reason
+"Resolution Request","Resolution Request"
+"Package Condition","Package Condition"
+"Chat Section","Chat Section"
+"Attch Your File","Attch Your File"
+"Send Message","Send Message"
+"Transfer To Vendor","Transfer To Vendor"
+"Shiiping Address ","Shiiping Address "
+"Qty Ordered for RMA","Qty Ordered for RMA"
+SKU:,SKU:
+"General Request Information","General Request Information"
+"Refund Amount to Customer","Refund Amount to Customer"
+"Additional Refund Amount To Customers","Additional Refund Amount To Customers"
+"Adjustment Amount for Vendor","Adjustment Amount for Vendor"
+"Chat Information","Chat Information"
+"Chat History","Chat History"
+Vendor,Vendor
+" No chat history."," No chat history."
+Notification,Notification
+Messgae,Messgae
+"Submit RMA Request","Submit RMA Request"
+"Send Messgae","Send Messgae"
+"Go back","Go back"
+Back,Back
+"RMA Requests","RMA Requests"
+"Rma Id #","Rma Id #"
+"Vendor ","Vendor "
+"Order #","Order #"
+Date,Date
+"Bill To","Bill To"
+"Rma Id","Rma Id"
+Actions,Actions
+"View Request","View Request"
+"You have requested no rma.","You have requested no rma."
+"Are you sure you would like to cancel this RMA Request?","Are you sure you would like to cancel this RMA Request?"
+"Order Id for RMA ","Order Id for RMA "
+"Please select ORDER #","Please select ORDER #"
+"Item Ordered","Item Ordered"
+"Reason Requested","Reason Requested"
+"Reason Requested For RMA ","Reason Requested For RMA "
+"Please select a reason for RMA request.","Please select a reason for RMA request."
+"Package Condition For RMA ","Package Condition For RMA "
+"Please select package condition for RMA request.","Please select package condition for RMA request."
+"Resolution Requested through RMA ","Resolution Requested through RMA "
+"Please select a resoltuon for which want to request RMA","Please select a resoltuon for which want to request RMA"
+"Rma Policy Information","Rma Policy Information"
+"I accept Policy","I accept Policy"
+"You have placed no order.","You have placed no order."
+Date:,Date:
+"Return Address","Return Address"
+Details,Details
+"Order Id","Order Id"
+"Approval Code","Approval Code"
+"Items RMA Requested for","Items RMA Requested for"
+"Customer Information","Customer Information"
+"Items Information","Items Information"
+"Items Ordered","Items Ordered"
+" RMA Qty"," RMA Qty"
+"New Chat","New Chat"
+"Activity Notification","Activity Notification"
+"RMA Request Form","RMA Request Form"
+"Order ID","Order ID"
+"Billing Last Name","Billing Last Name"
+Email,Email
+Continue,Continue
+"* Required Fields","* Required Fields"
+Name,Name
+SKU,SKU
+"Ordered Qty","Ordered Qty"
+"Qty for RMA","Qty for RMA"
+"Return Policy","Return Policy"
+"RMA Request","RMA Request"
+"Print Order","Print Order"
+"Gift Message for This Order","Gift Message for This Order"
+From,From
+To,To
+Message,Message
+"Chat History Information","Chat History Information"
+"Activity Information","Activity Information"
+"Edit Return Request","Edit Return Request"
+Save,Save
+"Purchase From","Purchase From"
+"Customer Address","Customer Address"
+"Item Information","Item Information"
+Export,Export
+Filter,Filter
+"Reset Filter","Reset Filter"
+"Order Id #","Order Id #"
+Action,Action
+"No Orders Available","No Orders Available"
+"Select Date","Select Date"
+"%vendor_name,","%vendor_name,"
+"%store_frontname,","%store_frontname,"
+"%store_url,","%store_url,"
+"%customer_name,","%customer_name,"
+"Your custom message.","Your custom message."
+"Your custom message <a href=""%account_url"">logging into your account</a>.","Your custom message <a href=""%account_url"">logging into your account</a>."
+"Your Order <span class=""no-link"">#%increment_id</span>","Your Order <span class=""no-link"">#%increment_id</span>"
+"Placed on <span class=""no-link"">%created_at</span>","Placed on <span class=""no-link"">%created_at</span>"
+"Vendor RMA Configuration","Vendor RMA Configuration"
+"General Settings","General Settings"
+"Enable Extension","Enable Extension"
+"Allow Guest to request RMA","Allow Guest to request RMA"
+"Time after delivery for permitting RMA Request","Time after delivery for permitting RMA Request"
+"Mail Contacts","Mail Contacts"
+"Enable E-mail notifications","Enable E-mail notifications"
+"RMA department display name","RMA department display name"
+"RMA department email","RMA department email"
+"RMA department address","RMA department address"
+"Email Sender","Email Sender"
+"Base email template for customer","Base email template for customer"
+"Base email template for vendor","Base email template for vendor"
+"Base email template for admin","Base email template for admin"
+"Chat Contacts","Chat Contacts"
+"Enable Chats and their mail notifications","Enable Chats and their mail notifications"
+"Chat sender's name","Chat sender's name"
+"Base email template for customer chat notification mail","Base email template for customer chat notification mail"
+"Base email template for admin chat notification mail","Base email template for admin chat notification mail"
+"Base email template for vendor chat notification mail","Base email template for vendor chat notification mail"
+"Return Policy ","Return Policy "
+"Return Policy Description","Return Policy Description"
+Properties,Properties
+"RMA for Order Status Settings","RMA for Order Status Settings"
+"Allow Customer To cancel Orders","Allow Customer To cancel Orders"
+"Allow RMA for only shipped products","Allow RMA for only shipped products"
+"Allow RMA for only invoiced products","Allow RMA for only invoiced products"
+"Create New Request","Create New Request"
+"RMA Request Id","RMA Request Id"
+"Purchase Point","Purchase Point"
+"Vendor Name","Vendor Name"
+"Created At","Created At"
+"All Store Views","All Store Views"
+"Add New Status","Add New Status"
+"Delete items","Delete items"
+"Are you sure to delete selected items?","Are you sure to delete selected items?"
+"Status Order","Status Order"
+"Enable Status","Enable Status"
+"Vendor Retrun Merchandise","Vendor Retrun Merchandise"

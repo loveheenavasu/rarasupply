@@ -1,0 +1,290 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+<?php $collect = $block->getRequestCollection();
+      $item = $block->getItemCollection();
+      $order = $block->getOrderData();
+      $notification = $block->getFullNotification();
+      $item_row_totals = 0;
+?>
+<form action="<?php echo $block->getEditUrl()?>" id="edit_form" method="post" novalidate="novalidate">
+    <fieldset id="add_rma_form" class="fieldset admin__fieldset">
+       <section class="admin__page-section">
+            <div class="admin__page-section-title" id="order-header">
+                <span class="title"><?php echo __('Order & Account Information') ?></span>
+            </div>
+
+            <div class="admin__page-section-content" id="order-body">
+                <div class="admin__page-section-item order-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Order Information') ?></span>
+                    </div>
+                    <div class="admin__page-section-item-content">
+                        <table class="admin__table-secondary order-information-table">
+                            <tr>
+                                <th><?php  echo __('Order') ?></th>
+                                <td>
+                                    <a href="<?php echo $this->getUrl('sales/order/view',['order_id' => $order->getId()])?>" onclick="this.target='blank'">
+                                        <?php echo $collect->getOrderId()?>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Purchased From') ?></th>
+                                <td><?php echo $this->rmaDataHelper->getStoreValue($collect->getStoreId());?></td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Return Request Status') ?></th>
+                                <td>
+                                    <?php $availableStatus = $this->helper('Ced\CsRma\Helper\Config')->getAvailableStatus();?>
+                                    <?php if(in_array($collect->getStatus(),["Completed"])):?>
+                                            <?php echo __($collect->getStatus());
+                                            elseif(in_array($collect->getStatus(),["Approved","Cancelled"])):?>
+                                            <select class=" required-entry _required select admin__control-select" name="status" id="status" aria-required="true">
+                                               <option value="<?php echo $collect->getStatus()?>" selected="selected" > <?= $collect->getStatus() ?></option>
+                                               <option value="Completed" > <?=  __("Completed"); ?></option>
+                                            </select>
+                                            <?php else:?>
+                                        <select class=" required-entry _required select admin__control-select" name="status" id="status" aria-required="true">
+                                         <?php foreach($availableStatus as $status ){ ?>
+                                            <option value="<?php echo $status?>" <?php if($status == $collect->getStatus()){ ?> selected="selected" <?php } ?>> <?= $status ?></option>
+                                        <?php } ?>
+                                        </select>
+                                        <?php endif;?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php echo __('Shipping Price') ?>
+                                </th>
+                                <td>
+                                    <div class="input-box">
+                                                <input type="text" value="0.00" class="input-text form-control" name="request[shipping_price]"
+                                                    id="" />
+                                            </div>
+                                </td>
+                            </tr>
+                            <?php $transfertovendor = $this->helper('Ced\CsRma\Helper\Config')->transferTovendor();
+
+                            ?>
+                            <?php  if($collect->getVendorId()!='admin' && !$transfertovendor):?>
+                                <tr>
+                                    <th><?php echo __('Transfer To Vendor') ?></th>
+                                    <td>
+                                        <select class=" required-entry _required select admin__control-select" name="is_transfered" id="is_transfered" aria-required="true">
+                                            <?php foreach($block->getYesNo() as $key =>$value){ ?>
+                                                <option  value="<?php echo $value['value']?>" <?php if($value['value'] == $collect->getIsTransfered()){ ?> selected="selected" <?php } ?> > <?php echo $value['label']?> </option>
+                                            <?php } ?>
+                                         </select>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
+                        </table>
+                    </div>
+                </div>
+                <div class="admin__page-section-item account-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Account Information') ?></span>
+                    </div>
+                    <div class="admin__page-section-item-content">
+                        <table class="admin__table-secondary account-information-table">
+                            <tr>
+                                <th><?php echo __('Customer Name') ?></th>
+                                <td>
+                                    <?php if($order->getCustomerId()){ ?>
+                                        <a href="<?php echo $this->getUrl('customer/index/edit',['id'=>$order->getCustomerId()])?>" onclick="this.target='blank'"><?php echo $collect->getCustomerName();?>
+                                        </a>
+                                    <?php } else{
+                                        echo $collect->getCustomerName();
+                                    } ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Customer Email') ?></th>
+                                <td><?php echo $collect->getCustomerEmail()?></td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Customer Group') ?></th>
+                                <td> <?php echo $this->groupRepository->getById($order
+                        ->getCustomerGroupId())->getCode()?></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="admin__page-section">
+            <div class="admin__page-section-title">
+                <span class="title"><?php echo __('Address Information') ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Billing Address') ?></span>
+                    </div>
+                    <address id="customer_detail"><?php echo $this->rmaDataHelper->getAddress($order)?></address>
+
+                </div>
+                <div class="admin__page-section-item-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Shipping Address ') ?></span>
+                    </div>
+                    <address id="shipping_detail"><?php echo $this->rmaDataHelper->getShippingAddress($order)?></address>
+                </div>
+            </div>
+        </section>
+        <section class="admin__page-section">
+            <div class="admin__page-section-title" id ="item-header">
+                <span class="title">Items Information </span>
+            </div>
+            <div class="admin__table-wrapper" id ="item-body">
+                <table class="data-table admin__table-primary edit-order-table">
+                    <thead>
+                        <tr class="headings">
+                            <th class="col-product"><span><?php  echo __('Product') ?></span></th>
+                            <th class="col-price-original"><span><?php  echo __('Price') ?></span></th>
+                            <th class="col-ordered-qty"><span><?php  echo __('Qty Ordered for RMA') ?></span></th>
+                            <th class="col-ordered-total"><span><?php  echo __('Row Total') ?></span></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($item as $items ){
+                            $item_row_totals=floatval($item_row_totals)+floatval($items->getRowTotal());
+                            ?>
+                        <tr>
+                            <td><?php echo $items->getItemName()?>
+                                <br><?php  echo __('SKU:')?><?php echo $items->getSku()?>
+                            </td>
+                            <td>
+                                <?php
+                                echo $order->getOrderCurrencyCode() . ' '. $items->getPrice();
+                                /*$block->rmaDataHelper->getPrice($items->getPrice())*/
+                                ?>
+                            </td>
+                            <td><?php echo $items->getRmaQty()?></td>
+                            <td>
+                                <?php
+                                echo $order->getOrderCurrencyCode() . ' '. $items->getRowTotal()
+                                //echo $block->rmaDataHelper->getPrice($items->getRowTotal())
+                                ?>
+                            </td>
+                        </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section class="admin__page-section">
+            <div class="admin__page-section-title">
+                <span class="title"><?php echo __('General Request Information') ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item order-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Reason') ?></span>
+                    </div>
+                     <select class=" required-entry _required select admin__control-select" name="resolution_requested" id="resolution_requested" aria-required="true"  readonly="readonly">
+                        <option value="<?php echo $collect->getReason()?>"> <?php echo $collect->getReason()?></option>
+                    </select>
+                </div>
+                <div class="admin__page-section-item order-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Package Condition') ?></span>
+                    </div>
+                    <select class=" required-entry _required select admin__control-select" name="resolution_requested" id="resolution_requested" aria-required="true"  readonly="readonly">
+                        <option value="<?php echo $collect->getPackageCondition()?>"> <?php echo $collect->getPackageCondition()?></option>
+                    </select>
+                </div>
+                <div class="admin__page-section-item account-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Resolution Request') ?></span>
+                    </div>
+                    <select class=" required-entry _required select admin__control-select" name="resolution_requested" id="resolution_requested" aria-required="true"  readonly="readonly">
+                        <option value="<?php echo $collect->getResolutionRequested()?>"><?php echo $collect->getResolutionRequested()?></option>
+                    </select>
+                </div>
+                <?php if($collect->getResolutionRequested()=='Refund'){?>
+                    <div class="admin__page-section-item account-information">
+                        <div class="admin__page-section-item-title">
+                            <span class="title"><?php  echo __('Refund Amount to Customer') ?></span>
+                        </div>
+                        <?php
+                              $refundamount = $item_row_totals;
+                              if($collect->getAdditionalRefund() > 0){
+                              	$refundamount = $item_row_totals - $collect->getAdditionalRefund();
+                              }
+                        echo $block->rmaDataHelper->getPrice($refundamount); ?>
+                    </div>
+                    <div class="admin__page-section-item order-information">
+                        <div class="admin__page-section-item-title">
+                            <span class="title"><?php  echo __('Adjustment Fee') ?></span>
+                        </div>
+                        <input type="text" value="<?php echo $collect->getAdditionalRefund() ?>" name="additional_refund" class="input-text admin__control-text validate-zero-or-greater">
+                    </div>
+                    <?php // if($collect->getVendorId()!='admin'):?>
+                        <!-- <div class="admin__page-section-item account-information">
+                            <div class="admin__page-section-item-title"> -->
+                            <!-- <span class="title"> --><?php // echo __('Adjustment Amount for Vendor') ?><!-- </span>  -->
+                      <!--   </div> -->
+                           <!--  <input type="number" value=" --><?php //echo  $collect->getVendorAdjustmentAmount() ?><!-- " name="vendor_adjustment_amount" class="input-text admin__control-text qty-input"> -->
+                      <!--   </div> -->
+                    <?php //endif; ?>
+                <?php } ?>
+            </div>
+        </section>
+    </fieldset>
+    <?php echo $block->getBlockHtml('formkey')?>
+    <input type="hidden"value="<?php echo $this->getRequest()->getParam('id')?>"name="rma_request_id">
+</form>
+<?php if($collect->getStatus() != "Completed"):?>
+<section class="admin__page-section" id ="rma_activity_container">
+    <div class="admin__page-section-title" id ="chat-header">
+        <span class="title"><?php echo __('Chat Information') ?></span>
+    </div>
+    <div class="admin__page-section-contents" id="chat-body">
+        <?php echo $block->getChildHtml('ced_csrma_chat') ?>
+    </div>
+</section>
+<?php endif;?>
+<script>
+require(
+    ['jquery'],
+    function($) {
+        $( "#order-header" ).click(function() {
+            $( "#order-body" ).toggle( "slow", function() {
+            });
+        });
+        $( "#item-header" ).click(function() {
+            $( "#item-body" ).toggle( "slow", function() {
+            });
+        });
+        $( "#chat-header" ).click(function() {
+            $( "#chat-body" ).toggle( "slow", function() {
+            });
+        });
+    });
+</script>
+<style type="text/css">
+    .admin__page-section-item.account-information {
+  float: right;
+  width: 50%;
+}
+.admin__page-section-item-information {
+  float: left;
+  width: 50%;
+}
+</style>

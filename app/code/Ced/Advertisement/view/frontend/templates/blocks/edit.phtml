@@ -1,0 +1,125 @@
+<?php $data = $block->getBlocksData();
+$url = $this->getBaseUrl().'pub/media/advertisement/';?>
+<div>
+	<div class="col-md-12">
+		<div>		
+			<form enctype="multipart/form-data" method="post" action="<?php echo $this->getUrl('advertisement/blocks/save');?>" id="block_edit_form" novalidate="novalidate">
+				<fieldset class="fieldset">
+					<legend class="legend button-set add-new-advrtmnt-block"><span><?php echo $block->getBlockId() ? __('Edit Advertisement Blocks') : __('New Advertisement Blocks');?>
+					        <button type="button" title="Back" onclick="blockBack();" class="action back secondary">
+			                    <span>
+			                        <span><?php echo __('Back');?></span>
+			                    </span>
+			                </button>				      
+					        <button type="submit" title="Edit" onclick="blockEdit();" class="action save primary">
+			                    <span>
+			                        <span><?php echo __('Save');?></span>
+			                    </span>
+			                </button>
+					        <?php if($data && $data->getId()){?>					
+					            <button type="button" title="Edit" onclick="blockDelete();" class="action save secondary">
+				                    <span>
+				                        <span><?php echo __('Delete');?></span>
+				                    </span>
+				                </button>					
+					         <?php }?>
+					</legend>
+					<div class="field required">
+						<label class="label">
+							<span>
+								 <?php echo __('Title');?>
+							</span>
+						</label>
+						<div class="control">
+							<input type="hidden" class="required-entry" value="<?php if($data && $data->getId()){echo $data->getId();}?>" name="id" id="id">
+							<input type="text" class="required-entry" value="<?php if($data && $data->getTitle()){echo $data->getTitle();}?>" name="title" id="title">
+						</div>
+					</div>
+					<div class="field required">
+						<label class="label">
+							<span>
+								<?php echo __('Url');?>
+							</span>
+						</label>
+						<div class="control">
+							<input type="text" class="required-entry advertisement_block_url" value="<?php if($data && $data->getUrl()){echo $data->getUrl();}?>" name="url" id="url">
+						</div>
+					</div>
+					<div class="field required">
+						<label class="label">
+							<span>
+								<?php echo __('Image');?>
+							</span>
+						</label>
+						<div class="control">
+							<input type='file' accept=".gif, .jpg, .jpeg, .png" value="<?php if($data && $data->getImage()){ echo $url.$data->getImage();}?>" onchange="readURL(this);" name="image" id="image" />
+							
+							<img id="block_image_preview" src="<?php if($data && $data->getImage()){ echo $url.$data->getImage();}?>" alt="" />
+							<div style="clear:both;"></div>
+							<p class="note" style="color: red">
+								<span><?php echo "Allowed file types : .gif, .jpg, .jpeg, .png";?></span>
+							</p>
+						</div>
+					</div>
+				</fieldset>				
+			</form>			
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	require([
+    'jquery',
+    'jquery/validate', 
+    'mage/translate' ,
+    'mage/mage'
+    ], function($){
+        $.validator.addMethod(
+        'advertisement_block_url', function (value, element) {
+            var pattern = /^(http|https)?:\/\/[a-zA-Z0-9-\.]+\.[a-z]{2,4}/; 
+		    if(pattern.test(value)){
+		        return true;
+		    } else {
+		        return false;
+		    }
+        }, $.mage.__('Please enter correct Url format.'));
+
+    });
+
+	function blockBack(){
+		window.location.href = "<?php echo $this->getUrl('advertisement/blocks/index');?>";
+	}
+
+	function blockEdit(){
+		require(['jquery'], function($){
+			var ret = $('#block_edit_form').valid();    
+            if(ret==true){
+				$('#block_edit_form').submit();
+			}
+		});
+	}
+
+	function readURL(input) {
+		require(['jquery'], function($){
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#block_image_preview')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        });
+    }
+
+    function blockDelete(){
+    	window.location.href = "<?php echo $this->getUrl('advertisement/blocks/delete',['id' => $data['id']])?>";
+    }
+
+    require(["jquery","mage/mage"],function($){ 
+        $('#block_edit_form').mage('validation', {
+            
+        });
+     });
+</script>

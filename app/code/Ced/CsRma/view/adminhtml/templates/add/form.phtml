@@ -1,0 +1,193 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+<form action="<?php echo $block->getSaveUrl()?>" id="edit_form" method="post" novalidate="novalidate" data-mage-init='{"validation": {}}'>
+    <fieldset id="add_rma_form" class="fieldset admin__fieldset ">
+       <section class="admin__page-section" id="rma_item_container">
+            <div class="admin__page-section-title">
+                <span class="title"><?php echo __('Order & Account Information') ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item order-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Order Information') ?></span> 
+                    </div>
+                    <div class="admin__page-section-item-content">
+                        <table class="admin__table-secondary order-information-table">
+                            <tr>
+                                <th><?php  echo __('Order') ?></th>
+                                <td id ="order_id"></td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Purchased From') ?></th>
+                                <td id="store"></td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Return Request Status') ?></th>
+                                <td>
+                                    <?php $status = $block->getStatusCollection();?>
+                                    <select class=" required-entry _required select admin__control-select" name="status" id="status" aria-required="true" data-validate="{required:true}">
+                                        <option value=""><?= __("Please Select status")?></option>
+                                        <?php foreach ($status as $status_key =>$status_value){ ?>
+                                            <option value="<?php echo $status_value['status']?>"> <?php echo $status_value['status']?></option>
+                                        <?php } ?>
+                                        </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="admin__page-section-item account-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Account Information') ?></span> 
+                    </div>
+                    <div class="admin__page-section-item-content">
+                        <table class="admin__table-secondary account-information-table">
+                            <tr>
+                                <th><?php echo __('Customer Name') ?></th>
+                                <td id="customer_name"></td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Customer Email') ?></th>
+                                <td id="customer_email"></td>
+                            </tr>
+                            <tr>
+                                <th><?php echo __('Customer Group') ?></th>
+                                <td id="group"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>   
+            </div>
+        </section>
+        <section class="admin__page-section">
+            <div class="admin__page-section-title">
+                <span class="title"><?php echo __('Address Information') ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Billing Address') ?></span>
+                        
+                    </div>
+                    <address id ="customer_detail"></address>
+                </div> 
+                <div class="admin__page-section-item-information">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Shipping Address') ?></span>
+                    </div>
+                    <address id="shipping_detail"></address>
+                </div> 
+            </div>
+        </section>
+        <section class="admin__page-section">
+            <div class="admin__page-section-title">
+                <span class="title">Items Information </span>
+            </div>
+            <div class="admin__table-wrapper">
+                <table class="data-table admin__table-primary edit-order-table">
+                    <thead>
+                        <tr class="headings">
+                            <th class="col-product"><span><?php  echo __('Product') ?></span></th>
+                            <th class="col-status"><span><?php  echo __('Item SKU') ?></span></th>
+                            <th class="col-price-original"><span><?php  echo __('Price') ?></span></th>
+                            <th class="col-ordered-qty"><span><?php  echo __('Qty') ?></span></th>
+                            <th class="col-ordered-total"><span><?php  echo __('Row Total') ?></span></th>
+                            <th class="col-ordered-qty"><span><?php  echo __('Rma Qty') ?></span></th>
+                        </tr>
+                    </thead>
+                    <tbody id ="product_data"></tbody>
+                    <script type="text/javascript">
+                        function validateQty(qty,saveqty) {
+                            var maxValue = saveqty;
+                            var updateValue = qty.value;
+                            if(updateValue > maxValue){
+                                alert('Value is greater than available for RMA ');
+                                qty.value = maxValue;
+                            }
+                        }
+                    </script>
+                </table>
+            </div>
+        </section>
+        <section class="admin__page-section">
+             <div class="admin__page-section-title">
+                <span class="title"><?php echo __('General Request Information ') ?></span>
+            </div>
+            <?php $resolution = $block->rmaConfigHelper->getResolution();
+                  $reason = $block->rmaConfigHelper->getAvailableReasons();
+                  $status = $block->getStatusCollection();
+                  $pk_condition = $block->rmaConfigHelper->getPackageCondition();
+            ?>
+            <div class="admin__page-section-content">
+                <div class="admin__page-section-item order-reason">
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php echo __('Reason') ?></span>
+                    </div>
+                    <div class="admin__field-control control">
+                        <select class=" required-entry _required select admin__control-select" name="reason" id="reason" aria-required="true" data-validate="{required:true}">
+                            <option value=""> Please Select Reason</option>
+                            <?php foreach ( $reason as $reason_key =>$reason_value) { ?>
+                                <option value="<?php echo $reason_key?>"> <?php echo $reason_value?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="admin__page-section-item order-resolution">
+                    <?php /* Billing Address */?>
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Resolution Request') ?></span>
+                    </div>
+                    <div class="admin__field-control control">
+                        <select class=" required-entry _required select admin__control-select" name="resolution_requested" id="resolution_requested" aria-required="true" data-validate="{required:true}">
+                        </select>
+                    </div>
+                </div>
+                <div class="admin__page-section-item order-package">
+                    <?php /* Billing Address */?>
+                    <div class="admin__page-section-item-title">
+                        <span class="title"><?php  echo __('Package Condition') ?></span>
+                    </div>
+                    <div class="admin__field-control control">
+                        <select class=" required-entry _required select admin__control-select" name="package_condition" id="package_condition" aria-required="true" data-validate="{required:true}">
+                            <option value=""> Please Select Package Condition</option>
+                            <?php foreach ( $pk_condition as $pk_key =>$pk_value) { ?>
+                                <option value="<?php echo $pk_key?>"> <?php echo $pk_value?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <input type="hidden" value="" name="store_id" id="store_id">
+        <input type="hidden" value="" name="email" id="email">
+        <input type="hidden" value="" name="user-name" id="user-name">
+        <input type="hidden" value="" name="customer_id" id="customer_id"> 
+        <?php echo $block->getBlockHtml('formkey')?>
+        <input type="hidden" value="1" name="website_id" id="website_id">
+    </fieldset>
+</form>
+
+<style type="text/css">
+    .admin__page-section-item.account-information {
+  float: right;
+  width: 50%;
+}
+.admin__page-section-item-information {
+  float: left;
+  width: 50%;
+}
+</style>

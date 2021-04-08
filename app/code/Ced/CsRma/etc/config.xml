@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author      CedCommerce Core Team <connect@cedcommerce.com>
+ * @copyright   Copyright CedCommerce (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <ced_csmarketplace>										
+        	  <rma_general_group>								
+        		    <activation>1</activation>	
+        		    <transfertovendor>1</transfertovendor>							
+        		    <guest>1</guest>
+                <time>365</time>
+                <email_notification>1</email_notification>
+                <sender>general</sender>
+                <customer_mail_template>customer_mail_template</customer_mail_template>
+                <vendor_mail_template>vendor_mail_template</vendor_mail_template>
+                <admin_mail_template>admin_mail_template</admin_mail_template>
+                <base_email_chat_customer>base_email_chat_customer</base_email_chat_customer>
+                <base_email_chat_admin>base_email_chat_admin</base_email_chat_admin>
+                <base_email_chat_vendor>base_email_chat_vendor</base_email_chat_vendor>
+
+                <dept_name>Vendor Rma </dept_name>
+                <dept_email>vrma.support@example.com</dept_email>
+                <dept_address>demo,demo.23demo,india</dept_address>
+                <sender>general</sender>
+                <enable_email_notification>1</enable_email_notification>
+                <chat_sender_name>Merchant</chat_sender_name>
+                <policy_description>Having clicked "Yes", you won't be able to make any changes.
+                    Please ensure that:
+                    1. You have included the RMA Label inside the package
+                    2. You have to send the package to the RMA department
+                    3. You can only send the package after the departments approval.
+                    4. You need to attach the Approval Code on the return package.
+                </policy_description>
+                <reasons>a:4:{s:18:"_1469452241854_854";a:1:{s:7:"reasons";s:15:"Defcetive piece";}s:18:"_1469452407284_284";a:1:{s:7:"reasons";s:15:"Seal is Broken ";}s:18:"_1469452439485_485";a:1:{s:7:"reasons";s:18:"Product is damaged";}s:18:"_1469452558407_407";a:1:{s:7:"reasons";s:29:"The product is of Low Quality";}}</reasons>
+                <resolution>a:3:{s:18:"_1469452570562_562";a:1:{s:10:"resolution";s:7:"Replace";}s:18:"_1469452573746_746";a:1:{s:10:"resolution";s:6:"Repair";}s:18:"_1469452581114_114";a:1:{s:10:"resolution";s:6:"Refund";}}</resolution>
+                 <conditions>a:3:{s:18:"_1469452593594_594";a:1:{s:10:"conditions";s:4:"Open";}s:18:"_1469452604233_233";a:1:{s:10:"conditions";s:6:"Closed";}s:18:"_1469452611826_826";a:1:{s:10:"conditions";s:7:"Damaged";}}</conditions>
+                  <product_invoiced>1</product_invoiced>
+                  <product_shipped>0</product_shipped>
+                  <order_cancel>0</order_cancel>
+	          </rma_general_group>
+        </ced_csmarketplace>  
+        <vendor_acl>
+            <resources>
+              <all>
+                <title>Allow Everything</title>
+              </all> 
+              <vendor>
+                  <title>Vendor Panel</title>
+                  <path>#</path>
+                  <sort_order>1</sort_order>
+                  <children>
+                      <vendor_rma>
+                          <title>RMA</title>
+			  <path>#</path>    
+                          <sort_order>50</sort_order>
+                           <children>
+                              <manage_rma_request>
+                                <title>Manage RMA Request</title>
+                                <sort_order>10</sort_order>
+                                <path>csrma/vrma/index</path>
+                              </manage_rma_request>
+                          </children>
+                      </vendor_rma>
+                  </children>
+              </vendor>
+            </resources>
+      </vendor_acl>
+    </default>
+</config>

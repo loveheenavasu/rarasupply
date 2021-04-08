@@ -1,0 +1,29 @@
+<script>
+    require([
+        'jquery',
+    ], function($) {
+        $('body').on(
+            {
+                'keyup': function(event){
+                    if(event.keyCode == 13) {
+                        setTimeout(function() {
+                            jQuery('[data-action = "grid-filter-apply"]').click();
+                        }, 50)
+                    }
+                },
+            },
+            '.admin__data-grid-filters-wrap .admin__data-grid-filters .admin__form-field-control input, .admin__data-grid-filters-wrap .admin__data-grid-filters .admin__action-multiselect-wrap'
+        );
+        
+        $('body').on(
+            {
+                'change': function(){
+                    setTimeout(function() {
+                        jQuery('[data-action = "grid-filter-apply"]').click();
+                    }, 50)
+                },
+            },
+            '.admin__data-grid-filters-wrap .admin__data-grid-filters select.admin__control-select'
+        );
+    });
+</script>

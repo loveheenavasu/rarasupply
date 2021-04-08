@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_account_navigation">
+            <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-account-navigation-advertisement-block-link" ifconfig="advertisement/enable_ads/enable" >
+                <arguments>
+                    <argument name="path" xsi:type="string">advertisement/blocks/index</argument>
+                    <argument name="label" xsi:type="string" translate="true">Advertisement Blocks</argument>
+                    <argument name="sortOrder" xsi:type="number">117</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-account-navigation-advertisement-purchase-link" ifconfig="advertisement/enable_ads/enable">
+                <arguments>
+                    <argument name="path" xsi:type="string">advertisement/purchase/index</argument>
+                    <argument name="label" xsi:type="string" translate="true">Purchase Plans</argument>
+                    <argument name="sortOrder" xsi:type="number">116</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-account-navigation-advertisement-purchased-link" ifconfig="advertisement/enable_ads/enable">
+                <arguments>
+                    <argument name="path" xsi:type="string">advertisement/purchased/index</argument>
+                    <argument name="label" xsi:type="string" translate="true">Purchased Plans</argument>
+                    <argument name="sortOrder" xsi:type="number">115</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

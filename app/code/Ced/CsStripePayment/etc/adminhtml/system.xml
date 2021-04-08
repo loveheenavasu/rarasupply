@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category  Ced
+ * @package   Ced_CsStripePayment
+ * @author    CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright Copyright CEDCOMMERCE (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+    	  <section id="ced_csmarketplace">
+			      <group id="csstripe" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+		    	      <label>Vendor Stripe Payment</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                   	<config_path>ced_csmarketplace/csstripe/active</config_path>
+                </field>
+
+                <field id="account_type" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+                  <label>Connected Account Type</label>
+                  <source_model>Ced\CsStripePayment\Model\System\Config\Source\Account</source_model>
+                  <config_path>ced_csmarketplace/csstripe/account_type</config_path>
+                </field>
+                <field id="client_id" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0">
+                  <depends><field id="account_type">standalone</field></depends> 
+                  <label>Stripe Client Id</label>
+                  <config_path>ced_csmarketplace/csstripe/client_id</config_path>
+                  <comment><![CDATA[It's required for standard account.the vendor will click a link that takes them to Stripe, passing along your platform’s client_id.]]>
+             	    </comment>
+                </field>
+                <field id="payout_type" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payout Type For Connected Account</label>
+                    <comment><![CDATA[You can schedule the transfer of payments for connected account.]]></comment>
+                    <source_model>Ced\CsStripePayment\Model\Config\Source\Payout</source_model>
+                </field>
+                <field id="payout_daily" translate="label" type="text" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>No. of Payout Delay Days</label>
+                    <comment><![CDATA[It automatically pays out balance after no of days from created date.]]></comment>
+                    <depends><field id="payout_type">daily</field></depends>
+                </field>
+                <field id="payout_weekly" translate="label" type="select" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payout Day Weekly Wise</label>
+                    <comment><![CDATA[It automatically pays out the balance once a week at selected day.]]></comment>
+                    <source_model>Ced\CsStripePayment\Model\Config\Source\Weekly</source_model>
+                    <depends><field id="payout_type">weekly</field></depends>
+                </field>
+                <field id="payout_monthly" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payout Day Monthly Wise</label>
+                    <comment><![CDATA[You need to enter any integer value between 1 to 31. Payouts nominally scheduled between the 29th and 31st of the month are instead sent on the last day of a shorter month.]]></comment>
+                    <depends><field id="payout_type">monthly</field></depends>
+                </field>
+         	</group>
+		  </section>
+	</system>
+</config>

@@ -1,0 +1,58 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsCmsPage
+ * @author   CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license      https://cedcommerce.com/license-agreement.txt
+ */
+?>
+<?php
+$block->getShopurl();
+
+$vendor = $block->getVendor();
+?>
+<?php $Cms = $this->cmspageFactory->create()->getCollection()
+    ->addFieldToFilter('vendor_id', $vendor->getEntityId())
+    ->addFieldToFilter('is_active', '1')
+    ->addFieldToFilter('is_approve', '1');
+$cmspage = ($Cms->getData());
+?>
+<?php if (count($cmspage) > 0) { ?>
+    <div class="block">
+        <div class="block-title">
+            <?php if (count($cmspage) > 0) { ?>
+                <strong><span style="font-size: 1.2em;"><?php echo('Additional Links') ?></span></strong>
+            <?php } ?>
+        </div>
+
+
+        <div class="block-content"><?php
+
+            foreach ($cmspage as $key => $value) {
+                if ($value['is_home'] != 1) {
+                    $cmsstore = $this->vendorcmsFactory->create()->getCollection()
+                        ->addFieldToFilter('vendor_id', $vendor->getEntityId())
+                        ->addFieldToFilter('page_id', $value['page_id']);
+                    $cmsstores = $cmsstore->getData();
+                    $store = $this->_storeManager->getStore();
+                    ?>
+
+                    <a href="<?php echo $this->getUrl() . $value['identifier'] . '?___store=' . $store->getCode() . '&vid=' . $vendor->getEntityId() ?>">
+                        <?php echo $value['title'] ?></a> <br>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+<?php } ?>

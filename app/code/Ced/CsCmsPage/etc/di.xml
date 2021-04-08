@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--  /**
+ * CedCommerce
+  *
+  * NOTICE OF LICENSE
+  *
+  * This source file is subject to the End User License Agreement (EULA)
+  * that is bundled with this package in the file LICENSE.txt.
+  * It is also available through the world-wide-web at this URL:
+  * http://cedcommerce.com/license-agreement.txt
+  *
+  * @category    Ced
+  * @package     Ced_CsCmsPage
+  * @author   CedCommerce Core Team <connect@cedcommerce.com >
+  * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+  * @license      http://cedcommerce.com/license-agreement.txt
+  */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Cms\Api\Data\PageSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="Magento\Cms\Api\Data\BlockSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults" />
+    <preference for="Magento\Cms\Api\Data\PageInterface" type="Ced\CsCmsPage\Model\Cmspage" />
+    <preference for="Magento\Cms\Api\Data\BlockInterface" type="Ced\CsCmsPage\Model\Block" />
+   <!--  <preference for="Magento\Cms\Api\BlockRepositoryInterface" type="Ced\CsCmsPage\Model\BlockRepository" /> -->
+    <!-- <preference for="Magento\Cms\Api\PageRepositoryInterface" type="Ced\CsCmsPage\Model\CmspageRepository" /> -->
+    
+</config>

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--  /**
+* CedCommerce
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the End User License Agreement (EULA)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://cedcommerce.com/license-agreement.txt
+*
+* @category    Ced
+* @package     Ced_Rewardsystem
+* @author   	 CedCommerce Core Team <connect@cedcommerce.com >
+* @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+* @license      http://cedcommerce.com/license-agreement.txt
+*/  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+         <referenceContainer name="content">
+            <block class="Ced\Rewardsystem\Block\Checkout\MiniCart\Summary\Summary"
+                   name="rewardsystem.minicart" template="Ced_Rewardsystem::reward/summary/summary.phtml"/>
+            <block class="Ced\Rewardsystem\Block\Checkout\Payment\Redeem"
+                   name="rewardsystem.redeem" template="Ced_Rewardsystem::reward/payment/redeem.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                            <item name="steps" xsi:type="array">
+                                <item name="children" xsi:type="array">
+                                    <item name="billing-step" xsi:type="array">
+                                      <item name="component" xsi:type="string">uiComponent</item>
+                                      <item name="children" xsi:type="array">
+                                        <item name="payment" xsi:type="array">
+                                          <item name="children" xsi:type="array">
+                                            <item name="afterMethods" xsi:type="array">
+                                              <item name="children" xsi:type="array">
+                                                <item name="rewardsystem_spendingpoint" xsi:type="array">
+                                                  <item name="component"  xsi:type="string">Ced_Rewardsystem/js/view/payment/redeem</item>
+                                                  <item name="sortOrder" xsi:type="string">20</item>
+                                                </item>
+                                              </item>
+                                            </item>
+                                          </item>
+                                        </item>
+                                      </item>
+                                    </item>
+                                  </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="rewardpoints_summary" xsi:type="array">
+                                                                 <item name="component" xsi:type="string">Ced_Rewardsystem/js/view/checkout/minicart/reward/summary/summary</item>
+                                                                <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Ced_Rewardsystem/minicart/summary/summary</item>
+                                                                 </item>
+                                                        </item>
+                                                          <item name="fee" xsi:type="array">
+                                                            <item name="component"  xsi:type="string">Ced_Rewardsystem/js/view/checkout/minicart/reward/summary/summarydiscount</item>
+                                                            <item name="sortOrder" xsi:type="string">20</item>
+                                                            <item name="config" xsi:type="array">
+                                                                 <item name="template" xsi:type="string">Ced_Rewardsystem/minicart/summary/summarydiscount</item>
+                                                                <item name="title" xsi:type="string" translate="true">DiscountPoint</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                   <item name="cart_items" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="details" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="subtotal" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/summary/item/details/subtotal</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

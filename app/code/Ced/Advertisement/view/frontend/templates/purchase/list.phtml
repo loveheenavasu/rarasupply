@@ -1,0 +1,94 @@
+<?php
+use Magento\Framework\App\Action\Action;
+
+$planColl = $block->getPlanColl();
+$blockData = $block->getBlockColl();?>
+<div class="main_plan_div block">
+	<div class="block-title add-new-advrtmnt-block">
+		<strong>
+			<?php echo __('Advertisement Plans');?>
+		</strong>
+	</div>
+	<?php if(!count($planColl)){?>
+		<div class="messages" role="alert">
+	        <div class="message-error error message" data-ui-id="message-error">
+	            <div><?php echo __('No Plans Available.');?></div>
+	        </div>
+	    </div>
+	<?php } else if(!count($blockData)){?>
+		<div class="messages"  role="alert">
+	        <div class="message-error error message" data-ui-id="message-error">
+	            <div><?php echo __('Please create ');?><a href="<?php echo $this->getUrl('advertisement/blocks/edit');?>"><?php echo __('Advertisement block');?></a></div>
+	        </div>
+	    </div>
+	<?php }?>
+	<?php foreach($planColl as $plan){?>
+		<div class='advertisement_plans'>
+			<div class="advertisement_plans_inner">
+				<div class="plan_header">
+					<div class="table">
+						<div class="table-cell">
+							<?php echo __($plan->getName());?>
+						</div>
+					</div>
+				</div>
+				<div class="plan_content">
+					<div class="plan_price">
+						<b><?php echo __('Price');?></b>
+						<span><?php echo __($plan->getPrice());?></span>
+					</div>
+					<div class="plan_duration">
+						<b><?php echo __('Duration');?></b>
+						<span><?php echo __($plan->getDuration());?></span>
+					</div>
+					<div class="plan_block">
+						<b><?php echo __('Select block');?></b>
+						<select class="advertisement_block_select">
+							<?php foreach($blockData as $value){?>
+								<option value="<?php echo $value->getId();?>">
+									<?php echo $value->getTitle();?>
+								</option>
+							<?php }?>
+						</select>
+					</div>
+				</div>
+				<?php if(count($blockData->getData())){?>
+				<div class="plan_add_to_cart">
+					<div class="product actions product-item-actionss">
+                        <div class="actions-primary">
+                            <?php if ($plan->isSaleable()): ?>
+                                <?php $url = $block->getAddToCartUrl($plan); ?>
+                                <form data-role="tocart-form" action="<?php echo  $url; ?>" method="post">
+                                	<?php foreach($blockData as $value){?>
+                                    	<input type="hidden" class="advertisement_plan_block_id" name="block_id" value="<?php echo $value->getId();?>">
+                                    <?php break;}?>
+                                    <input type="hidden" name="product" value="<?php echo $plan->getId(); ?>">
+                                    <?php echo $block->getBlockHtml('formkey')?>
+                                    <button type="submit"
+                                            title="<?php echo $block->escapeHtml(__('Purchase')); ?>"
+                                            class="action tocartt primary">
+                                        <span><?php echo __('Purchase') ?></span>
+                                    </button>
+                                </form>
+                            <?php else: ?>
+                                <?php if ($plan->getIsSalable()): ?>
+                                    <div class="stock available"><span><?php echo __('In stock') ?></span></div>
+                                <?php else: ?>
+                                    <div class="stock unavailable"><span><?php echo __('Out of stock') ?></span></div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+				</div>
+				<?php }?>
+			</div>
+		</div>
+	<?php }?>
+</div>
+<script type="text/javascript">
+	require( ['jquery'], function($){
+		$(".advertisement_plans").on('change', '.advertisement_block_select',function(){
+			$('.advertisement_plan_block_id').val($(this).val());
+		});		
+	});	
+</script>

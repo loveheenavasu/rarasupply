@@ -1,0 +1,77 @@
+<?php
+/**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_Rewardsystem
+ * @author    CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (https://cedcommerce.com/)
+ * @license     https://cedcommerce.com/license-agreement.txt
+ */
+?>
+
+<?php
+$point = $block->getSaleableItem()->getData();
+$collection = $this->helper('Ced\Rewardsystem\Helper\Data')->getProduct()->load($point['entity_id']);
+
+$showProduct = $this->helper('Ced\Rewardsystem\Helper\Data')->getStoreConfig('reward/setting/active', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+$sameProductPoint = $this->helper('Ced\Rewardsystem\Helper\Data')->getStoreConfig('reward/setting/product_point', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+
+?>
+<?php if ($block->getPriceType() == __('finalPrice')): ?>
+    <div>
+ <span id="rewardpoints" style="color:  #FFD700">
+     <?php if ($showProduct == 1): ?>
+         <?php if ($collection->getCedRpoint() !== '0'): ?>
+             <?php if ($collection->getCedRpoint()): ?>
+                 <?php echo __('Reward point is') ?> :<?php echo $collection->getCedRpoint(); ?>
+             <?php else: ?>
+                 <?php if ($sameProductPoint): ?>
+                     <?php echo __('Reward point is') ?> :<?php echo $sameProductPoint; ?>
+                 <?php endif; ?>
+             <?php endif; ?>
+         <?php endif; ?>
+     <?php endif; ?>
+ </span>
+    </div>
+
+<?php endif; ?>
+<span class="price-container <?php /* @escapeNotVerified */
+echo $block->getAdjustmentCssClasses() ?>"
+        <?php echo $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>>
+    <?php if ($block->getDisplayLabel()): ?>
+        <span class="price-label"><?php /* @escapeNotVerified */
+            echo $block->getDisplayLabel(); ?></span>
+
+    <?php endif; ?>
+    <span <?php if ($block->getPriceId()): ?> id="<?php /* @escapeNotVerified */
+        echo $block->getPriceId() ?>"<?php endif; ?>
+        <?php echo ($block->getPriceDisplayLabel()) ? 'data-label="' . $block->getPriceDisplayLabel() . $block->getPriceDisplayInclExclTaxes() . '"' : '' ?>
+        data-price-amount="<?php /* @escapeNotVerified */
+        echo $block->getDisplayValue(); ?>"
+        data-price-type="<?php /* @escapeNotVerified */
+        echo $block->getPriceType(); ?>"
+        class="price-wrapper <?php /* @escapeNotVerified */
+        echo $block->getPriceWrapperCss(); ?>"
+        <?php echo $block->getSchema() ? ' itemprop="price"' : '' ?>>
+        <?php /* @escapeNotVerified */
+        echo $block->formatCurrency($block->getDisplayValue(), (bool)$block->getIncludeContainer()) ?>
+
+    </span>
+    <?php if ($block->hasAdjustmentsHtml()): ?>
+        <?php echo $block->getAdjustmentsHtml() ?>
+    <?php endif; ?>
+    <?php if ($block->getSchema()): ?>
+        <meta itemprop="priceCurrency" content="<?php /* @escapeNotVerified */
+        echo $block->getDisplayCurrencyCode() ?>"/>
+    <?php endif; ?>
+</span>
+

@@ -1,0 +1,102 @@
+<?php
+/**
+* CedCommerce
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the End User License Agreement (EULA)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://cedcommerce.com/license-agreement.txt
+*
+* @category    Ced
+* @package     Ced_Rewardsystem
+* @author   	 CedCommerce Core Team <connect@cedcommerce.com >
+* @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+* @license      http://cedcommerce.com/license-agreement.txt
+*/  
+
+$referred_list = $this->getCollection();
+$earnedAmount=$block->pendingamount();
+?>
+<div class="row" >
+<div class="col-lg-4 col-md-4" style="margin-bottom:1%">
+	<div class="panel-red">
+		<div class="panel-heading" style="background-color:#EA3A3C; padding:1%; color:#FFFFFF">
+				<div class="info-heading"><center><?php echo __('Referrals Pending')?> <?php echo $block->pendingreferral() ?></center></div>
+		</div>
+	</div>
+</div>
+
+
+<div class="col-lg-4 col-md-4" style="margin-bottom:1%">
+	<div class="panel-red">
+		<div class="panel-heading" style="background-color:#BA4000; padding:1%; color:#FFFFFF">
+				<div class="info-heading"><center><?php echo __('Referrals Acknowledged')?> <?php echo $block->registeredreferral() ?></center></div>
+		</div>
+	</div>
+</div>
+
+<!-- Total Earned Amount -->
+<!--<div class="col-lg-4 col-md-4" style="margin-bottom:1%">
+	<div class="panel-green">
+		<div class="panel-heading" style="background-color:#009933; padding:1%; color:#FFFFFF">
+				<div class="info-heading"><center><?php echo __('Total Earned Amount'); ?> <?php echo $earnedAmount ?></center></div>
+		</div>
+	</div>
+</div>-->
+</div>
+
+<?php
+if(isset($referred_list) && $referred_list->count()>0){?>
+	<div style="overflow-x:auto;">
+		<table class="data-table" id="my-orders-table" style="margin-top:50px">
+			<thead>
+				<tr>
+					<th><?php echo __('Email Id');?></th>
+					<th><?php echo __('Status');?></th>
+					<th><?php echo __('Invited Date');?></th>
+<!--					<th><?php echo __('Earned Amount'); ?></th>-->
+				</tr>
+			</thead>
+			<tbody>
+		<?php
+		foreach($referred_list as $value){ ?>
+				<tr>
+						<td><?php echo $value["referred_email"] ?></td>
+						<?php if($value["signup_status"]==0): ?>
+							<td><?php echo __("Pending") ?></td>
+						<?php else: ?>
+							<td><?php echo __("Joined") ?></td>
+						<?php endif ?>
+						<td><?php echo $value["invite_date"] ?></td>
+						<!--<td><?php echo $value["amount"] ?></td>-->
+
+			   </tr>
+		<?php }?>
+
+			</tbody>
+		</table>
+	</div>
+
+<?php if ($block->getPagerHtml()): ?>
+<div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif; ?>
+<?php }else{?>
+<h3>You had not referred any friends.</h3>
+<?php }?>
+
+
+<style>
+table thead{
+	background-color: #006BB4;
+}
+table tr th{
+	font-weight: bold;
+	color:white;
+}
+table tr td{
+	width:12%;
+
+}
+</style>

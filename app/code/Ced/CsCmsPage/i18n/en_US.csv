@@ -1,0 +1,127 @@
+"Manage Cms Blocks","Manage Cms Blocks"
+"Save Block","Save Block"
+"Delete Block","Delete Block"
+"Edit Block '%1'","Edit Block '%1'"
+"New Block","New Block"
+"Block Information","Block Information"
+"General Information","General Information"
+"Block Title","Block Title"
+Identifier,Identifier
+"Store View","Store View"
+Status,Status
+Enabled,Enabled
+Disabled,Disabled
+Content,Content
+Delete,Delete
+"Are you sure?","Are you sure?"
+"Change Status","Change Status"
+Approve,Approve
+Disapprove,Disapprove
+Title,Title
+"URL Key","URL Key"
+Created,Created
+Modified,Modified
+Action,Action
+Edit,Edit
+"Manage Cms Pages","Manage Cms Pages"
+"Add New Page","Add New Page"
+"Save Cms Page","Save Cms Page"
+"Delete Page","Delete Page"
+"Edit Post '%1'","Edit Post '%1'"
+"New Post","New Post"
+"Content Heading","Content Heading"
+"Page Layout","Page Layout"
+Layout,Layout
+"Layout Update XML","Layout Update XML"
+"Custom Design","Custom Design"
+"Custom Design From","Custom Design From"
+"Custom Design To","Custom Design To"
+"-- Please Select --","-- Please Select --"
+"Custom Theme","Custom Theme"
+"Custom Layout","Custom Layout"
+"Custom Layout Update XML","Custom Layout Update XML"
+Design,Design
+"Page Information","Page Information"
+"Page Title","Page Title"
+"Page Status","Page Status"
+"Meta Data","Meta Data"
+Keywords,Keywords
+"Meta Keywords","Meta Keywords"
+Description,Description
+"Meta Description","Meta Description"
+"CmsPage Information","CmsPage Information"
+"Meta Deta","Meta Deta"
+Preview,Preview
+"Are you sure you want to Approve?","Are you sure you want to Approve?"
+"Are you sure you want to Disapprove?","Are you sure you want to Disapprove?"
+Pending,Pending
+Approved,Approved
+Home,Home
+"Go to Home Page","Go to Home Page"
+"Default Values","Default Values"
+"Please select items.","Please select items."
+Submit,Submit
+"You deleted the block.","You deleted the block."
+"We can't find a block to delete.","We can't find a block to delete."
+"This block no longer exists.","This block no longer exists."
+"Edit Block","Edit Block"
+Blocks,Blocks
+"Edit CMS Block","Edit CMS Block"
+"Some of the processed vendors have no Shop URL value defined. Please fill it prior to performing operations on these vendors.","Some of the processed sellers have no Shop URL value defined. Please fill it prior to performing operations on these sellers."
+"You saved this page.","You saved this page."
+"Something went wrong while saving the page.","Something went wrong while saving the page."
+"The page has been deleted.","The page has been deleted."
+"We can't find a page to delete.","We can't find a page to delete."
+CMS,CMS
+"Manage Pages","Manage Pages"
+"This page no longer exists.","This page no longer exists."
+"Edit Page","Edit Page"
+"New Page","New Page"
+Pages,Pages
+"Edit CMS Page","Edit CMS Page"
+"To apply changes you should fill in hidden required ""%1"" field","To apply changes you should fill in hidden required ""%1"" field"
+". "" "" .",". "" "" ."
+"The Vendor's Shop you are trying to access is not available at this moment.","The Seller's Shop you are trying to access is not available at this moment."
+"Add New CMS Block","Add New CMS Block"
+"Edit Static Block","Edit Static Block"
+"Vendor Cms Block","Seller Cms Block"
+"Block Page Created Successfully","Block Page Created Successfully"
+"Vendor Static Block","Seller Static Block"
+"Block Page Update Successfully","Block Page Update Successfully"
+"Add New CMS Page","Add New CMS Page"
+"The Page has been deleted.","The Page has been deleted."
+"Vendor Cms Page","Seller Cms Page"
+"Cms Page Update Successfully","Cms Page Update Successfully"
+CsMarketplace,CsMarketplace
+"Invalid login or password.","Invalid login or password."
+"The static block content cannot contain  directive with its self.","The static block content cannot contain  directive with its self."
+"please Select Layout","please Select Layout"
+"Vendor Empty Layout","Seller Empty Layout"
+"Vendor Panel Layout","Seller Panel Layout"
+"1 column","1 column"
+"1 columns left bar","1 columns left bar"
+"1 columns right bar","1 columns right bar"
+"3 columns","3 columns"
+Empty,Empty
+"The page URL key contains capital letters or disallowed symbols.","The page URL key contains capital letters or disallowed symbols."
+"The page URL key cannot be made of only numbers.","The page URL key cannot be made of only numbers."
+"Please confirm site switching. All data that hasn't been saved will be lost.","Please confirm site switching. All data that hasn't been saved will be lost."
+Page,Page
+"Previous page","Previous page"
+"Next page","Next page"
+"of %s pages","of %s pages"
+View,View
+"per page","per page"
+"Total %d records found","Total %d records found"
+"Export to:","Export to:"
+"Select All","Select All"
+"Unselect All","Unselect All"
+"Select Visible","Select Visible"
+"Unselect Visible","Unselect Visible"
+"items selected","items selected"
+Actions,Actions
+"Mass Actions","Mass Actions"
+"Enable Vendor CMS Page System","Enable Seller CMS Page System"
+"Vendor CMS Page","Seller CMS Page"
+"Require Vendor CMS Page Admin Approval","Require Seller CMS Page Admin Approval"
+"Require Vendor Static Block Admin Approval","Require Seller Static Block Admin Approval"

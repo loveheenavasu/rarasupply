@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>  
+    	<add id="Ced_Advertisement::advertisement" title="Advertisement" module="Ced_Advertisement" sortOrder="15" resource="Ced_Advertisement::advertisement" dependsOnConfig="advertisement/enable_ads/enable" />
+    	 
+        <add id="Ced_Advertisement::advertisement_main" title="Advertisements" module="Ced_Advertisement" sortOrder="50" parent="Ced_Advertisement::advertisement" resource="Ced_Advertisement::advertisement_main" dependsOnConfig="advertisement/enable_ads/enable" />
+        <add id="Ced_Advertisement::advertisement_position" title="Ad Positions" module="Ced_Advertisement" sortOrder="10" parent="Ced_Advertisement::advertisement_main" action="advertisement/position/" resource="Ced_Advertisement::advertisement_position" dependsOnConfig="advertisement/enable_ads/enable"/>
+        <add id="Ced_Advertisement::advertisement_plan" title="Add Plans" module="Ced_Advertisement" sortOrder="20" parent="Ced_Advertisement::advertisement_main" action="advertisement/plan/" resource="Ced_Advertisement::advertisement_plan" dependsOnConfig="advertisement/enable_ads/enable" />
+        <add id="Ced_Advertisement::advertisement_blocks" title="Advertisement Blocks" module="Ced_Advertisement" sortOrder="30" parent="Ced_Advertisement::advertisement_main" action="advertisement/blocks/" resource="Ced_Advertisement::advertisement_blocks" dependsOnConfig="advertisement/enable_ads/enable" />
+        <add id="Ced_Advertisement::advertisement_purchased_plans" title="Purchased Plans" module="Ced_Advertisement" sortOrder="40" parent="Ced_Advertisement::advertisement_main" action="advertisement/purchased/" resource="Ced_Advertisement::advertisement_purchased_plans" dependsOnConfig="advertisement/enable_ads/enable" />
+        <add id="Ced_Advertisement::advertisement_configuration" title="Advertisement Configuration" module="Ced_Advertisement" sortOrder="50" parent="Ced_Advertisement::advertisement_main" resource="Ced_Advertisement::advertisement_configuration" action="adminhtml/system_config/edit/section/advertisement" dependsOnConfig="advertisement/enable_ads/enable"/>
+    </menu>
+</config>

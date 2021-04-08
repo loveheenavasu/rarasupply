@@ -1,0 +1,7 @@
+/* custom changes */
+.cscommission-commission-index .page-main-actions .page-actions._fixed {
+	position: static;
+}
+.cscommission-commission-index .page-wrapper {
+	width: 100%;
+}

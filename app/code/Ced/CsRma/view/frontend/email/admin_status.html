@@ -1,0 +1,46 @@
+<!-- /**
+ * CedCommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the End User License Agreement (EULA)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://cedcommerce.com/license-agreement.txt
+ *
+ * @category    Ced
+ * @package     Ced_CsRma
+ * @author       CedCommerce Core Team <connect@cedcommerce.com >
+ * @copyright   Copyright CEDCOMMERCE (http://cedcommerce.com/)
+ * @license      http://cedcommerce.com/license-agreement.txt
+ */ -->
+
+<!--@subject Notification  @-->
+<!--@vars {
+"var this.getUrl($store, 'admin')":"Warehouse Account URL",
+"var customer.email":"Customer Email",
+"var customer.name":"Customer Name"
+} @-->
+ 
+{{template config_path="design/email/header_template"}} <!-- pathe of template header-->
+ 
+<!-- here $myvar1 , $myvar2, $myvar3, $myvar4, $myvar5, $myvar6 are variables in which we
+                                     asssign values when we use this template for send mail-->
+ 
+<!-- you can Modify content of template according to your requirement-->
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Dear User,"}}</p>
+            <p>
+                {{trans 'Message-:'}}
+                {{var message }}
+            </p>
+            <p>    
+                {{trans 'For More Details' }}<a href="{{var redirect_url}}">{{trans ' logging into your account.' |raw}}</a>
+            </p>
+        </td>
+    </tr>
+</table>
+ 
+{{template config_path="design/email/footer_template"}} <!--footer of template-->

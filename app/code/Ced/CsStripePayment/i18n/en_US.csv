@@ -1,0 +1,46 @@
+"Stored Card","Stored Card"
+"Credit Card Type","Credit Card Type"
+"Credit Card Number","Credit Card Number"
+"Invalid Data Restrict Process","Invalid Data Restrict Process"
+"Occurred Error In Processing","Occurred Error In Processing"
+Enabled,Enabled
+Disabled,Disabled
+managed,managed
+standalone,standalone
+"Ask the customer","Ask the customer"
+"Save without asking to Customer","Save without asking to Customer"
+Production,Production
+Development,Development
+Test,Test
+Live,Live
+"Stripe Payment","Stripe Payment"
+"Email Associated with Stripe Merchant Account","Email Associated with Stripe Merchant Account"
+"Bank Account Number","Bank Account Number"
+"Routing Number","Routing Number"
+"Credit Card Information","Credit Card Information"
+"Card Owner Name","Card Owner Name"
+"Expiration Date","Expiration Date"
+"Card Verification Number","Card Verification Number"
+"What is this?","What is this?"
+"Switch/Solo/Maestro Only","Switch/Solo/Maestro Only"
+"Issue Number","Issue Number"
+"Start Date","Start Date"
+"CedCommerce Stripe Payment","CedCommerce Stripe Payment"
+Title,Title
+"Gateway Mode","Gateway Mode"
+"API Test Secret Key","API Test Secret Key"
+"API Test Publishable Key","API Test Publishable Key"
+"API Live Secret Key","API Live Secret Key"
+"API Live Publishable Key","API Live Publishable Key"
+"Account Type","Account Type"
+"Stripe client Id Mode","Stripe client Id Mode"
+"Stripe Proudction Client Id","Stripe Proudction Client Id"
+"Stripe Development Client Id","Stripe Development Client Id"
+"Payment Action","Payment Action"
+"New Order Status","New Order Status"
+" Credit Card Types"," Credit Card Types"
+"Payment from Applicable Countries","Payment from Applicable Countries"
+"Payment from Specific Countries","Payment from Specific Countries"
+Instructions,Instructions
+"Email Associated With Stripe Account","Email Associated With Stripe Account"
+"Application fee for Stripe","Application fee for Stripe"
